@@ -1,6 +1,6 @@
 import { env } from '../config/env';
 
-// Multilingual portfolio data
+// Multi lingual portfolio data
 export const portfolioData = {
   es: {
     personalInfo: {
@@ -37,7 +37,7 @@ export const portfolioData = {
         description: 'Portafolio web desarrollado con React y TypeScript, desplegado en AWS con CI/CD automatizado.',
         image: '/images/projects/project-portfolio.jpg',
         technologies: ['React', 'TypeScript', 'Tailwind CSS', 'AWS S3', 'CloudFront'],
-        githubUrl: 'https://github.com/sebasgao05/portafolio',
+        githubUrl: 'https://github.com/sebasgao05/DavidBarreraDevCom',
         demoUrl: 'https://david-barrera.com/',
         featured: true
       },
