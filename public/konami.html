@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Easter Egg - David Barrera</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #00ff41;
+            box-shadow: 0 0 30px #00ff41;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px #00ff41; }
+            to { box-shadow: 0 0 40px #00ff41, 0 0 60px #00ff41; }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px #00ff41;
+            animation: flicker 3s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .ascii-art {
+            font-size: 0.8rem;
+            line-height: 1;
+            margin: 2rem 0;
+            white-space: pre;
+            color: #00ff41;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            animation: typewriter 4s steps(40) 1s both;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #00ff41;
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            background: rgba(0, 255, 65, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid #00ff41;
+        }
+
+        .back-btn {
+            background: transparent;
+            color: #00ff41;
+            border: 2px solid #00ff41;
+            padding: 0.8rem 2rem;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .back-btn:hover {
+            background: #00ff41;
+            color: #000;
+            box-shadow: 0 0 20px #00ff41;
+        }
+
+        .konami-code {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .ascii-art {
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix" id="matrix"></canvas>
+    
+    <div class="container">
+        <h1>🎮 ¡EASTER EGG ENCONTRADO! 🎮</h1>
+        
+        <div class="ascii-art">
+    ██████╗  █████╗ ██╗   ██╗██╗██████╗ 
+    ██╔══██╗██╔══██╗██║   ██║██║██╔══██╗
+    ██║  ██║███████║██║   ██║██║██║  ██║
+    ██║  ██║██╔══██║╚██╗ ██╔╝██║██║  ██║
+    ██████╔╝██║  ██║ ╚████╔╝ ██║██████╔╝
+    ╚═════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═════╝ 
+        </div>
+        
+        <div class="message">
+            ¡Felicidades! Has encontrado mi easter egg secreto 🕵️‍♂️
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <strong>🚀 Nivel de Curiosidad:</strong><br>
+                MÁXIMO ALCANZADO
+            </div>
+            <div class="stat">
+                <strong>🔍 Habilidad de Exploración:</strong><br>
+                LEGENDARY
+            </div>
+            <div class="stat">
+                <strong>🎯 Atención al Detalle:</strong><br>
+                EXCEPCIONAL
+            </div>
+            <div class="stat">
+                <strong>🏆 Logro Desbloqueado:</strong><br>
+                "DETECTIVE DIGITAL"
+            </div>
+        </div>
+        
+        <p>
+            Como desarrollador, aprecio a las personas que exploran más allá de lo obvio.
+            <br>
+            ¡Eres exactamente el tipo de persona con la que me gustaría trabajar! 💼
+        </p>
+        
+        <div class="konami-code">
+            Código Konami: ↑ ↑ ↓ ↓ ← → ← → B A
+            <br>
+            <small>Prueba escribir "konami" en la página principal 😉</small>
+        </div>
+        
+        <a href="/" class="back-btn">← Volver al Portafolio</a>
+    </div>
+
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 35);
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Konami Code Easter Egg within Easter Egg
+        let konamiCode = [];
+        const konamiSequence = [
+            'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+            'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+            'KeyB', 'KeyA'
+        ];
+
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.code);
+            
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+            
+            if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+                document.body.style.filter = 'hue-rotate(180deg)';
+                alert('🎉 ¡SUPER EASTER EGG! Has desbloqueado el modo Matrix Invertido!');
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                }, 5000);
+                konamiCode = [];
+            }
+        });
+
+        // Victory sound effect
+        const playVictorySound = () => {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            // Victory melody: C-E-G-C (higher)
+            const notes = [261.63, 329.63, 392.00, 523.25];
+            let noteIndex = 0;
+            
+            const playNote = () => {
+                if (noteIndex < notes.length) {
+                    oscillator.frequency.setValueAtTime(notes[noteIndex], audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                    noteIndex++;
+                    setTimeout(playNote, 200);
+                } else {
+                    oscillator.stop();
+                }
+            };
+            
+            oscillator.start();
+            playNote();
+        };
+        
+        // Play victory sound on load
+        setTimeout(playVictorySound, 500);
+
+        // Console message
+        console.log(`
+        ╔══════════════════════════════════════╗
+        ║  🎮 ¡Hola, fellow developer! 🎮      ║
+        ║                                      ║
+        ║  Si estás leyendo esto, eres mi      ║
+        ║  tipo de persona. ¡Contáctame!       ║
+        ║                                      ║
+        ║  📧 sebasgao05@gmail.com            ║
+        ║  🔗 linkedin.com/in/sebasgao05      ║
+        ╚══════════════════════════════════════╝
+        `);
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://david-barrera.com/sitemap.xml
+
+# Hint: Try writing popular game code or focus more on SEO
+
+# Disallow admin or private areas (if any in the future)
+# Disallow: /admin/

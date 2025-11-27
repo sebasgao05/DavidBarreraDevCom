@@ -1,0 +1,206 @@
+/* Hover Effects Sofisticados */
+
+/* Card Hover Effect */
+.card-hover {
+  @apply transition-all duration-300 ease-out;
+  transform: translateY(0) scale(1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Button Glow Effect */
+.btn-glow {
+  @apply relative overflow-hidden transition-all duration-300;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-glow:hover::before {
+  left: 100%;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Text Gradient Hover */
+.text-gradient-hover {
+  @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent transition-all duration-300;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.text-gradient-hover:hover {
+  animation-duration: 0.5s;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Image Zoom Effect */
+.image-zoom {
+  @apply overflow-hidden rounded-lg;
+}
+
+.image-zoom img {
+  @apply transition-transform duration-500 ease-out;
+  transform: scale(1);
+}
+
+.image-zoom:hover img {
+  transform: scale(1.1);
+}
+
+/* Magnetic Button Effect */
+.btn-magnetic {
+  @apply relative transition-all duration-300 ease-out;
+  transform: translate(0, 0);
+}
+
+.btn-magnetic:hover {
+  transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+}
+
+/* Ripple Effect */
+.ripple {
+  @apply relative overflow-hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Underline Animation */
+.underline-animate {
+  @apply relative;
+}
+
+.underline-animate::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transition: width 0.3s ease-out;
+}
+
+.underline-animate:hover::after {
+  width: 100%;
+}
+
+/* Floating Animation */
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Pulse Glow */
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+}
+
+/* Tilt Effect */
+.tilt-effect {
+  @apply transition-transform duration-300 ease-out;
+  transform-style: preserve-3d;
+}
+
+.tilt-effect:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Border Gradient Animation */
+.border-gradient {
+  @apply relative p-0.5 rounded-lg;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
+  background-size: 400% 400%;
+  animation: gradient-border 4s ease infinite;
+}
+
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: white;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.dark .border-gradient::before {
+  background: #1f2937;
+}
+
+@keyframes gradient-border {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Focus Visible Styles */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 ring-offset-white;
+}
+
+.dark .focus-visible:focus {
+  @apply ring-offset-gray-900;
+}
+
+/* Smooth Transitions */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}

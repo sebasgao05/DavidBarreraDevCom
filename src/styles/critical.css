@@ -1,0 +1,145 @@
+/* Critical CSS - Above the fold styles */
+/* Inline en <head> para eliminar render-blocking */
+
+/* Reset y base */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+html,body{height:100%}
+body{line-height:1.5;-webkit-font-smoothing:antialiased}
+img,picture,video,canvas,svg{display:block;max-width:100%}
+input,button,textarea,select{font:inherit}
+p,h1,h2,h3,h4,h5,h6{overflow-wrap:break-word}
+
+/* Variables críticas */
+:root{
+  --primary: #3b82f6;
+  --primary-dark: #1d4ed8;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --bg: #ffffff;
+  --bg-secondary: #f9fafb;
+}
+
+[data-theme="dark"]{
+  --text: #f9fafb;
+  --text-light: #d1d5db;
+  --bg: #111827;
+  --bg-secondary: #1f2937;
+}
+
+/* Layout crítico */
+body{
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header crítico */
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.3);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .header{
+  background-color: rgba(17, 24, 39, 0.8);
+  border-bottom-color: rgba(75, 85, 99, 0.3);
+}
+
+/* Hero section crítico */
+.hero{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 100%);
+}
+
+.hero-content{
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title{
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle{
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Botones críticos */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary{
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover{
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Loading states */
+.loading-skeleton{
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+[data-theme="dark"] .loading-skeleton{
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes loading{
+  0%{background-position: 200% 0}
+  100%{background-position: -200% 0}
+}
+
+/* Responsive */
+@media (max-width: 768px){
+  .hero{padding: 1rem}
+  .hero-title{font-size: 2.5rem}
+  .hero-subtitle{font-size: 1.125rem}
+}
+
+/* Preload hint */
+.preload-hint{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
