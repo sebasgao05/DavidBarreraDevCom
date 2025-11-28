@@ -5,9 +5,7 @@ console.log('🔍 Validating build configuration...');
 
 // Validate that critical images exist
 const criticalImages = [
-  'public/images/profile/profile-david.webp',
-  'public/images/projects/project-portfolio.jpg',
-  'public/images/projects/project-aws-iot.jpg'
+  'public/images/projects/Generador-CV.webp'
 ];
 
 let hasErrors = false;
