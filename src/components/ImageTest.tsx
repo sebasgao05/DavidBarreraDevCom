@@ -62,6 +62,20 @@ export default function ImageTest() {
       </div>
       
       <div style={{ marginBottom: "20px" }}>
+        <h3>Proyecto Portfolio (JPG):</h3>
+        <img 
+          src="/images/projects/Generador-CV.jpg" 
+          alt="Generador CV" 
+          style={{ width: "300px", height: "200px", objectFit: "cover" }}
+          onError={(e) => {
+            console.error("Error loading Generador CV JPG:", e);
+            (e.target as HTMLImageElement).style.border = "2px solid red";
+          }}
+          onLoad={() => console.log("Generador CV JPG loaded successfully")}
+        />
+      </div>
+      
+      <div style={{ marginBottom: "20px" }}>
         <h3>Proyecto 2048 (WebP):</h3>
         <img 
           src="/project-2048.webp" 

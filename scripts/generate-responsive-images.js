@@ -2,13 +2,11 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const publicDir = path.join(__dirname, '..', 'public');
+const publicDir = path.join(__dirname, '..', 'public', 'images', 'projects');
 
 // Imágenes que necesitan versiones responsive
 const projectImages = [
-  'project-aws-iot.jpg',
-  'project-portfolio.jpg',
-  'project-2048.jpg'
+  'Generador-CV.jpg'
 ];
 
 // Tamaños responsive
