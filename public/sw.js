@@ -1,7 +1,7 @@
 // Service Worker para cache inteligente
-const CACHE_NAME = 'david-portfolio-v1.2';
-const STATIC_CACHE = 'static-v1.2';
-const DYNAMIC_CACHE = 'dynamic-v1.2';
+const CACHE_NAME = 'david-portfolio-v1.3';
+const STATIC_CACHE = 'static-v1.3';
+const DYNAMIC_CACHE = 'dynamic-v1.3';
 
 // Recursos críticos para cache inmediato
 const STATIC_ASSETS = [
@@ -108,20 +108,26 @@ async function handleImageRequest(request) {
   }
 }
 
-// Cache-first para assets estáticos
+// Network-first para assets estaticos (evita servir bundles antiguos)
 async function handleStaticAsset(request) {
   const cache = await caches.open(STATIC_CACHE);
-  const cachedResponse = await cache.match(request);
   
+  try {
+    const networkResponse = await fetch(request);
+    if (networkResponse.ok) {
+      cache.put(request, networkResponse.clone());
+      return networkResponse;
+    }
+  } catch (error) {
+    console.log('SW static asset fetch failed, using cache');
+  }
+
+  const cachedResponse = await cache.match(request);
   if (cachedResponse) {
     return cachedResponse;
   }
-  
-  const networkResponse = await fetch(request);
-  if (networkResponse.ok) {
-    cache.put(request, networkResponse.clone());
-  }
-  return networkResponse;
+
+  return new Response('Offline', { status: 503 });
 }
 
 // Network-first para páginas
