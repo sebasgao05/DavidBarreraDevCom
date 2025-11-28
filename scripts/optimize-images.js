@@ -2,7 +2,7 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const publicDir = path.join(__dirname, '..', 'public');
+const publicDir = path.join(__dirname, '..', 'public', 'images', 'projects');
 const imageExtensions = ['.jpg', '.jpeg', '.png'];
 
 function optimizeImages() {

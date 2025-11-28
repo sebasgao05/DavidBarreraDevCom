@@ -80,6 +80,15 @@ export const projects = [
     featured: true
   },
   {
+    title: 'Generador de Cv',
+    description: 'Generador de Hojas de Vida en pdf, desplegado en AWS Amplify.',
+    image: '/images/projects/Generador-CV.jpg',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'AWS Amplify'],
+    githubUrl: 'https://github.com/sebasgao05/GenerateCV',
+    demoUrl: 'https://generar-cv.david-barrera.com/',
+    featured: false
+  },
+  {
     title: '2048 Game - EAN Version',
     description: 'Implementación del popular juego 2048 con temática universitaria EAN. Desarrollado con JavaScript vanilla y diseño responsive.',
     image: '/images/projects/project-2048.jpg',
