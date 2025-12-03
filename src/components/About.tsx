@@ -74,24 +74,33 @@ const About: React.FC = () => {
             
             <div className="space-y-6">
               {certifications.map((cert, index) => (
-                <div key={index} className="border-l-4 border-primary-600 pl-4">
-                  <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
-                    {cert.name}
-                  </h4>
-                  <p className="text-primary-600 dark:text-primary-400 font-medium mb-1">
-                    {cert.issuer}
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                    {cert.date}
-                  </p>
-                  <a
-                    href={cert.credlyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors duration-200"
-                  >
-                    Ver en Credly →
-                  </a>
+                <div key={index} className="flex gap-4 items-start">
+                  {cert.image && (
+                    <img
+                      src={cert.image}
+                      alt={cert.name}
+                      className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+                    />
+                  )}
+                  <div className="border-l-4 border-primary-600 pl-4 flex-1">
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                      {cert.name}
+                    </h4>
+                    <p className="text-primary-600 dark:text-primary-400 font-medium mb-1">
+                      {cert.issuer}
+                    </p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                      {cert.date}
+                    </p>
+                    <a
+                      href={cert.credlyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors duration-200"
+                    >
+                      Ver en Credly →
+                    </a>
+                  </div>
                 </div>
               ))}
             </div>

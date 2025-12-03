@@ -110,16 +110,32 @@ export const education = [
 
 export const certifications = [
   {
+    name: 'IBM Agile Explorer',
+    issuer: 'IBM',
+    date: '2025',
+    credlyUrl: 'https://www.credly.com/badges/d42b6db1-a575-4d23-a173-b91e633d4024/public_url',
+    image: 'https://images.credly.com/size/340x340/images/a972f054-be07-4845-85c7-95c8d11852f5/IBM-Agile-Explorer.png'
+  },
+  {
     name: 'AWS Educate',
     issuer: 'AWS',
     date: '2024-2025',
-    credlyUrl: 'https://www.credly.com/users/david-sebastian-barrera-gaona'
+    credlyUrl: 'https://www.credly.com/users/david-sebastian-barrera-gaona',
+    image: 'https://images.credly.com/size/340x340/images/e51a8579-188d-4363-8ed1-12ad164ef57b/blob'
   },
   {
     name: 'AWS Cloud Club Captain',
     issuer: 'AWS',
     date: '2025',
-    credlyUrl: 'https://www.credly.com/badges/b1a76f4c-192a-4006-80cf-6f6f2df6a142/public_url'
+    credlyUrl: 'https://www.credly.com/badges/b1a76f4c-192a-4006-80cf-6f6f2df6a142/public_url',
+    image: 'https://images.credly.com/size/340x340/images/54fdb971-fd75-4c35-88d3-a26abf11dfc8/image.png'
+  },
+  {
+    name: 'AWS Cloud Club Captain: Gold Level',
+    issuer: 'AWS',
+    date: '2025',
+    credlyUrl: 'https://www.credly.com/badges/6ab9b1ef-1a35-44c0-9bd7-3cc0a0fa7262/public_url',
+    image: 'https://images.credly.com/size/340x340/images/d2f9e17a-6036-4b42-97b1-0ab2323c4b2f/image.png'
   }
 ];
 
