@@ -33,5 +33,6 @@ Thumbs.db
 # Bundle analysis
 bundle-report.html
 
-# Otros
-otros/
+# AWS Credentials
+*accessKeys.csv
+otros/david-barrera_accessKeys.csv
