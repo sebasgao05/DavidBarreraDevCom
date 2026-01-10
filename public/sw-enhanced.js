@@ -26,21 +26,24 @@ const CRITICAL_IMAGES = [
 ];
 
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.svg'];
-const MAX_CACHE_SIZE = 50;
+const MAX_CACHE_SIZE = 50; // Maximum items per cache
 const CACHE_EXPIRY = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 // Install event - cache critical resources
 self.addEventListener('install', (event) => {
   event.waitUntil(
     Promise.all([
+      // Cache static assets
       caches.open(STATIC_CACHE).then(cache => {
         console.log('📦 Caching static assets');
         return cache.addAll(STATIC_ASSETS);
       }),
+      // Cache fonts
       caches.open(FONT_CACHE).then(cache => {
         console.log('🔤 Caching fonts');
         return cache.addAll(FONT_URLS);
       }),
+      // Cache critical images
       caches.open(IMAGE_CACHE).then(cache => {
         console.log('🖼️ Caching critical images');
         return cache.addAll(CRITICAL_IMAGES);
@@ -81,6 +84,7 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
+  // Skip non-GET requests and external requests
   if (request.method !== 'GET' || url.origin !== location.origin) {
     return;
   }
@@ -102,7 +106,7 @@ async function handleRequest(request) {
   }
 }
 
-// Cache-first for fonts
+// Cache-first for fonts (they rarely change)
 async function handleFontRequest(request) {
   const cache = await caches.open(FONT_CACHE);
   const cachedResponse = await cache.match(request);
@@ -124,7 +128,7 @@ async function handleFontRequest(request) {
   }
 }
 
-// Cache-first para imágenes
+// Cache-first for images with size limit
 async function handleImageRequest(request) {
   const cache = await caches.open(IMAGE_CACHE);
   const cachedResponse = await cache.match(request);
@@ -137,6 +141,7 @@ async function handleImageRequest(request) {
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
       const responseToCache = networkResponse.clone();
+      // Add timestamp for expiry check
       const headers = new Headers(responseToCache.headers);
       headers.set('sw-cache-timestamp', Date.now().toString());
       
@@ -156,18 +161,18 @@ async function handleImageRequest(request) {
   }
 }
 
-// Network-first para assets estaticos
+// Network-first for static assets (ensures fresh bundles)
 async function handleStaticAsset(request) {
   const cache = await caches.open(STATIC_CACHE);
   
   try {
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
-      cache.put(request, networkResponse.clone());
+      await cache.put(request, networkResponse.clone());
       return networkResponse;
     }
   } catch (error) {
-    console.log('SW static asset fetch failed, using cache');
+    console.log('📦 Static asset fetch failed, using cache');
   }
 
   const cachedResponse = await cache.match(request);
@@ -175,10 +180,10 @@ async function handleStaticAsset(request) {
     return cachedResponse;
   }
 
-  return new Response('Offline', { status: 503 });
+  return new Response('Asset not available offline', { status: 503 });
 }
 
-// Stale-while-revalidate para páginas
+// Stale-while-revalidate for pages
 async function handlePageRequest(request) {
   const cache = await caches.open(DYNAMIC_CACHE);
   const cachedResponse = await cache.match(request);
@@ -191,11 +196,13 @@ async function handlePageRequest(request) {
     return networkResponse;
   }).catch(() => null);
   
+  // Return cached version immediately if available
   if (cachedResponse) {
-    fetchPromise;
+    fetchPromise; // Update cache in background
     return cachedResponse;
   }
   
+  // Wait for network if no cache
   try {
     const networkResponse = await fetchPromise;
     if (networkResponse) return networkResponse;
@@ -203,6 +210,7 @@ async function handlePageRequest(request) {
     console.log('📄 Page fetch failed');
   }
   
+  // Fallback for navigation requests
   if (request.mode === 'navigate') {
     const fallback = await cache.match('/');
     if (fallback) return fallback;
@@ -240,12 +248,14 @@ async function limitCacheSize(cacheName, maxSize) {
   const keys = await cache.keys();
   
   if (keys.length > maxSize) {
+    // Remove oldest entries
     const keysToDelete = keys.slice(0, keys.length - maxSize);
     await Promise.all(keysToDelete.map(key => cache.delete(key)));
   }
 }
 
 function createOfflineImageResponse() {
+  // Create a simple SVG placeholder
   const svg = `
     <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
       <rect width="100%" height="100%" fill="#f3f4f6"/>
@@ -299,10 +309,72 @@ function createOfflinePageResponse() {
   });
 }
 
+// Background sync for form submissions
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'contact-form') {
+    event.waitUntil(syncContactForm());
+  }
+});
+
+async function syncContactForm() {
+  // Handle offline form submissions when back online
+  const formData = await getStoredFormData();
+  if (formData) {
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        body: formData
+      });
+      await clearStoredFormData();
+      console.log('📧 Contact form synced successfully');
+    } catch (error) {
+      console.log('📧 Contact form sync failed, will retry');
+    }
+  }
+}
+
+// Push notifications
+self.addEventListener('push', (event) => {
+  if (!event.data) return;
+  
+  const data = event.data.json();
+  const options = {
+    body: data.body,
+    icon: '/icons/icon-192x192.png',
+    badge: '/icons/icon-72x72.png',
+    vibrate: [200, 100, 200],
+    data: data.url,
+    actions: [
+      {
+        action: 'open',
+        title: 'Ver',
+        icon: '/icons/icon-72x72.png'
+      }
+    ]
+  };
+  
+  event.waitUntil(
+    self.registration.showNotification(data.title, options)
+  );
+});
+
+// Notification click handler
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  
+  if (event.action === 'open' || !event.action) {
+    event.waitUntil(
+      clients.openWindow(event.notification.data || '/')
+    );
+  }
+});
+
 // Message handler for cache management
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'CLEAR_CACHE') {
     event.waitUntil(clearAllCaches());
+  } else if (event.data && event.data.type === 'PRELOAD_ROUTE') {
+    event.waitUntil(preloadRoute(event.data.url));
   }
 });
 
@@ -310,4 +382,27 @@ async function clearAllCaches() {
   const cacheNames = await caches.keys();
   await Promise.all(cacheNames.map(name => caches.delete(name)));
   console.log('🗑️ All caches cleared');
+}
+
+async function preloadRoute(url) {
+  const cache = await caches.open(DYNAMIC_CACHE);
+  try {
+    const response = await fetch(url);
+    if (response.ok) {
+      await cache.put(url, response);
+      console.log('📥 Route preloaded:', url);
+    }
+  } catch (error) {
+    console.log('📥 Route preload failed:', url);
+  }
+}
+
+// Placeholder functions for form data storage
+async function getStoredFormData() {
+  // Implementation would use IndexedDB
+  return null;
+}
+
+async function clearStoredFormData() {
+  // Implementation would clear IndexedDB
 }

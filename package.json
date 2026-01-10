@@ -30,17 +30,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "build:prod": "node scripts/optimize-images.js && npm run build",
+    "build:prod": "node scripts/optimize-images.js && npm run build && node scripts/optimize-performance-enhanced.js",
     "validate": "node scripts/build-and-validate.js",
     "deploy": "npm run validate && npm run build:prod && node scripts/deploy.js",
     "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
     "setup:assets": "node scripts/setup-assets.js",
     "optimize:images": "node scripts/optimize-images.js",
+    "optimize:performance": "node scripts/optimize-performance-enhanced.js",
     "generate:icons": "node scripts/generate-icons.js",
     "generate:responsive": "node scripts/generate-responsive-images.js",
     "generate:screenshots": "node scripts/generate-screenshots.js",
     "seo:check": "lighthouse https://david-barrera.com --output=html --output-path=./lighthouse-report.html",
-    "sitemap:generate": "node scripts/generate-sitemap.js"
+    "sitemap:generate": "node scripts/generate-sitemap.js",
+    "perf:audit": "lighthouse http://localhost:3000 --output=html --output-path=./performance-audit.html --chrome-flags='--headless'",
+    "perf:monitor": "node -e \"console.log('Performance monitoring enabled in production build')\""
   },
   "eslintConfig": {
     "extends": [

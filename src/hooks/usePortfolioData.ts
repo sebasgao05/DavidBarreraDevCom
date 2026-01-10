@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { portfolioData, personalInfo, skills, certifications, currentlyLearning } from '../data/portfolioData';
+import { portfolioData, personalInfo, skills, skillsOrbits, certifications, currentlyLearning } from '../data/portfolioData';
 import { env } from '../config/env';
 
 export const usePortfolioData = () => {
@@ -17,6 +17,7 @@ export const usePortfolioData = () => {
     education: portfolioData[currentLang].education,
     languages: portfolioData[currentLang].languages,
     skills,
+    skillsOrbits,
     certifications,
     currentlyLearning
   };

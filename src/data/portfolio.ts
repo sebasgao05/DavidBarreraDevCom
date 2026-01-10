@@ -47,7 +47,7 @@ export const experience = [
   {
     title: 'Desarrollador de Aplicaciones - Internado',
     company: 'IBM',
-    period: '2025',
+    period: 'Febrero 2025 - Diciembre 2025',
     description: 'Desarrollo de aplicaciones empresariales utilizando tecnologías modernas. Participación en proyectos de transformación digital y implementación de soluciones cloud.',
     technologies: ['Java', 'Spring Boot', 'React', 'IBM Cloud', 'Docker']
   },
@@ -141,7 +141,8 @@ export const certifications = [
 
 export const languages = [
   { name: 'Español', level: 'Nativo' },
-  { name: 'Inglés', level: 'Intermedio (B2)' }
+  { name: 'Inglés', level: 'Intermedio (B2)' },
+  { name: 'Italiano', level: 'Básico (A1)' }
 ];
 
 export const currentlyLearning = [

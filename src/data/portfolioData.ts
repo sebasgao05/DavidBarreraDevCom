@@ -1,4 +1,6 @@
 import { env } from '../config/env';
+import type { SkillsOrbits } from '../types/skills';
+import { orbitsToSkills } from '../types/skills';
 
 // Multi lingual portfolio data
 export const portfolioData = {
@@ -10,7 +12,7 @@ export const portfolioData = {
       {
         title: 'Desarrollador de Aplicaciones - Internado',
         company: 'IBM',
-        period: '2025',
+        period: 'Febrero 2025 - Diciembre 2025',
         description: 'Desarrollo de aplicaciones empresariales utilizando tecnologías modernas. Participación en proyectos de transformación digital y implementación de soluciones cloud.',
         technologies: ['Java', 'Spring Boot', 'React', 'IBM Cloud', 'Docker']
       },
@@ -70,7 +72,8 @@ export const portfolioData = {
     ],
     languages: [
       { name: 'Español', level: 'Nativo' },
-      { name: 'Inglés', level: 'Intermedio (B2)' }
+      { name: 'Inglés', level: 'Intermedio (B2)' },
+      { name: 'Italiano', level: 'Básico (A1)' }
     ]
   },
   en: {
@@ -81,7 +84,7 @@ export const portfolioData = {
       {
         title: 'Application Developer - Internship',
         company: 'IBM',
-        period: '2025',
+        period: 'February 2025 - December 2025',
         description: 'Development of enterprise applications using modern technologies. Participation in digital transformation projects and cloud solutions implementation.',
         technologies: ['Java', 'Spring Boot', 'React', 'IBM Cloud', 'Docker']
       },
@@ -103,7 +106,7 @@ export const portfolioData = {
         demoUrl: 'https://54.242.72.108/',
         featured: true
       },
-            {
+      {
         title: 'Personal Portfolio',
         description: 'Web portfolio developed with React and TypeScript, deployed on AWS with automated CI/CD.',
         image: '/images/projects/project-portfolio.jpg',
@@ -141,7 +144,8 @@ export const portfolioData = {
     ],
     languages: [
       { name: 'Spanish', level: 'Native' },
-      { name: 'English', level: 'Intermediate (B2)' }
+      { name: 'English', level: 'Intermediate (B2)' },
+      { name: 'Italian', level: 'Basic (A1)' }
     ]
   }
 };
@@ -156,40 +160,101 @@ export const personalInfo = {
   profileImage: env.personal.profileImage
 };
 
-export const skills = {
-  frontend: [
-    { name: 'React', level: 80 },
-    { name: 'TypeScript', level: 75 },
-    { name: 'Next.js', level: 70 },
-    { name: 'Tailwind CSS', level: 90 },
-    { name: 'JavaScript', level: 95 }
-  ],
-  backend: [
-    { name: 'Java', level: 90 },
-    { name: 'Node.js', level: 85 },
-    { name: 'Python', level: 80 },
-    { name: 'Express.js', level: 85 },
-    { name: 'FastAPI', level: 70 }
-  ],
-  database: [
-    { name: 'PostgreSQL', level: 80 },
-    { name: 'MongoDB', level: 75 },
-    { name: 'MySQL', level: 85 },
-    { name: 'Redis', level: 70 }
-  ],
-  cloud: [
-    { name: 'AWS', level: 75 },
-    { name: 'Docker', level: 80 },
-    { name: 'Kubernetes', level: 65 },
-    { name: 'CI/CD', level: 80 }
-  ],
-  tools: [
-    { name: 'Git', level: 90 },
-    { name: 'VS Code', level: 95 },
-    { name: 'Figma', level: 75 },
-    { name: 'Postman', level: 85 }
-  ]
+export const skillsOrbits: SkillsOrbits = {
+  frontend: {
+    name: { es: 'Frontend', en: 'Frontend' },
+    color: '#cb1722',
+    satellites: [
+      { name: 'HTML5', level: 'intermedio' },
+      { name: 'CSS3', level: 'intermedio' },
+      { name: 'JavaScript', level: 'intermedio' },
+      { name: 'React', level: 'intermedio' },
+      { name: 'TypeScript', level: 'intermedio' },
+      { name: 'Next.js', level: 'basico' },
+      { name: 'Tailwind CSS', level: 'intermedio' }
+    ]
+  },
+  backend: {
+    name: { es: 'Backend', en: 'Backend' },
+    color: '#FE7C2C',
+    satellites: [
+      { name: 'Java', level: 'intermedio' },
+      { name: 'Node.js', level: 'intermedio' },
+      { name: 'Python', level: 'intermedio' },
+      { name: 'Spring Boot', level: 'basico' },
+      { name: 'JavaScript', level: 'intermedio' },
+    ]
+  },
+  database: {
+    name: { es: 'Bases de Datos', en: 'Databases' },
+    color: '#4054d7',
+    satellites: [
+      { name: 'PostgreSQL', level: 'intermedio' },
+      { name: 'MongoDB', level: 'intermedio' },
+      { name: 'MySQL', level: 'intermedio' },
+      { name: 'Aurora', level: 'intermedio' },
+      { name: 'RDS', level: 'intermedio' },
+      { name: 'DynamoDB', level: 'intermedio' }
+    ]
+  },
+  cloud: {
+    name: { es: 'Cloud Computing - AWS', en: 'Cloud Computing - AWS' },
+    color: '#5d33b8',
+    satellites: [
+      { name: 'EC2', level: 'intermedio' },
+      { name: 'Lambda', level: 'intermedio' },
+      { name: 'ECS', level: 'intermedio' },
+      { name: 'API Gateway', level: 'intermedio' },
+      { name: 'S3', level: 'intermedio' },
+      { name: 'Route 53', level: 'intermedio' },
+      { name: 'CloudWatch', level: 'intermedio' },
+      { name: 'SQS', level: 'intermedio' },
+      { name: 'IAM', level: 'intermedio' }
+    ]
+  },
+  devops: {
+    name: { es: 'DevOps', en: 'DevOps' },
+    color: '#126f5c',
+    satellites: [
+      { name: 'Gradle', level: 'basico' },
+      { name: 'JUnit', level: 'basico' },
+      { name: 'Azure Release', level: 'intermedio' },
+      { name: 'Jenkins', level: 'basico' },
+      { name: 'Maven', level: 'basico' },
+      { name: 'Docker', level: 'basico' },
+      { name: 'Kubernetes', level: 'fundamentos' },
+      { name: 'Terraform', level: 'fundamentos' }
+    ]
+  },
+  tools: {
+    name: { es: 'Herramientas', en: 'Tools' },
+    color: '#bc1356',
+    satellites: [
+      { name: 'Git', level: 'intermedio' },
+      { name: 'Testing', level: 'intermedio' },
+      { name: 'VS Code', level: 'intermedio' },
+      { name: 'Figma', level: 'intermedio' },
+      { name: 'Postman', level: 'intermedio' },
+      { name: 'IntelliJ IDEA', level: 'intermedio' },
+      { name: 'Jira', level: 'basico' }
+    ]
+  },
+  integracion: {
+    name: { es: 'Desarrollo de Integración', en: 'Integration Development' },
+    color: '#bc1356',
+    satellites: [
+      { name: 'APIs REST', level: 'intermedio' },
+      { name: 'APIs GraphQL', level: 'basico' },
+      { name: 'Microservicios', level: 'basico' },
+      { name: 'Serverless', level: 'intermedio' },
+      { name: 'Azure Functions', level: 'basico' },
+      { name: 'KAFKA', level: 'basico' }
+    ]
+  }
 };
+
+// Legacy skills for backward compatibility - generated from skillsOrbits
+export const skills = orbitsToSkills(skillsOrbits);
 
 export const certifications = [
   {
