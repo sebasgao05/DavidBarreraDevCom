@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: 'David Barrera',
-  role: 'Desarrollador de Aplicaciones & Estudiante de Ingeniería',
+  role: 'Desarrollador de Aplicaciones & Ingeniero de Sistemas',
   email: 'sebasgao05@icloud.com', 
   linkedin: 'https://www.linkedin.com/in/sebasgao05/', 
   github: 'https://github.com/sebasgao05', 

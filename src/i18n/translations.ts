@@ -13,7 +13,7 @@ export const translations = {
     // Hero Section
     hero: {
       greeting: 'Hola, soy',
-      role: 'Desarrollador de Aplicaciones & Estudiante de Ingeniería',
+      role: 'Desarrollador de Aplicaciones & Ingeniero de Sistemas',
       description: 'Especializado en desarrollo de aplicaciones empresariales con experiencia en IBM y liderazgo en AWS Cloud Club. Apasionado por las tecnologías cloud y la innovación.',
       downloadCV: 'Descargar CV',
       contactMe: 'Contáctame',
@@ -104,7 +104,7 @@ export const translations = {
       by: 'por',
       builtWith: 'Desarrollado con React, TypeScript y Tailwind CSS',
       deployedOn: 'Desplegado en AWS S3 + CloudFront',
-      role: 'Desarrollador de Aplicaciones & Estudiante de Ingeniería'
+      role: 'Desarrollador de Aplicaciones & Ingeniero de Sistemas',
     },
     
     // Common
@@ -129,7 +129,7 @@ export const translations = {
     // Hero Section
     hero: {
       greeting: 'Hi, I\'m',
-      role: 'Application Developer & Engineering Student',
+      role: 'Application Developer & Software Engineer',
       description: 'Specialized in enterprise application development with experience at IBM and leadership in AWS Cloud Club. Passionate about cloud technologies and innovation.',
       downloadCV: 'Download CV',
       contactMe: 'Contact Me',
@@ -220,7 +220,7 @@ export const translations = {
       by: 'by',
       builtWith: 'Built with React, TypeScript and Tailwind CSS',
       deployedOn: 'Deployed on AWS S3 + CloudFront',
-      role: 'Application Developer & Engineering Student'
+      role: 'Application Developer & Software Engineer',
     },
     
     // Common

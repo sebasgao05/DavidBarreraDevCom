@@ -4,7 +4,7 @@ import { Code, Server, Database, Cloud, Wrench, Infinity as InfinityIcon, Zap } 
 import { useTranslation } from 'react-i18next';
 import { skillsOrbits } from '../data/portfolioData';
 import { useTheme } from '../contexts/ThemeContext';
-import type { SkillLevel, SkillsOrbits } from '../types/skills';
+import type { SkillsOrbits, Satellite } from '../types/skills';
 
 interface SystemProps {
   category: keyof SkillsOrbits;
@@ -95,7 +95,7 @@ const SkillsOrbit: React.FC = () => {
     const IconComponent = icons[category];
     const centerX = 120;
     const centerY = 120;
-    const isLoaded = loadedSystems.has(category);
+    const isLoaded = loadedSystems.has(String(category));
     
     const orbits = useMemo(() => {
       const satellites = orbit.satellites;
@@ -123,7 +123,7 @@ const SkillsOrbit: React.FC = () => {
     useEffect(() => {
       if (isVisible && !isLoaded) {
         const timer = setTimeout(() => {
-          handleSystemLoad(category);
+          handleSystemLoad(String(category));
         }, index * 200);
         return () => clearTimeout(timer);
       }
@@ -151,11 +151,11 @@ const SkillsOrbit: React.FC = () => {
           className="w-full h-full"
         >
           <defs>
-            <radialGradient id={`bg-${category}`} cx="50%" cy="50%" r="50%">
+            <radialGradient id={`bg-${String(category)}`} cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor={orbit.color} stopOpacity="0.05" />
               <stop offset="100%" stopColor={orbit.color} stopOpacity="0.01" />
             </radialGradient>
-            <filter id={`glow-${category}`}>
+            <filter id={`glow-${String(category)}`}>
               <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
               <feMerge> 
                 <feMergeNode in="coloredBlur"/>
@@ -164,7 +164,7 @@ const SkillsOrbit: React.FC = () => {
             </filter>
           </defs>
           
-          <circle cx={centerX} cy={centerY} r="110" fill={`url(#bg-${category})`} />
+          <circle cx={centerX} cy={centerY} r="110" fill={`url(#bg-${String(category)})`} />
           
           {orbits.map((orbitData, orbitIndex) => (
             <g key={orbitIndex}>
@@ -187,13 +187,13 @@ const SkillsOrbit: React.FC = () => {
                 }}
               />
               
-              {orbitData.satellites.map((satellite, satIndex) => {
+              {orbitData.satellites.map((satellite: Satellite, satIndex: number) => {
                 const baseAngle = (satIndex * 360 / orbitData.satellites.length);
                 const angleOffset = orbitIndex * 20;
                 const angle = (baseAngle + angleOffset) * Math.PI / 180;
                 const satX = centerX + Math.cos(angle) * orbitData.radius;
                 const satY = centerY + Math.sin(angle) * orbitData.radius;
-                const config = levelConfig[satellite.level];
+                const config = levelConfig[satellite.level as keyof typeof levelConfig];
 
                 return (
                   <motion.g
@@ -248,7 +248,7 @@ const SkillsOrbit: React.FC = () => {
                       r={config.size}
                       fill={config.color}
                       opacity={config.opacity}
-                      filter={config.glow ? `url(#glow-${category})` : undefined}
+                      filter={config.glow ? `url(#glow-${String(category)})` : undefined}
                       animate={shouldReduceMotion ? {} : {
                         y: [0, -0.5, 0],
                         transition: {
@@ -305,7 +305,7 @@ const SkillsOrbit: React.FC = () => {
               cy={centerY}
               r="18"
               fill={orbit.color}
-              filter={`url(#glow-${category})`}
+              filter={`url(#glow-${String(category)})`}
             />
             
             <foreignObject

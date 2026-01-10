@@ -6,7 +6,7 @@ import { orbitsToSkills } from '../types/skills';
 export const portfolioData = {
   es: {
     personalInfo: {
-      role: 'Desarrollador & Estudiante de Ingeniería'
+      role: 'Desarrollador de Aplicaciones & Ingeniero de Sistemas',
     },
     experience: [
       {
@@ -78,7 +78,7 @@ export const portfolioData = {
   },
   en: {
     personalInfo: {
-      role: 'Application Developer & Engineering Student'
+      role: 'Application Developer & Software Engineer',
     },
     experience: [
       {

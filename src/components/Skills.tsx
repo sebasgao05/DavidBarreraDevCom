@@ -110,7 +110,7 @@ const Skills: React.FC = () => {
                   </div>
                   
                   <div className="space-y-4">
-                    {category.data.map((skill, skillIndex) => (
+                    {category.data.map((skill: { name: string; level: number }, skillIndex: number) => (
                       <SkillBar
                         key={skillIndex}
                         name={skill.name}
