@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: 'David Barrera',
-  role: 'Desarrollador de Aplicaciones & Estudiante de Ingeniería',
+  role: 'Desarrollador de Aplicaciones & Ingeniero de Sistemas',
   email: 'sebasgao05@icloud.com', 
   linkedin: 'https://www.linkedin.com/in/sebasgao05/', 
   github: 'https://github.com/sebasgao05', 
@@ -47,7 +47,7 @@ export const experience = [
   {
     title: 'Desarrollador de Aplicaciones - Internado',
     company: 'IBM',
-    period: '2025',
+    period: 'Febrero 2025 - Diciembre 2025',
     description: 'Desarrollo de aplicaciones empresariales utilizando tecnologías modernas. Participación en proyectos de transformación digital y implementación de soluciones cloud.',
     technologies: ['Java', 'Spring Boot', 'React', 'IBM Cloud', 'Docker']
   },
@@ -141,7 +141,8 @@ export const certifications = [
 
 export const languages = [
   { name: 'Español', level: 'Nativo' },
-  { name: 'Inglés', level: 'Intermedio (B2)' }
+  { name: 'Inglés', level: 'Intermedio (B2)' },
+  { name: 'Italiano', level: 'Básico (A1)' }
 ];
 
 export const currentlyLearning = [
