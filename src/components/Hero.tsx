@@ -98,7 +98,7 @@ const Hero: React.FC = () => {
                     loading="eager"
                     priority={true}
                     aspectRatio="square"
-                    sizes="(max-width: 768px) 270px, 320px"
+                    sizes="320px"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(personalInfo.name)}&size=320&background=gradient&color=ffffff&bold=true`;

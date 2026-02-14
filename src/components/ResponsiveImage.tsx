@@ -85,8 +85,8 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
     auto: ''
   }[aspectRatio];
 
-  // Loading skeleton
-  if (!imageLoaded && !imageError) {
+  // Loading skeleton - skip for priority images
+  if (!imageLoaded && !imageError && !priority) {
     return (
       <div className={`bg-gray-200 dark:bg-gray-700 animate-pulse ${aspectRatioClass} ${className}`}>
         <div className="w-full h-full flex items-center justify-center">
@@ -113,7 +113,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
         src={src}
         alt={alt}
         className={`transition-opacity duration-300 ${
-          imageLoaded ? 'opacity-100' : 'opacity-0'
+          priority || imageLoaded ? 'opacity-100' : 'opacity-0'
         } ${aspectRatioClass} ${className}`}
         width={width}
         height={height}
@@ -146,7 +146,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
         src={sources.fallbackSrc}
         alt={alt}
         className={`transition-opacity duration-300 ${
-          imageLoaded ? 'opacity-100' : 'opacity-0'
+          priority || imageLoaded ? 'opacity-100' : 'opacity-0'
         } w-full h-full object-cover ${className}`}
         width={width}
         height={height}
