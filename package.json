@@ -33,7 +33,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "build:prod": "node scripts/optimize-images.js && npm run build && node scripts/optimize-performance-enhanced.js",
+    "build:prod": "node scripts/optimize-images.js && npm run build && node scripts/optimize-performance-enhanced.js && node scripts/clean-preloads.js",
     "validate": "node scripts/build-and-validate.js",
     "deploy": "npm run validate && npm run build:prod && node scripts/deploy.js",
     "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
