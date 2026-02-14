@@ -160,29 +160,8 @@ class PerformanceOptimizer {
     const indexPath = path.join(this.buildDir, 'index.html');
     if (!fs.existsSync(indexPath)) return;
     
-    let html = fs.readFileSync(indexPath, 'utf8');
-    
-    // Find critical resources
-    const criticalResources = [
-      { href: '/images/profile/profile-david.webp', as: 'image', type: 'image/webp' },
-      { href: '/images/projects/project-portfolio-320.webp', as: 'image', type: 'image/webp' },
-      { href: '/static/css/main.css', as: 'style' },
-    ];
-    
-    // Add preload links
-    const preloadLinks = criticalResources
-      .map(resource => {
-        const type = resource.type ? ` type="${resource.type}"` : '';
-        return `<link rel="preload" href="${resource.href}" as="${resource.as}"${type}>`;
-      })
-      .join('\n    ');
-    
-    html = html.replace(
-      '<head>',
-      `<head>\n    ${preloadLinks}`
-    );
-    
-    fs.writeFileSync(indexPath, html);
+    // Skip adding preload hints - they are already in public/index.html
+    console.log('Preload hints already configured in public/index.html');
   }
 
   async createServiceWorkerPrecache() {
