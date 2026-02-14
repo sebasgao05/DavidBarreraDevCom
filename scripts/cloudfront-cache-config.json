@@ -1,0 +1,64 @@
+{
+  "Comment": "Cache configuration for David Barrera Portfolio",
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "S3-david-barrera-portfolio",
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+    "OriginRequestPolicyId": "88a5eaf4-2fd4-4709-b370-b4c650ea3fcf",
+    "ResponseHeadersPolicyId": "67f7725c-6f97-4210-82d7-5512b31e9d03",
+    "Compress": true,
+    "AllowedMethods": {
+      "Quantity": 2,
+      "Items": ["GET", "HEAD"],
+      "CachedMethods": {
+        "Quantity": 2,
+        "Items": ["GET", "HEAD"]
+      }
+    }
+  },
+  "CacheBehaviors": {
+    "Quantity": 4,
+    "Items": [
+      {
+        "PathPattern": "*.js",
+        "TargetOriginId": "S3-david-barrera-portfolio",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+        "Compress": true,
+        "DefaultTTL": 31536000,
+        "MaxTTL": 31536000,
+        "MinTTL": 31536000
+      },
+      {
+        "PathPattern": "*.css",
+        "TargetOriginId": "S3-david-barrera-portfolio",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+        "Compress": true,
+        "DefaultTTL": 31536000,
+        "MaxTTL": 31536000,
+        "MinTTL": 31536000
+      },
+      {
+        "PathPattern": "images/*",
+        "TargetOriginId": "S3-david-barrera-portfolio",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+        "Compress": true,
+        "DefaultTTL": 2592000,
+        "MaxTTL": 31536000,
+        "MinTTL": 86400
+      },
+      {
+        "PathPattern": "*.webp",
+        "TargetOriginId": "S3-david-barrera-portfolio",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+        "Compress": true,
+        "DefaultTTL": 2592000,
+        "MaxTTL": 31536000,
+        "MinTTL": 86400
+      }
+    ]
+  }
+}
