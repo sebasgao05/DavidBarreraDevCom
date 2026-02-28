@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { LazyMotion, domAnimation, m, useReducedMotion } from 'framer-motion';
 import { Code, Server, Database, Cloud, Wrench, Infinity as InfinityIcon, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { skillsOrbits } from '../data/portfolioData';
@@ -38,7 +38,7 @@ const Comet: React.FC<{ delay: number }> = ({ delay }) => {
   if (shouldReduceMotion) return null;
 
   return (
-    <motion.div
+    <m.div
       className="absolute w-1 h-1 bg-blue-400 rounded-full"
       style={{
         boxShadow: '0 0 6px #60A5FA, -20px 0 10px #60A5FA, -40px 0 20px transparent'
@@ -111,7 +111,7 @@ const System: React.FC<SystemProps> = React.memo(({ category, index, isVisible, 
   }
 
   return (
-    <motion.div
+    <m.div
       className="relative w-full aspect-square max-w-[280px] mx-auto"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -140,8 +140,8 @@ const System: React.FC<SystemProps> = React.memo(({ category, index, isVisible, 
         <circle cx={centerX} cy={centerY} r="110" fill={`url(#bg-${String(category)})`} />
 
         {orbits.map((orbitData, orbitIndex) => (
-          <g key={orbitIndex}>
-            <motion.circle
+          <g key={orbitData.radius}>
+            <m.circle
               cx={centerX}
               cy={centerY}
               r={orbitData.radius}
@@ -169,9 +169,9 @@ const System: React.FC<SystemProps> = React.memo(({ category, index, isVisible, 
               const config = levelConfig[satellite.level as keyof typeof levelConfig];
 
               return (
-                <motion.g
+                <m.g
                   key={satellite.name}
-                  initial={{ opacity: 0, scale: 0 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{
                     delay: (index * 0.1) + 0.3 + (satIndex * 0.05),
@@ -180,7 +180,7 @@ const System: React.FC<SystemProps> = React.memo(({ category, index, isVisible, 
                   }}
                 >
                   {config.glow && !shouldReduceMotion && (
-                    <motion.circle
+                    <m.circle
                       cx={satX}
                       cy={satY}
                       r={config.size + 3}
@@ -198,7 +198,7 @@ const System: React.FC<SystemProps> = React.memo(({ category, index, isVisible, 
                     />
                   )}
 
-                  <motion.circle
+                  <m.circle
                     cx={satX}
                     cy={satY}
                     r={config.size + (shouldReduceMotion ? 0 : 2)}
@@ -215,7 +215,7 @@ const System: React.FC<SystemProps> = React.memo(({ category, index, isVisible, 
                     }}
                   />
 
-                  <motion.circle
+                  <m.circle
                     cx={satX}
                     cy={satY}
                     r={config.size}
@@ -243,18 +243,18 @@ const System: React.FC<SystemProps> = React.memo(({ category, index, isVisible, 
                   >
                     {satellite.name}
                   </text>
-                </motion.g>
+                </m.g>
               );
             })}
           </g>
         ))}
 
-        <motion.g
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
+        <m.g
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: (index * 0.1) + 0.2, duration: 0.5, type: "spring" }}
         >
-          <motion.circle
+          <m.circle
             cx={centerX}
             cy={centerY}
             r="25"
@@ -291,7 +291,7 @@ const System: React.FC<SystemProps> = React.memo(({ category, index, isVisible, 
               className="w-6 h-6 text-white"
             />
           </foreignObject>
-        </motion.g>
+        </m.g>
       </svg>
 
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center">
@@ -299,7 +299,7 @@ const System: React.FC<SystemProps> = React.memo(({ category, index, isVisible, 
           {orbit.name[currentLang]}
         </h3>
       </div>
-    </motion.div>
+    </m.div>
   );
 });
 
@@ -356,21 +356,21 @@ const SkillsOrbit: React.FC = () => {
   };
 
   return (
+    <LazyMotion features={domAnimation}>
     <div id="skills-orbit">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-        </motion.div>
+        </m.div>
 
         {!shouldReduceMotion && (
           <div className="fixed inset-0 pointer-events-none overflow-hidden">
-            {[...Array(2)].map((_, i) => (
-              <Comet key={i} delay={i * 8} />
-            ))}
+            <Comet delay={0} />
+            <Comet delay={8} />
           </div>
         )}
 
@@ -406,7 +406,7 @@ const SkillsOrbit: React.FC = () => {
             <div className="flex gap-2">
               {Array.from({ length: totalPages }, (_, i) => (
                 <button
-                  key={i}
+                  key={i + 1}
                   onClick={() => goToPage(i)}
                   className={`w-10 h-10 rounded-lg transition-all duration-200 ${
                     currentPage === i
@@ -438,6 +438,7 @@ const SkillsOrbit: React.FC = () => {
         )}
       </div>
     </div>
+    </LazyMotion>
   );
 };
 
