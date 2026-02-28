@@ -305,6 +305,7 @@ const System: React.FC<SystemProps> = React.memo(({ category, index, isVisible, 
 
 const SkillsOrbit: React.FC = () => {
   const { isDark } = useTheme();
+  const { t } = useTranslation();
   const shouldReduceMotion = useReducedMotion();
   const [isVisible, setIsVisible] = useState(false);
   const [loadedSystems, setLoadedSystems] = useState<Set<string>>(new Set());
@@ -392,6 +393,7 @@ const SkillsOrbit: React.FC = () => {
             <button
               onClick={prevPage}
               disabled={currentPage === 0}
+              aria-label={t('common.previousPage')}
               className={`p-2 rounded-lg transition-all duration-200 ${
                 currentPage === 0
                   ? 'opacity-50 cursor-not-allowed'
@@ -408,6 +410,8 @@ const SkillsOrbit: React.FC = () => {
                 <button
                   key={i + 1}
                   onClick={() => goToPage(i)}
+                  aria-label={`${t('common.goToPage')} ${i + 1}`}
+                  aria-current={currentPage === i ? 'page' : undefined}
                   className={`w-10 h-10 rounded-lg transition-all duration-200 ${
                     currentPage === i
                       ? 'bg-primary-600 text-white shadow-md'
@@ -424,6 +428,7 @@ const SkillsOrbit: React.FC = () => {
             <button
               onClick={nextPage}
               disabled={currentPage === totalPages - 1}
+              aria-label={t('common.nextPage')}
               className={`p-2 rounded-lg transition-all duration-200 ${
                 currentPage === totalPages - 1
                   ? 'opacity-50 cursor-not-allowed'

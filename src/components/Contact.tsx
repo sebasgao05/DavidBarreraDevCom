@@ -183,7 +183,7 @@ const Contact: React.FC = () => {
                 {t('contact.form.directContact')}{' '}
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors duration-200"
+                  className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors duration-200 underline decoration-2 underline-offset-2"
                 >
                   {personalInfo.email}
                 </a>

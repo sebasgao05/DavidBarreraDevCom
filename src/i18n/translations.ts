@@ -112,7 +112,10 @@ export const translations = {
       loading: 'Cargando...',
       error: 'Error',
       retry: 'Reintentar',
-      close: 'Cerrar'
+      close: 'Cerrar',
+      previousPage: 'Página anterior',
+      nextPage: 'Página siguiente',
+      goToPage: 'Ir a página'
     }
   },
   
@@ -228,7 +231,10 @@ export const translations = {
       loading: 'Loading...',
       error: 'Error',
       retry: 'Retry',
-      close: 'Close'
+      close: 'Close',
+      previousPage: 'Previous page',
+      nextPage: 'Next page',
+      goToPage: 'Go to page'
     }
   }
 } as const;
