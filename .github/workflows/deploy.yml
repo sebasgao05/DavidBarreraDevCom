@@ -23,14 +23,6 @@ jobs:
     - name: Run tests
       run: npm test -- --coverage --watchAll=false --passWithNoTests
     
-    - name: Debug secrets
-      run: |
-        echo "AWS_ACCESS_KEY_ID length: ${#AWS_ACCESS_KEY_ID}"
-        echo "AWS_SECRET_ACCESS_KEY length: ${#AWS_SECRET_ACCESS_KEY}"
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
