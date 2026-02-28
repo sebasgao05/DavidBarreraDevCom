@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Download, Mail, ArrowDown } from 'lucide-react';
 import { usePortfolioData } from '../hooks/usePortfolioData';
-import LazyImage from './LazyImage';
+import ResponsiveImage from './ResponsiveImage';
 
 const Hero: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -89,14 +89,16 @@ const Hero: React.FC = () => {
               {/* Glassmorphism container */}
               <div className="relative w-80 h-80 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 p-6 shadow-xl group-hover:shadow-2xl transition-all duration-500">
                 <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-400/30 to-purple-600/30 dark:from-blue-400/20 dark:to-purple-600/20 flex items-center justify-center overflow-hidden relative">
-                  <LazyImage
+                  <ResponsiveImage
                     src={personalInfo.profileImage}
                     alt={`Foto profesional de ${personalInfo.name}, Desarrollador Full Stack especializado en React y AWS`}
                     className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
                     width={320}
                     height={320}
                     loading="eager"
-                    responsive={false}
+                    priority={true}
+                    aspectRatio="square"
+                    sizes="320px"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(personalInfo.name)}&size=320&background=gradient&color=ffffff&bold=true`;
