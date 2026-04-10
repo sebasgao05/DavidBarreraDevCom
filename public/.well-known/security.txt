@@ -1,0 +1,4 @@
+Contact: mailto:sebasgao05@icloud.com.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en, es
+Canonical: https://davidbarrera.dev/.well-known/security.txt
