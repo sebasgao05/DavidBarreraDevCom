@@ -6,7 +6,8 @@ const publicDir = path.join(__dirname, '..', 'public', 'images', 'projects');
 
 // Imágenes que necesitan versiones responsive
 const projectImages = [
-  'Generador-CV.jpg'
+  'Generador-CV.jpg',
+  'project-taxi-pricing.jpg'
 ];
 
 // Tamaños responsive

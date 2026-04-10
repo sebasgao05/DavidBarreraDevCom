@@ -53,7 +53,9 @@ export const translations = {
       continuousEducation: 'Educación Continua',
       continuousDesc: 'Comprometido con el aprendizaje continuo a través de cursos online, conferencias técnicas y certificaciones profesionales.',
       present: 'Presente',
-      workExperience: 'Experiencia Profesional'
+      workExperience: 'Experiencia Profesional',
+      volunteerExperience: 'Experiencia de Voluntariado',
+      viewProfile: 'Ver perfil'
     },
     
     // Projects Section
@@ -172,7 +174,9 @@ export const translations = {
       continuousEducation: 'Continuous Education',
       continuousDesc: 'Committed to continuous learning through online courses, technical conferences, and professional certifications.',
       present: 'Present',
-      workExperience: 'Professional Experience'
+      workExperience: 'Professional Experience',
+      volunteerExperience: 'Volunteer Experience',
+      viewProfile: 'View profile'
     },
     
     // Projects Section

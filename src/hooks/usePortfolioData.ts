@@ -13,6 +13,7 @@ export const usePortfolioData = () => {
       cvUrl: currentLang === 'es' ? env.personal.cv.es : env.personal.cv.en
     },
     experience: portfolioData[currentLang].experience,
+    volunteer: portfolioData[currentLang].volunteer,
     projects: portfolioData[currentLang].projects,
     education: portfolioData[currentLang].education,
     languages: portfolioData[currentLang].languages,
