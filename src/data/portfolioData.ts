@@ -10,21 +10,48 @@ export const portfolioData = {
     },
     experience: [
       {
+        title: 'Consultor y Desarrollador de Software y Nube',
+        company: 'FreeLancer',
+        period: 'Diciembre 2023 - Actualidad',
+        description: 'Diseño e implementación de soluciones en la nube con AWS, aplicando buenas prácticas de escalabilidad, seguridad y optimización de costos. Desarrollo de aplicaciones web y sitios a medida, trabajando en frontend y backend con tecnologías modernas.',
+        technologies: ['AWS', 'React', 'TypeScript', 'Node.js', 'Python', 'Cloud Architecture']
+      },
+      {
         title: 'Desarrollador de Aplicaciones - Internado',
         company: 'IBM',
         period: 'Febrero 2025 - Diciembre 2025',
         description: 'Desarrollo de aplicaciones empresariales utilizando tecnologías modernas. Participación en proyectos de transformación digital y implementación de soluciones cloud.',
         technologies: ['Java', 'Spring Boot', 'React', 'IBM Cloud', 'Docker']
+      }
+    ],
+    volunteer: [
+      {
+        title: 'AWS Community Builder - DevTools',
+        company: 'AWS',
+        period: 'Marzo 2026 - Actualidad',
+        description: 'Miembro del programa AWS Community Builder en la categoría DevTools. Contribución a la comunidad AWS mediante contenido técnico, eventos y mentoría. Promoción de mejores prácticas en herramientas de desarrollo y DevOps.',
+        technologies: ['AWS DevTools', 'CI/CD', 'CodePipeline', 'CodeBuild', 'Community Building'],
+        profileUrl: 'https://aws.amazon.com/developer/community/community-builders/'
       },
       {
         title: 'Capitán - AWS Cloud Club',
         company: 'EAN University',
-        period: '2025-1 - 2026-1',
+        period: 'Abril 2025 - Mayo 2026',
         description: 'Liderazgo del club de cloud computing, organización de workshops y eventos técnicos. Mentoría a estudiantes en tecnologías AWS y arquitecturas cloud.',
-        technologies: ['AWS', 'Cloud Architecture', 'Leadership', 'Teaching']
+        technologies: ['AWS', 'Cloud Architecture', 'Leadership', 'Teaching'],
+        profileUrl: 'https://builder.aws.com/community/cloud-clubs/'
       }
     ],
     projects: [
+      {
+        title: 'Duitama Taxi Pricing',
+        description: 'Sistema de cálculo de tarifas de taxi para la ciudad de Duitama. API Rest que permite calcular el costo de viajes basado en distancia y tiempo, con interfaz intuitiva y responsive.',
+        image: '/images/projects/project-taxi-pricing.jpg',
+        technologies: ['Node.js', 'Express', 'Typescript', 'AWS SAM', 'Jest', 'AWS', 'API REST', 'Serverless'],
+        githubUrl: 'https://github.com/sebasgao05/duitama-taxi-pricing',
+        demoUrl: 'https://qbtwm8k851.execute-api.us-east-1.amazonaws.com/production/docs',
+        featured: true
+      },
       {
         title: 'AWS Cloud + IOT',
         description: 'proyecto desarrollado un sensor de gas implementado en la nube, incluyendo arquitecturas serverless',
@@ -32,7 +59,7 @@ export const portfolioData = {
         technologies: ['DynamoDB', 'EC2', 'SNS'],
         githubUrl: 'https://github.com/sebasgao05',
         demoUrl: 'https://54.242.72.108/',
-        featured: true
+        featured: false
       },
       {
         title: 'Portafolio Personal',
@@ -82,21 +109,48 @@ export const portfolioData = {
     },
     experience: [
       {
+        title: 'Software and Cloud Consultant & Developer',
+        company: 'FreeLancer',
+        period: 'December 2023 - Present',
+        description: 'Design and implementation of cloud solutions with AWS, applying best practices for scalability, security and cost optimization. Development of custom web applications and websites, working on frontend and backend with modern technologies.',
+        technologies: ['AWS', 'React', 'TypeScript', 'Node.js', 'Python', 'Cloud Architecture']
+      },
+      {
         title: 'Application Developer - Internship',
         company: 'IBM',
         period: 'February 2025 - December 2025',
         description: 'Development of enterprise applications using modern technologies. Participation in digital transformation projects and cloud solutions implementation.',
         technologies: ['Java', 'Spring Boot', 'React', 'IBM Cloud', 'Docker']
+      }
+    ],
+    volunteer: [
+      {
+        title: 'AWS Community Builder - DevTools',
+        company: 'AWS',
+        period: 'March 2026 - Present',
+        description: 'Member of the AWS Community Builder program in the DevTools category. Contributing to the AWS community through technical content, events and mentoring. Promoting best practices in development tools and DevOps.',
+        technologies: ['AWS DevTools', 'CI/CD', 'CodePipeline', 'CodeBuild', 'Community Building'],
+        profileUrl: 'https://aws.amazon.com/developer/community/community-builders/'
       },
       {
         title: 'Captain - AWS Cloud Club',
         company: 'EAN University',
-        period: '2025-1 - 2026-1',
+        period: 'April 2025 - May 2026',
         description: 'Leadership of cloud computing club, organizing workshops and technical events. Mentoring students in AWS technologies and cloud architectures.',
-        technologies: ['AWS', 'Cloud Architecture', 'Leadership', 'Teaching']
+        technologies: ['AWS', 'Cloud Architecture', 'Leadership', 'Teaching'],
+        profileUrl: 'https://builder.aws.com/community/cloud-clubs/'
       }
     ],
     projects: [
+      {
+        title: 'Duitama Taxi Pricing',
+        description: 'Taxi fare calculation system for Duitama city. API Rest that allows calculating trip costs based on distance and time, with intuitive and responsive interface.',
+        image: '/images/projects/project-taxi-pricing.jpg',
+        technologies: ['Node.js', 'Express', 'Typescript', 'AWS SAM', 'Jest', 'AWS', 'API REST', 'Serverless'],
+        githubUrl: 'https://github.com/sebasgao05/duitama-taxi-pricing',
+        demoUrl: 'https://qbtwm8k851.execute-api.us-east-1.amazonaws.com/production/docs',
+        featured: true
+      },
       {
         title: 'AWS Cloud + IOT',
         description: 'Project developed a gas sensor implemented in the cloud, including serverless architectures',
@@ -104,7 +158,7 @@ export const portfolioData = {
         technologies: ['AWS Lambda', 'API Gateway', 'DynamoDB', 'S3', 'CloudFormation'],
         githubUrl: 'https://github.com/sebasgao05',
         demoUrl: 'https://54.242.72.108/',
-        featured: true
+        featured: false
       },
       {
         title: 'Personal Portfolio',
