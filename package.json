@@ -32,6 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "node scripts/clean-preloads.js",
     "test": "react-scripts test",
     "build:prod": "node scripts/optimize-images.js && npm run build && node scripts/optimize-performance-enhanced.js && node scripts/clean-preloads.js",
     "validate": "node scripts/build-and-validate.js",

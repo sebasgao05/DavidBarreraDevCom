@@ -12,17 +12,76 @@ if (!bucketName) {
   process.exit(1);
 }
 
+const bucketUri = `s3://${bucketName}`;
+
+function run(command) {
+  execSync(command, { stdio: 'inherit' });
+}
+
+function syncWithCacheControl(label, cacheControl, filters) {
+  const filterArgs = filters.join(' ');
+  console.log(`Uploading ${label} (${cacheControl})...`);
+  run(`aws s3 sync build/ ${bucketUri} ${filterArgs} --cache-control "${cacheControl}"`);
+}
+
 function deploy() {
   try {
     console.log('Cleaning old files...');
-    execSync(`aws s3 rm s3://${bucketName} --recursive`, { stdio: 'inherit' });
+    run(`aws s3 rm ${bucketUri} --recursive`);
 
-    console.log('Uploading new files...');
-    execSync(`aws s3 sync build/ s3://${bucketName}`, { stdio: 'inherit' });
+    syncWithCacheControl(
+      'hashed static assets',
+      'public, max-age=31536000, immutable',
+      ['--exclude "*"', '--include "static/*"']
+    );
+
+    syncWithCacheControl(
+      'images and icons',
+      'public, max-age=2592000, stale-while-revalidate=86400',
+      [
+        '--exclude "*"',
+        '--include "images/*"',
+        '--include "icons/*"',
+        '--include "*.avif"',
+        '--include "*.gif"',
+        '--include "*.ico"',
+        '--include "*.jpeg"',
+        '--include "*.jpg"',
+        '--include "*.png"',
+        '--include "*.svg"',
+        '--include "*.webp"'
+      ]
+    );
+
+    syncWithCacheControl(
+      'service workers',
+      'public, max-age=0, must-revalidate',
+      ['--exclude "*"', '--include "sw.js"', '--include "sw-enhanced.js"']
+    );
+
+    syncWithCacheControl(
+      'remaining files',
+      'public, max-age=0, must-revalidate',
+      [
+        '--exclude "static/*"',
+        '--exclude "images/*"',
+        '--exclude "icons/*"',
+        '--exclude "*.avif"',
+        '--exclude "*.gif"',
+        '--exclude "*.ico"',
+        '--exclude "*.jpeg"',
+        '--exclude "*.jpg"',
+        '--exclude "*.png"',
+        '--exclude "*.svg"',
+        '--exclude "*.webp"',
+        '--exclude "sw.js"',
+        '--exclude "sw-enhanced.js"'
+      ]
+    );
 
     if (distributionId) {
       console.log('Creating CloudFront invalidation...');
-      execSync(`aws cloudfront create-invalidation --distribution-id ${distributionId} --paths "/*"`, { stdio: 'inherit' });
+      run(`aws cloudfront create-invalidation --distribution-id ${distributionId} --paths "/*"`);
     }
 
     console.log('Deployment completed!');

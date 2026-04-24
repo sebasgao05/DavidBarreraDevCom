@@ -24,7 +24,7 @@ export const env = {
     linkedin: readEnv('REACT_APP_LINKEDIN_URL', 'https://www.linkedin.com/in/sebasgao05/'),
     github: readEnv('REACT_APP_GITHUB_URL', 'https://github.com/sebasgao05'),
     location: readEnv('REACT_APP_LOCATION', 'Bogota, CO'),
-    profileImage: readEnv('REACT_APP_PROFILE_IMAGE', '/images/profile/profile-david.jpg'),
+    profileImage: readEnv('REACT_APP_PROFILE_IMAGE', '/images/profile/profile-david.webp'),
     ogImage: toAbsoluteUrl(readEnv('REACT_APP_OG_IMAGE', '/og-image.jpg')),
     cv: {
       es: readEnv('REACT_APP_CV_ES_URL', '/DavidBarrera-BogotaES.pdf'),

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { env } from '../config/env';
 import { personalInfo } from '../data/portfolioData';
@@ -77,7 +77,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   const sectionMeta = getSectionMeta();
 
   return (
-    <Helmet>
+    <HelmetProvider>
+      <Helmet>
       <title>{sectionMeta.title}</title>
       <meta name='description' content={sectionMeta.description} />
       <meta name='keywords' content={sectionMeta.keywords} />
@@ -111,7 +112,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name='robots' content='index, follow' />
       <meta name='author' content={personalInfo.name} />
       <meta name='theme-color' content='#3b82f6' />
-    </Helmet>
+      </Helmet>
+    </HelmetProvider>
   );
 };
 
