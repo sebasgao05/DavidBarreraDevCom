@@ -18,9 +18,6 @@ const Hero: React.FC = () => {
     return () => i18n.off('languageChanged', handleLanguageChange);
   }, [i18n]);
   
-  console.log('Current language:', currentLang);
-  console.log('Available status translation:', t('contact.availableStatus'));
-
   const scrollToAbout = () => {
     const aboutSection = document.querySelector('#about');
     if (aboutSection) {
@@ -43,7 +40,7 @@ const Hero: React.FC = () => {
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="text-center lg:text-left animate-fade-in">
+          <div className="text-center lg:text-left">
             <div key={`status-${currentLang}-${Date.now()}`} className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-full mb-6">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span key={`text-${currentLang}`} className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -84,7 +81,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Profile Image */}
-          <div className="flex justify-center lg:justify-end animate-slide-up">
+          <div className="flex justify-center lg:justify-end">
             <div className="relative group">
               {/* Glassmorphism container */}
               <div className="relative w-80 h-80 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 p-6 shadow-xl group-hover:shadow-2xl transition-all duration-500">

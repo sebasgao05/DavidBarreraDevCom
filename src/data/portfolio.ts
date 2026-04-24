@@ -5,7 +5,7 @@ export const personalInfo = {
   linkedin: 'https://www.linkedin.com/in/sebasgao05/', 
   github: 'https://github.com/sebasgao05', 
   cvUrl: '/cv-david-barrera.pdf',
-  profileImage: '/images/profile/profile-david.jpg'
+  profileImage: '/images/profile/profile-david.webp'
 };
 
 export const skills = {
@@ -114,28 +114,28 @@ export const certifications = [
     issuer: 'IBM',
     date: '2025',
     credlyUrl: 'https://www.credly.com/badges/d42b6db1-a575-4d23-a173-b91e633d4024/public_url',
-    image: '/images/badge/IBM-Agile-Explorer.png'
+    image: '/images/badge/IBM-Agile-Explorer-112.webp'
   },
   {
     name: 'AWS Educate',
     issuer: 'AWS',
     date: '2024-2025',
     credlyUrl: 'https://www.credly.com/users/david-sebastian-barrera-gaona',
-    image: '/images/badge/aws-educate-introduction-to-cloud-101-training-badg.png'
+    image: '/images/badge/aws-educate-introduction-to-cloud-101-training-badg-112.webp'
   },
   {
     name: 'AWS Cloud Club Captain',
     issuer: 'AWS',
     date: '2025',
     credlyUrl: 'https://www.credly.com/badges/b1a76f4c-192a-4006-80cf-6f6f2df6a142/public_url',
-    image: '/images/badge/aws-cloud-club-captain.png'
+    image: '/images/badge/aws-cloud-club-captain-112.webp'
   },
   {
     name: 'AWS Cloud Club Captain: Gold Level',
     issuer: 'AWS',
     date: '2025',
     credlyUrl: 'https://www.credly.com/badges/6ab9b1ef-1a35-44c0-9bd7-3cc0a0fa7262/public_url',
-    image: '/images/badge/aws-cloud-club-captain-gold-level.png'
+    image: '/images/badge/aws-cloud-club-captain-gold-level-112.webp'
   }
 ];
 
