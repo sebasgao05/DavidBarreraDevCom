@@ -8,7 +8,7 @@ export default function ImageTest() {
       <div style={{ marginBottom: "20px" }}>
         <h3>Imagen de perfil (JPG original):</h3>
         <img 
-          src="/images/profile/profile-david.jpg" 
+          src="/images/profile/profile-david.webp" 
           alt="Profile JPG" 
           style={{ width: "200px", height: "200px", objectFit: "cover" }}
           onError={(e) => {
@@ -22,7 +22,7 @@ export default function ImageTest() {
       <div style={{ marginBottom: "20px" }}>
         <h3>Imagen de perfil (JPG de prueba):</h3>
         <img 
-          src="/images/profile/profile-david.jpg" 
+          src="/images/profile/profile-david.webp" 
           alt="Profile JPG" 
           style={{ width: "200px", height: "200px", objectFit: "cover" }}
           onError={(e) => {
