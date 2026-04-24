@@ -92,12 +92,10 @@ const Hero: React.FC = () => {
                   <ResponsiveImage
                     src={personalInfo.profileImage}
                     alt={`Foto profesional de ${personalInfo.name}, Desarrollador Full Stack especializado en React y AWS`}
-                    className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
-                    width={320}
-                    height={320}
+                    className="w-full h-full rounded-2xl group-hover:shadow-xl transition-all duration-500 bg-slate-950/5"
+                    imgClassName="w-full h-auto object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500"
                     loading="eager"
                     priority={true}
-                    aspectRatio="square"
                     sizes="320px"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;

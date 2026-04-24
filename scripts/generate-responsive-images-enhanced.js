@@ -1,1 +1,240 @@
-const sharp = require('sharp');\nconst fs = require('fs');\nconst path = require('path');\n\n// Configuración de tamaños responsivos\nconst RESPONSIVE_SIZES = {\n  profile: [270, 320, 640], // Tamaños específicos para imagen de perfil\n  projects: [320, 422, 640, 800], // Tamaños para imágenes de proyectos\n  general: [320, 640, 768, 1024, 1280] // Tamaños generales\n};\n\n// Configuración de calidad por tamaño\nconst QUALITY_CONFIG = {\n  webp: {\n    small: 85,  // <= 320px\n    medium: 80, // 321-640px\n    large: 75   // > 640px\n  },\n  jpeg: {\n    small: 90,\n    medium: 85,\n    large: 80\n  }\n};\n\nclass ResponsiveImageGenerator {\n  constructor() {\n    this.publicDir = path.join(__dirname, '..', 'public');\n    this.imagesDir = path.join(this.publicDir, 'images');\n  }\n\n  async generateResponsiveImages() {\n    console.log('🖼️  Generando imágenes responsivas...');\n    \n    try {\n      // Procesar imagen de perfil\n      await this.processProfileImages();\n      \n      // Procesar imágenes de proyectos\n      await this.processProjectImages();\n      \n      console.log('✅ Imágenes responsivas generadas exitosamente');\n    } catch (error) {\n      console.error('❌ Error generando imágenes responsivas:', error);\n      process.exit(1);\n    }\n  }\n\n  async processProfileImages() {\n    const profileDir = path.join(this.imagesDir, 'profile');\n    const profileImage = path.join(profileDir, 'profile-david.webp');\n    \n    if (!fs.existsSync(profileImage)) {\n      console.log('⚠️  Imagen de perfil no encontrada, saltando...');\n      return;\n    }\n\n    console.log('📸 Procesando imagen de perfil...');\n    \n    for (const size of RESPONSIVE_SIZES.profile) {\n      await this.generateImageVariant(\n        profileImage,\n        path.join(profileDir, `profile-david-${size}.webp`),\n        size,\n        'webp'\n      );\n    }\n  }\n\n  async processProjectImages() {\n    const projectsDir = path.join(this.imagesDir, 'projects');\n    \n    if (!fs.existsSync(projectsDir)) {\n      console.log('⚠️  Directorio de proyectos no encontrado, saltando...');\n      return;\n    }\n\n    const projectFiles = fs.readdirSync(projectsDir)\n      .filter(file => file.endsWith('.webp') && !file.includes('-320') && !file.includes('-422'));\n\n    console.log(`📁 Procesando ${projectFiles.length} imágenes de proyectos...`);\n\n    for (const file of projectFiles) {\n      const inputPath = path.join(projectsDir, file);\n      const baseName = path.basename(file, '.webp');\n      \n      // Generar versiones responsivas\n      for (const size of RESPONSIVE_SIZES.projects) {\n        const outputPath = path.join(projectsDir, `${baseName}-${size}.webp`);\n        await this.generateImageVariant(inputPath, outputPath, size, 'webp');\n      }\n    }\n  }\n\n  async generateImageVariant(inputPath, outputPath, width, format) {\n    try {\n      // Saltar si ya existe\n      if (fs.existsSync(outputPath)) {\n        console.log(`⏭️  ${path.basename(outputPath)} ya existe, saltando...`);\n        return;\n      }\n\n      const quality = this.getQualityForSize(width, format);\n      \n      let pipeline = sharp(inputPath)\n        .resize(width, null, {\n          withoutEnlargement: true,\n          fit: 'inside'\n        });\n\n      if (format === 'webp') {\n        pipeline = pipeline.webp({ \n          quality,\n          effort: 6 // Máximo esfuerzo de compresión\n        });\n      } else if (format === 'jpeg') {\n        pipeline = pipeline.jpeg({ \n          quality,\n          progressive: true,\n          mozjpeg: true\n        });\n      }\n\n      await pipeline.toFile(outputPath);\n      \n      const stats = fs.statSync(outputPath);\n      const sizeKB = Math.round(stats.size / 1024);\n      \n      console.log(`✅ ${path.basename(outputPath)} - ${width}px - ${sizeKB}KB`);\n    } catch (error) {\n      console.error(`❌ Error procesando ${inputPath}:`, error.message);\n    }\n  }\n\n  getQualityForSize(width, format) {\n    const config = QUALITY_CONFIG[format];\n    if (width <= 320) return config.small;\n    if (width <= 640) return config.medium;\n    return config.large;\n  }\n\n  async optimizeExistingImages() {\n    console.log('🔧 Optimizando imágenes existentes...');\n    \n    const imageDirs = ['profile', 'projects', 'logos'];\n    \n    for (const dir of imageDirs) {\n      const dirPath = path.join(this.imagesDir, dir);\n      if (!fs.existsSync(dirPath)) continue;\n      \n      const files = fs.readdirSync(dirPath)\n        .filter(file => /\\.(jpg|jpeg|png|webp)$/i.test(file));\n      \n      for (const file of files) {\n        const filePath = path.join(dirPath, file);\n        await this.optimizeImage(filePath);\n      }\n    }\n  }\n\n  async optimizeImage(imagePath) {\n    try {\n      const ext = path.extname(imagePath).toLowerCase();\n      const tempPath = imagePath + '.tmp';\n      \n      let pipeline = sharp(imagePath);\n      \n      if (ext === '.webp') {\n        pipeline = pipeline.webp({ quality: 85, effort: 6 });\n      } else if (['.jpg', '.jpeg'].includes(ext)) {\n        pipeline = pipeline.jpeg({ quality: 85, progressive: true, mozjpeg: true });\n      } else if (ext === '.png') {\n        pipeline = pipeline.png({ compressionLevel: 9, adaptiveFiltering: true });\n      }\n      \n      await pipeline.toFile(tempPath);\n      \n      const originalSize = fs.statSync(imagePath).size;\n      const optimizedSize = fs.statSync(tempPath).size;\n      \n      if (optimizedSize < originalSize) {\n        fs.renameSync(tempPath, imagePath);\n        const savedKB = Math.round((originalSize - optimizedSize) / 1024);\n        console.log(`✅ ${path.basename(imagePath)} optimizada - Ahorrado: ${savedKB}KB`);\n      } else {\n        fs.unlinkSync(tempPath);\n        console.log(`⏭️  ${path.basename(imagePath)} ya está optimizada`);\n      }\n    } catch (error) {\n      console.error(`❌ Error optimizando ${imagePath}:`, error.message);\n    }\n  }\n\n  async generateSummary() {\n    console.log('\\n📊 Resumen de imágenes generadas:');\n    \n    const dirs = ['profile', 'projects'];\n    let totalFiles = 0;\n    let totalSize = 0;\n    \n    for (const dir of dirs) {\n      const dirPath = path.join(this.imagesDir, dir);\n      if (!fs.existsSync(dirPath)) continue;\n      \n      const files = fs.readdirSync(dirPath)\n        .filter(file => /\\.(webp|jpg|jpeg|png)$/i.test(file));\n      \n      let dirSize = 0;\n      files.forEach(file => {\n        const filePath = path.join(dirPath, file);\n        dirSize += fs.statSync(filePath).size;\n      });\n      \n      totalFiles += files.length;\n      totalSize += dirSize;\n      \n      console.log(`📁 ${dir}: ${files.length} archivos - ${Math.round(dirSize / 1024)}KB`);\n    }\n    \n    console.log(`\\n📈 Total: ${totalFiles} archivos - ${Math.round(totalSize / 1024)}KB`);\n  }\n}\n\n// Ejecutar si se llama directamente\nif (require.main === module) {\n  const generator = new ResponsiveImageGenerator();\n  \n  async function main() {\n    await generator.generateResponsiveImages();\n    await generator.optimizeExistingImages();\n    await generator.generateSummary();\n  }\n  \n  main().catch(console.error);\n}\n\nmodule.exports = ResponsiveImageGenerator;
+const sharp = require('sharp');
+const fs = require('fs');
+const path = require('path');
+
+// Configuración de tamaños responsivos
+const RESPONSIVE_SIZES = {
+  profile: [270, 320, 640], // Tamaños específicos para imagen de perfil
+  projects: [320, 422, 640, 800], // Tamaños para imágenes de proyectos
+  general: [320, 640, 768, 1024, 1280] // Tamaños generales
+};
+
+// Configuración de calidad por tamaño
+const QUALITY_CONFIG = {
+  webp: {
+    small: 85,  // <= 320px
+    medium: 80, // 321-640px
+    large: 75   // > 640px
+  },
+  jpeg: {
+    small: 90,
+    medium: 85,
+    large: 80
+  }
+};
+
+class ResponsiveImageGenerator {
+  constructor() {
+    this.publicDir = path.join(__dirname, '..', 'public');
+    this.imagesDir = path.join(this.publicDir, 'images');
+  }
+
+  async generateResponsiveImages() {
+    console.log('🖼️  Generando imágenes responsivas...');
+
+    try {
+      await this.processProfileImages();
+      await this.processProjectImages();
+      console.log('✅ Imágenes responsivas generadas exitosamente');
+    } catch (error) {
+      console.error('❌ Error generando imágenes responsivas:', error);
+      process.exit(1);
+    }
+  }
+
+  async processProfileImages() {
+    const profileDir = path.join(this.imagesDir, 'profile');
+    const profileWebP = path.join(profileDir, 'profile-david.webp');
+    const profileJPG = path.join(profileDir, 'profile-david.jpg');
+    const profileJPEG = path.join(profileDir, 'profile-david.jpeg');
+
+    let profileImage = null;
+    if (fs.existsSync(profileWebP)) {
+      profileImage = profileWebP;
+    } else if (fs.existsSync(profileJPG)) {
+      profileImage = profileJPG;
+    } else if (fs.existsSync(profileJPEG)) {
+      profileImage = profileJPEG;
+    }
+
+    if (!profileImage) {
+      console.log('⚠️  Imagen de perfil no encontrada, saltando...');
+      return;
+    }
+
+    if (profileImage !== profileWebP) {
+      console.log('♻️  Convirtiendo imagen de perfil de JPG/JPEG a WebP para generar variantes...');
+      await this.generateImageVariant(profileImage, profileWebP, 1024, 'webp');
+      profileImage = profileWebP;
+    }
+
+    console.log('📸 Procesando imagen de perfil...');
+
+    for (const size of RESPONSIVE_SIZES.profile) {
+      await this.generateImageVariant(
+        profileImage,
+        path.join(profileDir, `profile-david-${size}.webp`),
+        size,
+        'webp'
+      );
+    }
+  }
+
+  async processProjectImages() {
+    const projectsDir = path.join(this.imagesDir, 'projects');
+
+    if (!fs.existsSync(projectsDir)) {
+      console.log('⚠️  Directorio de proyectos no encontrado, saltando...');
+      return;
+    }
+
+    const projectFiles = fs.readdirSync(projectsDir)
+      .filter(file => file.endsWith('.webp') && !file.includes('-320') && !file.includes('-422'));
+
+    console.log(`📁 Procesando ${projectFiles.length} imágenes de proyectos...`);
+
+    for (const file of projectFiles) {
+      const inputPath = path.join(projectsDir, file);
+      const baseName = path.basename(file, '.webp');
+
+      for (const size of RESPONSIVE_SIZES.projects) {
+        const outputPath = path.join(projectsDir, `${baseName}-${size}.webp`);
+        await this.generateImageVariant(inputPath, outputPath, size, 'webp');
+      }
+    }
+  }
+
+  async generateImageVariant(inputPath, outputPath, width, format) {
+    try {
+      if (fs.existsSync(outputPath)) {
+        console.log(`⏭️  ${path.basename(outputPath)} ya existe, saltando...`);
+        return;
+      }
+
+      const quality = this.getQualityForSize(width, format);
+      let pipeline = sharp(inputPath)
+        .resize(width, null, {
+          withoutEnlargement: true,
+          fit: 'inside'
+        });
+
+      if (format === 'webp') {
+        pipeline = pipeline.webp({
+          quality,
+          effort: 6
+        });
+      } else if (format === 'jpeg') {
+        pipeline = pipeline.jpeg({
+          quality,
+          progressive: true,
+          mozjpeg: true
+        });
+      }
+
+      await pipeline.toFile(outputPath);
+      const stats = fs.statSync(outputPath);
+      const sizeKB = Math.round(stats.size / 1024);
+      console.log(`✅ ${path.basename(outputPath)} - ${width}px - ${sizeKB}KB`);
+    } catch (error) {
+      console.error(`❌ Error procesando ${inputPath}:`, error.message);
+    }
+  }
+
+  getQualityForSize(width, format) {
+    const config = QUALITY_CONFIG[format];
+    if (width <= 320) return config.small;
+    if (width <= 640) return config.medium;
+    return config.large;
+  }
+
+  async optimizeExistingImages() {
+    console.log('🔧 Optimizando imágenes existentes...');
+    const imageDirs = ['profile', 'projects', 'logos'];
+
+    for (const dir of imageDirs) {
+      const dirPath = path.join(this.imagesDir, dir);
+      if (!fs.existsSync(dirPath)) continue;
+
+      const files = fs.readdirSync(dirPath)
+        .filter(file => /\.(jpg|jpeg|png|webp)$/i.test(file));
+
+      for (const file of files) {
+        const filePath = path.join(dirPath, file);
+        await this.optimizeImage(filePath);
+      }
+    }
+  }
+
+  async optimizeImage(imagePath) {
+    try {
+      const ext = path.extname(imagePath).toLowerCase();
+      const tempPath = imagePath + '.tmp';
+      let pipeline = sharp(imagePath);
+
+      if (ext === '.webp') {
+        pipeline = pipeline.webp({ quality: 85, effort: 6 });
+      } else if (['.jpg', '.jpeg'].includes(ext)) {
+        pipeline = pipeline.jpeg({ quality: 85, progressive: true, mozjpeg: true });
+      } else if (ext === '.png') {
+        pipeline = pipeline.png({ compressionLevel: 9, adaptiveFiltering: true });
+      }
+
+      await pipeline.toFile(tempPath);
+      const originalSize = fs.statSync(imagePath).size;
+      const optimizedSize = fs.statSync(tempPath).size;
+
+      if (optimizedSize < originalSize) {
+        fs.renameSync(tempPath, imagePath);
+        const savedKB = Math.round((originalSize - optimizedSize) / 1024);
+        console.log(`✅ ${path.basename(imagePath)} optimizada - Ahorrado: ${savedKB}KB`);
+      } else {
+        fs.unlinkSync(tempPath);
+        console.log(`⏭️  ${path.basename(imagePath)} ya está optimizada`);
+      }
+    } catch (error) {
+      console.error(`❌ Error optimizando ${imagePath}:`, error.message);
+    }
+  }
+
+  async generateSummary() {
+    console.log('\n📊 Resumen de imágenes generadas:');
+    const dirs = ['profile', 'projects'];
+    let totalFiles = 0;
+    let totalSize = 0;
+
+    for (const dir of dirs) {
+      const dirPath = path.join(this.imagesDir, dir);
+      if (!fs.existsSync(dirPath)) continue;
+
+      const files = fs.readdirSync(dirPath)
+        .filter(file => /\.(webp|jpg|jpeg|png)$/i.test(file));
+
+      let dirSize = 0;
+      files.forEach(file => {
+        const filePath = path.join(dirPath, file);
+        dirSize += fs.statSync(filePath).size;
+      });
+
+      totalFiles += files.length;
+      totalSize += dirSize;
+      console.log(`📁 ${dir}: ${files.length} archivos - ${Math.round(dirSize / 1024)}KB`);
+    }
+
+    console.log(`
+📈 Total: ${totalFiles} archivos - ${Math.round(totalSize / 1024)}KB`);
+  }
+}
+
+if (require.main === module) {
+  const generator = new ResponsiveImageGenerator();
+
+  async function main() {
+    await generator.generateResponsiveImages();
+    await generator.optimizeExistingImages();
+    await generator.generateSummary();
+  }
+
+  main().catch(console.error);
+}
+
+module.exports = ResponsiveImageGenerator;

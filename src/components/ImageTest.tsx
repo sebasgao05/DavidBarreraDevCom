@@ -8,7 +8,7 @@ export default function ImageTest() {
       <div style={{ marginBottom: "20px" }}>
         <h3>Imagen de perfil (JPG original):</h3>
         <img 
-          src="/profile-david.jpg" 
+          src="/images/profile/profile-david.jpg" 
           alt="Profile JPG" 
           style={{ width: "200px", height: "200px", objectFit: "cover" }}
           onError={(e) => {
@@ -20,16 +20,16 @@ export default function ImageTest() {
       </div>
       
       <div style={{ marginBottom: "20px" }}>
-        <h3>Imagen de perfil (WebP):</h3>
+        <h3>Imagen de perfil (JPG de prueba):</h3>
         <img 
-          src="/profile-david.webp" 
-          alt="Profile WebP" 
+          src="/images/profile/profile-david.jpg" 
+          alt="Profile JPG" 
           style={{ width: "200px", height: "200px", objectFit: "cover" }}
           onError={(e) => {
-            console.error("Error loading WebP:", e);
+            console.error("Error loading profile JPG:", e);
             (e.target as HTMLImageElement).style.border = "2px solid red";
           }}
-          onLoad={() => console.log("WebP loaded successfully")}
+          onLoad={() => console.log("Profile JPG loaded successfully")}
         />
       </div>
       

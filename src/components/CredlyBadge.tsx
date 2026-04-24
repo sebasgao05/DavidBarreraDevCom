@@ -7,6 +7,13 @@ interface CredlyBadgeProps {
   size?: number;
 }
 
+const optimizeCredlyUrl = (url: string, targetSize: number) => {
+  if (url.includes('/size/')) {
+    return url.replace(/\/size\/\d+x\d+\//g, `/size/${targetSize}x${targetSize}/`);
+  }
+  return url.replace('images.credly.com/', `images.credly.com/size/${targetSize}x${targetSize}/`);
+};
+
 const CredlyBadge: React.FC<CredlyBadgeProps> = ({
   src,
   alt,
@@ -18,18 +25,6 @@ const CredlyBadge: React.FC<CredlyBadgeProps> = ({
   const [optimizedSrc, setOptimizedSrc] = useState('');
 
   useEffect(() => {
-    // Optimizar URL de Credly para el tamaño específico
-    const optimizeCredlyUrl = (url: string, targetSize: number) => {
-      // Si ya tiene un tamaño específico, reemplazarlo
-      if (url.includes('/size/')) {
-        return url.replace(/\/size\/\d+x\d+\//g, `/size/${targetSize}x${targetSize}/`);
-      }
-      
-      // Si no tiene tamaño, agregarlo
-      const baseUrl = url.replace('images.credly.com/', `images.credly.com/size/${targetSize}x${targetSize}/`);
-      return baseUrl;
-    };
-
     setOptimizedSrc(optimizeCredlyUrl(src, size));
   }, [src, size]);
 
@@ -73,6 +68,7 @@ const CredlyBadge: React.FC<CredlyBadgeProps> = ({
   return (
     <img
       src={optimizedSrc}
+      srcSet={`${optimizedSrc} 1x, ${optimizeCredlyUrl(src, size * 2)} 2x`}
       alt={alt}
       className={`transition-opacity duration-300 ${
         imageLoaded ? 'opacity-100' : 'opacity-0'
@@ -82,7 +78,6 @@ const CredlyBadge: React.FC<CredlyBadgeProps> = ({
       loading="lazy"
       onLoad={handleLoad}
       onError={handleError}
-      // Preconnect hint ya está en el HTML
     />
   );
 };

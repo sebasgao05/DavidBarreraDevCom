@@ -4,7 +4,7 @@ import { Github, ExternalLink, Eye, Star } from 'lucide-react';
 import { usePortfolioData } from '../hooks/usePortfolioData';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTheme } from '../contexts/ThemeContext';
-import LazyImage from './LazyImage';
+import ResponsiveImage from './ResponsiveImage';
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -57,12 +57,13 @@ const Projects: React.FC = () => {
             <div key={index} className={`card overflow-hidden group reveal-stagger ${isVisible ? 'active' : ''} ${isDark ? 'project-card-dark' : 'project-card-light'}`}>
               {/* Project Image */}
               <div className="relative overflow-hidden">
-                <LazyImage
+                <ResponsiveImage
                   src={project.image}
                   alt={`Captura de pantalla del proyecto ${project.title} - ${project.description}`}
                   className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                   width={400}
                   height={200}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   loading="lazy"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
