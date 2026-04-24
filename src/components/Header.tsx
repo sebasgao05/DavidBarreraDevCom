@@ -43,8 +43,8 @@ const Header: React.FC = () => {
     }`}>
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-gradient">DB</h1>
+          <div className="flex-shrink-0" aria-label="Logo DB">
+            <span className="text-xl font-bold text-gradient">DB</span>
           </div>
 
           {/* Desktop Navigation */}

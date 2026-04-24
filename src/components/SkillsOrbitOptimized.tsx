@@ -9,6 +9,8 @@ import type { SkillsOrbits, Satellite } from '../types/skills';
 interface SystemProps {
   category: keyof SkillsOrbits;
   index: number;
+  isVisible: boolean;
+  loadSystem: (category: string) => void;
 }
 
 const SkillsOrbit: React.FC = () => {
@@ -90,7 +92,7 @@ const SkillsOrbit: React.FC = () => {
     );
   };
 
-  const System: React.FC<SystemProps> = ({ category, index }) => {
+  const System: React.FC<SystemProps> = ({ category, index, isVisible, loadSystem }) => {
     const orbit = skillsOrbits[category];
     const IconComponent = icons[category];
     const centerX = 120;
@@ -123,11 +125,11 @@ const SkillsOrbit: React.FC = () => {
     useEffect(() => {
       if (isVisible && !isLoaded) {
         const timer = setTimeout(() => {
-          handleSystemLoad(String(category));
+          loadSystem(String(category));
         }, index * 200);
         return () => clearTimeout(timer);
       }
-    }, [isVisible, isLoaded, category, index, handleSystemLoad]);
+    }, [isVisible, isLoaded, category, index, loadSystem]);
 
     if (!isVisible || !isLoaded) {
       return (
@@ -355,6 +357,8 @@ const SkillsOrbit: React.FC = () => {
               key={category}
               category={category as keyof SkillsOrbits}
               index={index}
+              isVisible={isVisible}
+              loadSystem={handleSystemLoad}
             />
           ))}
         </div>

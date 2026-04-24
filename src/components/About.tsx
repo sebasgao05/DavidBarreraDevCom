@@ -4,6 +4,7 @@ import { BookOpen, Languages, Award } from 'lucide-react';
 import { usePortfolioData } from '../hooks/usePortfolioData';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTheme } from '../contexts/ThemeContext';
+import ResponsiveImage from './ResponsiveImage';
 
 const About: React.FC = () => {
   const { t } = useTranslation();
@@ -76,10 +77,14 @@ const About: React.FC = () => {
               {certifications.map((cert, index) => (
                 <div key={index} className="flex gap-4 items-start">
                   {cert.image && (
-                    <img
+                    <ResponsiveImage
                       src={cert.image}
                       alt={cert.name}
                       className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+                      width={64}
+                      height={64}
+                      sizes="64px"
+                      loading="lazy"
                     />
                   )}
                   <div className="border-l-4 border-primary-600 pl-4 flex-1">
