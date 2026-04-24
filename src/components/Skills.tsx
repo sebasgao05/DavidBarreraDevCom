@@ -5,7 +5,7 @@ import { usePortfolioData } from '../hooks/usePortfolioData';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTheme } from '../contexts/ThemeContext';
 import { skillsOrbits } from '../data/portfolioData';
-import SkillsOrbit from './SkillsOrbit';
+import SkillsOrbitOptimized from './SkillsOrbitOptimized';
 
 const Skills: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -88,7 +88,7 @@ const Skills: React.FC = () => {
         {/* Orbit View */}
         {viewMode === 'orbit' && (
           <div className={`reveal ${isVisible ? 'active' : ''}`}>
-            <SkillsOrbit />
+            <SkillsOrbitOptimized />
           </div>
         )}
 

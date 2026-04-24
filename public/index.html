@@ -12,65 +12,6 @@
     <meta name="msapplication-TileColor" content="#3b82f6" />
     <meta name="msapplication-config" content="%PUBLIC_URL%/browserconfig.xml" />
     <meta name="theme-color" content="#3b82f6" />
-    <meta name="description" content="David Barrera - Desarrollador Full Stack & Ingeniero de Sistemas. Especializado en React, Node.js, AWS y desarrollo de aplicaciones web modernas." />
-    <meta name="keywords" content="desarrollador, full stack, react, nodejs, aws, javascript, typescript, ingeniero sistemas" />
-    <meta name="author" content="David Barrera" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://david-barrera.com/" />
-    <meta property="og:title" content="David Barrera - Desarrollador Full Stack" />
-    <meta property="og:description" content="Especializado en crear soluciones tecnológicas innovadoras con experiencia en desarrollo web, cloud computing y arquitectura de sistemas." />
-    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://david-barrera.com/" />
-    <meta property="twitter:title" content="David Barrera - Desarrollador Full Stack" />
-    <meta property="twitter:description" content="Especializado en crear soluciones tecnológicas innovadoras con experiencia en desarrollo web, cloud computing y arquitectura de sistemas." />
-    <meta property="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
-
-    <!-- Additional SEO Meta Tags -->
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="language" content="Spanish" />
-    <link rel="canonical" href="https://david-barrera.com/" />
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "David Barrera",
-      "jobTitle": "Desarrollador Full Stack",
-      "description": "Desarrollador Full Stack especializado en React, Node.js, AWS y desarrollo de aplicaciones web modernas",
-      "url": "https://david-barrera.com",
-      "email": "sebasgao05@gmail.com",
-      "image": "https://david-barrera.com/profile-david.jpg",
-      "sameAs": [
-        "https://linkedin.com/in/sebasgao05",
-        "https://github.com/sebasgao05"
-      ],
-      "knowsAbout": [
-        "React",
-        "Node.js",
-        "TypeScript",
-        "AWS",
-        "JavaScript",
-        "Full Stack Development",
-        "Web Development"
-      ],
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Universidad"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "CO"
-      }
-    }
-    </script>
-
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/icons/icon-192x192.png" />
     <link rel="apple-touch-icon" sizes="152x152" href="%PUBLIC_URL%/icons/icon-152x152.png" />
@@ -153,7 +94,29 @@
     <!-- Load remaining font weights asynchronously -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap"></noscript>
-    
+
+    <script>
+      (function() {
+        const observer = new MutationObserver((mutations, obs) => {
+          for (const mutation of mutations) {
+            for (const node of mutation.addedNodes) {
+              if (node instanceof HTMLLinkElement && node.rel === 'stylesheet' && /\/static\/css\/.+\.css$/.test(node.href)) {
+                node.rel = 'preload';
+                node.as = 'style';
+                node.media = 'print';
+                node.onload = function() {
+                  this.media = 'all';
+                  this.rel = 'stylesheet';
+                };
+                obs.disconnect();
+                break;
+              }
+            }
+          }
+        });
+        observer.observe(document.head, { childList: true });
+      })();
+    </script>
     <title>David Barrera - Desarrollador Full Stack & Ingeniero de Sistemas</title>
   </head>
   <body>

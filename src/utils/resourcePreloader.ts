@@ -35,7 +35,7 @@ class ResourcePreloader {
       'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2',
       
       // Hero image
-      '/images/profile/profile-david.webp',
+      '/images/profile/profile-david.jpg',
       
       // Critical project images (first 3)
       '/images/projects/project-portfolio-320.webp',

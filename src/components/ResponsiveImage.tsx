@@ -4,6 +4,7 @@ interface ResponsiveImageProps {
   src: string;
   alt: string;
   className?: string;
+  imgClassName?: string;
   width?: string | number;
   height?: string | number;
   loading?: 'lazy' | 'eager';
@@ -17,6 +18,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   src,
   alt,
   className = '',
+  imgClassName = '',
   width,
   height,
   loading = 'lazy',
@@ -43,7 +45,17 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
 
     const basePath = originalSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '');
     const extension = originalSrc.split('.').pop()?.toLowerCase();
-    
+    const useResponsiveVariants = originalSrc.startsWith('/images/projects/');
+
+    if (!useResponsiveVariants || !extension || !['jpg', 'jpeg', 'png', 'webp'].includes(extension)) {
+      return {
+        webpSrcSet: '',
+        fallbackSrcSet: '',
+        webpSrc: originalSrc,
+        fallbackSrc: originalSrc
+      };
+    }
+
     // Generate WebP sources with different sizes
     const webpSizes = [320, 640, 768, 1024, 1280];
     const webpSrcSet = webpSizes
@@ -85,16 +97,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
     auto: ''
   }[aspectRatio];
 
-  // Loading skeleton - skip for priority images
-  if (!imageLoaded && !imageError && !priority) {
-    return (
-      <div className={`bg-gray-200 dark:bg-gray-700 animate-pulse ${aspectRatioClass} ${className}`}>
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="w-8 h-8 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      </div>
-    );
-  }
+  const isPending = !imageLoaded && !imageError && !priority;
 
   // Error state
   if (imageError) {
@@ -105,57 +108,60 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
     );
   }
 
-  // For external images (like Credly), use simple img tag
-  if (src.startsWith('http') && !src.includes('david-barrera.com')) {
-    return (
-      <img
-        ref={imgRef}
-        src={src}
-        alt={alt}
-        className={`transition-opacity duration-300 ${
-          priority || imageLoaded ? 'opacity-100' : 'opacity-0'
-        } ${aspectRatioClass} ${className}`}
-        width={width}
-        height={height}
-        loading={actualLoading}
-        onLoad={handleLoad}
-        onError={handleError}
-        {...(priority && { fetchPriority: 'high' as any })}
-      />
-    );
-  }
+  const imageWrapperClass = `relative overflow-hidden ${aspectRatioClass} ${className}`.trim();
+  const imageClass = `transition-opacity duration-300 ${priority || imageLoaded ? 'opacity-100' : 'opacity-0'} ${imgClassName || 'w-full h-auto object-contain'}`.trim();
 
-  // Use picture element for responsive WebP images
   return (
-    <picture className={aspectRatioClass}>
-      {sources.webpSrcSet && (
-        <source 
-          srcSet={sources.webpSrcSet} 
-          sizes={sizes}
-          type="image/webp" 
-        />
+    <div className={imageWrapperClass} style={{ width, height }}>
+      {isPending && (
+        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center z-10">
+          <div className="w-8 h-8 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+        </div>
       )}
-      {sources.fallbackSrcSet && (
-        <source 
-          srcSet={sources.fallbackSrcSet} 
-          sizes={sizes}
+
+      {src.startsWith('http') && !src.includes('david-barrera.com') ? (
+        <img
+          ref={imgRef}
+          src={src}
+          alt={alt}
+          className={imageClass}
+          width={width}
+          height={height}
+          loading={actualLoading}
+          onLoad={handleLoad}
+          onError={handleError}
+          {...(priority && { fetchPriority: 'high' as any })}
         />
+      ) : (
+        <picture>
+          {sources.webpSrcSet && (
+            <source 
+              srcSet={sources.webpSrcSet} 
+              sizes={sizes}
+              type="image/webp" 
+            />
+          )}
+          {sources.fallbackSrcSet && (
+            <source 
+              srcSet={sources.fallbackSrcSet} 
+              sizes={sizes}
+            />
+          )}
+          <img
+            ref={imgRef}
+            src={sources.fallbackSrc}
+            alt={alt}
+            className={imageClass}
+            width={width}
+            height={height}
+            loading={actualLoading}
+            onLoad={handleLoad}
+            onError={handleError}
+            {...(priority && { fetchPriority: 'high' as any })}
+          />
+        </picture>
       )}
-      <img
-        ref={imgRef}
-        src={sources.fallbackSrc}
-        alt={alt}
-        className={`transition-opacity duration-300 ${
-          priority || imageLoaded ? 'opacity-100' : 'opacity-0'
-        } w-full h-full object-cover ${className}`}
-        width={width}
-        height={height}
-        loading={actualLoading}
-        onLoad={handleLoad}
-        onError={handleError}
-        {...(priority && { fetchPriority: 'high' as any })}
-      />
-    </picture>
+    </div>
   );
 };
 
