@@ -5,7 +5,11 @@ console.log('🔍 Validating build configuration...');
 
 // Validate that critical images exist
 const criticalImages = [
-  'public/images/projects/Generador-CV.webp'
+  'public/images/projects/Generador-CV.webp',
+  'public/images/profile/profile-david.jpg',
+  'public/images/profile/profile-david.webp',
+  'public/favicon.ico',
+  'public/icons/icon-192x192.png'
 ];
 
 let hasErrors = false;

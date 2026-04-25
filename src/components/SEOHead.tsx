@@ -26,6 +26,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   const { i18n } = useTranslation();
   const canonicalUrl = url || env.siteUrl;
   const resolvedImage = env.toAbsoluteUrl(image || env.personal.ogImage);
+  const resolvedProfileImage = env.toAbsoluteUrl(env.personal.profileImage);
   const sameAsLinks = [personalInfo.linkedin, personalInfo.github].filter(Boolean);
 
   const defaultStructuredData = {
@@ -35,7 +36,14 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     jobTitle: 'Full Stack Developer & Systems Engineer',
     description,
     url: env.siteUrl,
-    image: resolvedImage,
+    image: {
+      '@type': 'ImageObject',
+      url: resolvedProfileImage,
+      contentUrl: resolvedProfileImage,
+      width: 800,
+      height: 800,
+      caption: personalInfo.name
+    },
     sameAs: sameAsLinks,
     knowsAbout: [
       { '@type': 'Thing', name: 'React' },
@@ -98,6 +106,11 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property='og:title' content={sectionMeta.title} />
       <meta property='og:description' content={sectionMeta.description} />
       <meta property='og:image' content={resolvedImage} />
+      <meta property='og:image:secure_url' content={resolvedImage} />
+      <meta property='og:image:type' content='image/jpeg' />
+      <meta property='og:image:width' content='800' />
+      <meta property='og:image:height' content='800' />
+      <meta property='og:image:alt' content={`${personalInfo.name} - Full Stack Developer`} />
       <meta property='og:url' content={canonicalUrl} />
       <meta property='og:locale' content={i18n.language === 'es' ? 'es_ES' : 'en_US'} />
       <meta property='og:site_name' content='David Barrera Portfolio' />
@@ -107,6 +120,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name='twitter:title' content={sectionMeta.title} />
       <meta name='twitter:description' content={sectionMeta.description} />
       <meta name='twitter:image' content={resolvedImage} />
+      <meta name='twitter:image:alt' content={`${personalInfo.name} - Full Stack Developer`} />
 
       {/* Additional SEO */}
       <meta name='robots' content='index, follow' />
