@@ -1,8 +1,14 @@
 const path = require('path');
 const { execSync } = require('child_process');
 
-// Cargar las variables de entorno desde el .env local para los scripts de despliegue
-require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+// Cargar .env en local si dotenv esta disponible. En GitHub Actions se usan env vars.
+try {
+  require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+} catch (error) {
+  if (error.code !== 'MODULE_NOT_FOUND') {
+    throw error;
+  }
+}
 
 const bucketName = process.env.DEPLOY_BUCKET_NAME;
 const distributionId = process.env.DEPLOY_DISTRIBUTION_ID;
