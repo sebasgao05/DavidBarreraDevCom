@@ -13,8 +13,8 @@ export const translations = {
     // Hero Section
     hero: {
       greeting: 'Hola, soy',
-      role: 'Desarrollador de Aplicaciones & Ingeniero de Sistemas',
-      description: 'Especializado en desarrollo de aplicaciones empresariales con experiencia en IBM y liderazgo en AWS Cloud Club. Apasionado por las tecnologías cloud y la innovación.',
+      role: 'Data Engineer & Ingeniero de Sistemas',
+      description: 'Especializado en ingenieria de datos y soluciones cloud con experiencia en Blend360 e IBM. Apasionado por las tecnologias cloud, pipelines de datos y la innovacion.',
       downloadCV: 'Descargar CV',
       contactMe: 'Contáctame',
       scrollDown: 'Desplázate para conocer más'
@@ -23,7 +23,7 @@ export const translations = {
     // About Section
     about: {
       title: 'Sobre Mí',
-      description: 'Soy un estudiante de Ingeniería de Sistemas en la Universidad EAN, apasionado por el desarrollo de software y las tecnologías cloud. Mi experiencia incluye un internado en IBM y liderazgo del AWS Cloud Club.',
+      description: 'Soy Ingeniero de Sistemas graduado de la Universidad EAN, apasionado por la ingenieria de datos y las tecnologias cloud. Mi experiencia incluye trabajo en Blend360 como Data Engineer e IBM como Desarrollador de Aplicaciones.',
       currentlyLearning: 'Actualmente Aprendiendo',
       languages: 'Idiomas',
       certifications: 'Certificaciones',
@@ -55,7 +55,8 @@ export const translations = {
       present: 'Presente',
       workExperience: 'Experiencia Profesional',
       volunteerExperience: 'Experiencia de Voluntariado',
-      viewProfile: 'Ver perfil'
+      viewProfile: 'Ver perfil',
+      professionalCard: 'Tarjeta Profesional'
     },
     
     // Projects Section
@@ -80,7 +81,7 @@ export const translations = {
       linkedin: 'LinkedIn',
       github: 'GitHub',
       availability: 'Disponibilidad',
-      availabilityDesc: 'Actualmente disponible para proyectos freelance y oportunidades de internado.',
+      availabilityDesc: 'Actualmente trabajando en Blend360 como Data Engineer. Abierto a colaboraciones y proyectos interesantes.',
       availableStatus: 'Disponible para nuevos proyectos',
       contactInfo: 'Información de Contacto',
       linkedinProfile: 'Perfil de LinkedIn',
@@ -106,7 +107,7 @@ export const translations = {
       by: 'por',
       builtWith: 'Desarrollado con React, TypeScript y Tailwind CSS',
       deployedOn: 'Desplegado en AWS S3 + CloudFront',
-      role: 'Desarrollador de Aplicaciones & Ingeniero de Sistemas',
+      role: 'Data Engineer & Ingeniero de Sistemas',
     },
     
     // Common
@@ -134,8 +135,8 @@ export const translations = {
     // Hero Section
     hero: {
       greeting: 'Hi, I\'m',
-      role: 'Application Developer & Software Engineer',
-      description: 'Specialized in enterprise application development with experience at IBM and leadership in AWS Cloud Club. Passionate about cloud technologies and innovation.',
+      role: 'Data Engineer & Systems Engineer',
+      description: 'Specialized in data engineering and cloud solutions with experience at Blend360 and IBM. Passionate about cloud technologies, data pipelines and innovation.',
       downloadCV: 'Download CV',
       contactMe: 'Contact Me',
       scrollDown: 'Scroll down to learn more'
@@ -144,7 +145,7 @@ export const translations = {
     // About Section
     about: {
       title: 'About Me',
-      description: 'I\'m a Systems Engineering student at EAN University, passionate about software development and cloud technologies. My experience includes an internship at IBM and leadership of the AWS Cloud Club.',
+      description: 'I\'m a Systems Engineer graduated from EAN University, passionate about data engineering and cloud technologies. My experience includes working at Blend360 as a Data Engineer and IBM as an Application Developer.',
       currentlyLearning: 'Currently Learning',
       languages: 'Languages',
       certifications: 'Certifications',
@@ -176,7 +177,8 @@ export const translations = {
       present: 'Present',
       workExperience: 'Professional Experience',
       volunteerExperience: 'Volunteer Experience',
-      viewProfile: 'View profile'
+      viewProfile: 'View profile',
+      professionalCard: 'Professional Card'
     },
     
     // Projects Section
@@ -201,7 +203,7 @@ export const translations = {
       linkedin: 'LinkedIn',
       github: 'GitHub',
       availability: 'Availability',
-      availabilityDesc: 'Currently available for freelance projects and internship opportunities.',
+      availabilityDesc: 'Currently working at Blend360 as a Data Engineer. Open to collaborations and interesting projects.',
       availableStatus: 'Available for new projects',
       contactInfo: 'Contact Information',
       linkedinProfile: 'LinkedIn Profile',
@@ -227,7 +229,7 @@ export const translations = {
       by: 'by',
       builtWith: 'Built with React, TypeScript and Tailwind CSS',
       deployedOn: 'Deployed on AWS S3 + CloudFront',
-      role: 'Application Developer & Software Engineer',
+      role: 'Data Engineer & Systems Engineer',
     },
     
     // Common
