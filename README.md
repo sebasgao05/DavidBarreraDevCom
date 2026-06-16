@@ -10,6 +10,7 @@ Sitio web de portafolio desarrollado con React, TypeScript y Tailwind CSS. Inclu
 - Animaciones fluidas con Framer Motion
 - SEO listo (helmet, metadatos y estructura semantica)
 - Performance cuidada: lazy loading, splitting y assets optimizados
+- CI/CD automatizado: push a `main` dispara lint, test, build y deploy a AWS
 
 ## Stack principal
 
@@ -18,28 +19,28 @@ Sitio web de portafolio desarrollado con React, TypeScript y Tailwind CSS. Inclu
 - Framer Motion, React i18next, React Helmet Async
 - Iconos con Lucide React
 - Build: react-scripts 5
-- Deploy: AWS S3 + CloudFront
+- Deploy: AWS S3 + CloudFront (CI/CD via GitHub Actions)
 
 ## Requisitos
 
-- Node.js 16+ y npm
+- Node.js 22+ y pnpm
 - AWS CLI configurado (para despliegue) o variables de entorno con credenciales
 
 ## Instalacion y uso
 
 ```bash
 # Clonar el repo
-https://github.com/sebasgao05/DavidBarreraDevCom.git
+git clone https://github.com/sebasgao05/DavidBarreraDevCom.git
 cd DavidBarreraDevCom
 
 # Instalar dependencias
-npm install
+pnpm install
 
 # Desarrollo
-npm start
+pnpm start
 
 # Build optimizado
-npm run build:prod
+pnpm run build:prod
 ```
 
 ## Variables de entorno
@@ -71,33 +72,55 @@ docs/                // Documentacion adicional
 
 ## Scripts disponibles
 
-- `npm start`: servidor de desarrollo.
-- `npm run build`: build estandar de React.
-- `npm run build:prod`: optimiza imagenes y genera build.
-- `npm test`: pruebas con react-scripts.
-- `npm run validate`: build y chequeos previos a deploy.
-- `npm run deploy`: valida, build:prod y despliega a AWS.
-- `npm run analyze`: analiza bundle con webpack-bundle-analyzer.
-- `npm run setup:assets`: prepara assets base.
-- `npm run optimize:images`: optimiza imagenes locales.
-- `npm run generate:icons`: genera iconos.
-- `npm run generate:responsive`: genera variantes responsive.
-- `npm run generate:screenshots`: captura screenshots.
-- `npm run seo:check`: corre Lighthouse remoto.
-- `npm run sitemap:generate`: genera sitemap.
+| Comando | Descripcion |
+|---------|-------------|
+| `pnpm start` | Servidor de desarrollo |
+| `pnpm build` | Build estandar de React |
+| `pnpm run build:prod` | Optimiza imagenes y genera build |
+| `pnpm test` | Pruebas con react-scripts |
+| `pnpm run lint` | Linting con ESLint |
+| `pnpm run validate` | Build y chequeos previos a deploy |
+| `pnpm run deploy` | Valida, build:prod y despliega a AWS |
+| `pnpm run analyze` | Analiza bundle con webpack-bundle-analyzer |
+| `pnpm run setup:assets` | Prepara assets base |
+| `pnpm run optimize:images` | Optimiza imagenes locales |
+| `pnpm run generate:icons` | Genera iconos |
+| `pnpm run generate:responsive` | Genera variantes responsive |
+| `pnpm run generate:screenshots` | Captura screenshots |
+| `pnpm run seo:check` | Corre Lighthouse remoto |
+| `pnpm run sitemap:generate` | Genera sitemap |
 
 ## Flujo de trabajo recomendado
 
-1) Desarrollar: `npm start`.
-2) Probar y revisar: `npm test` y `npm run analyze` si necesitas ver el bundle.
-3) Build local: `npm run build:prod`.
-4) Desplegar: exporta `DEPLOY_BUCKET_NAME` y `DEPLOY_DISTRIBUTION_ID`, luego `npm run deploy`. El script sube a S3 y limpia cache en CloudFront.
+1) Desarrollar: `pnpm start`.
+2) Probar y revisar: `pnpm test` y `pnpm run analyze` si necesitas ver el bundle.
+3) Build local: `pnpm run build:prod`.
+4) Desplegar: push a `main` dispara automaticamente el pipeline de CI/CD (lint, test, build, deploy a S3 + invalidacion de CloudFront).
+
+## CI/CD
+
+El despliegue es completamente automatizado. Al hacer push a la rama `main`, GitHub Actions ejecuta:
+
+1. **Lint** - verifica calidad de codigo con ESLint
+2. **Test** - ejecuta pruebas unitarias
+3. **Build** - genera el build de produccion
+4. **Deploy** - sincroniza con S3 e invalida cache de CloudFront
+
+Ver [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) para mas detalles sobre el pipeline y la estrategia de cache.
 
 ## Personalizacion
 
 - Contenido: edita `src/data/portfolioData.ts` y las variables `REACT_APP_*` en `.env`.
 - Estilos: ajusta `tailwind.config.js` (colores, fuentes, animaciones, breakpoints).
 - Idiomas: actualiza `src/i18n/config.ts` para agregar o modificar traducciones.
+
+## Contributing
+
+Consulta [CONTRIBUTING.md](CONTRIBUTING.md) para la guia de contribucion, incluyendo el flujo de branches, commits convencionales y checklist de PRs.
+
+## Security
+
+Consulta [SECURITY.md](SECURITY.md) para la politica de seguridad y como reportar vulnerabilidades.
 
 ## Licencia
 
