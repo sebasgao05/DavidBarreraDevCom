@@ -16,7 +16,7 @@ interface SEOHeadProps {
 
 const SEOHead: React.FC<SEOHeadProps> = ({
   title = 'David Barrera | Data Engineer & Systems Engineer',
-  description = 'Data Engineer en Blend360. Ingeniero de Sistemas especializado en AWS, Python, SQL y pipelines de datos escalables.',
+  description = 'Data Engineer en Blend360. Ingeniero de Sistemas graduado de la Universidad EAN. Especializado en AWS, Python y pipelines de datos.',
   keywords = 'data engineer, ingeniero de sistemas, python, sql, aws, spark, etl, pipelines de datos, blend360, cloud computing',
   image = env.personal.ogImage,
   url = env.siteUrl,
@@ -31,7 +31,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
 
   const defaultStructuredData = {
     '@context': 'https://schema.org',
-    '@type': ['Person', 'WebPage'],
+    '@type': 'Person',
     name: personalInfo.name,
     jobTitle: 'Data Engineer & Systems Engineer',
     description,
@@ -103,7 +103,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <link rel='alternate' hrefLang='x-default' href={`${env.siteUrl}/`} />
 
       {/* Open Graph */}
-      <meta property='og:type' content='website' />
+      <meta property='og:type' content='profile' />
       <meta property='og:title' content={sectionMeta.title} />
       <meta property='og:description' content={sectionMeta.description} />
       <meta property='og:image' content={resolvedImage} />
