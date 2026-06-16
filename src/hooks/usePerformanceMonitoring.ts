@@ -91,23 +91,23 @@ export const usePerformanceMonitoring = (config: PerformanceConfig = {}) => {
     return observer;
   }, [reportMetric]);
 
-  const measureFID = useCallback(() => {
+  const measureINP = useCallback(() => {
     const observer = new PerformanceObserver((list) => {
       for (const entry of list.getEntries() as PerformanceEventTiming[]) {
-        const value = entry.processingStart - entry.startTime;
-        const rating = value <= 100 ? 'good' : value <= 300 ? 'needs-improvement' : 'poor';
+        const value = entry.duration;
+        const rating = value <= 200 ? 'good' : value <= 500 ? 'needs-improvement' : 'poor';
 
         reportMetric({
-          name: 'FID',
+          name: 'INP',
           value,
           rating,
           delta: value,
-          id: `fid-${Date.now()}`
+          id: `inp-${Date.now()}`
         });
       }
     });
 
-    observer.observe({ type: 'first-input', buffered: true });
+    observer.observe({ type: 'event', durationThreshold: 40, buffered: true } as PerformanceObserverInit);
     return observer;
   }, [reportMetric]);
 
@@ -210,7 +210,7 @@ export const usePerformanceMonitoring = (config: PerformanceConfig = {}) => {
       try {
         observers.push(measureCLS());
         observers.push(measureLCP());
-        observers.push(measureFID());
+        observers.push(measureINP());
         observers.push(measureFCP());
       } catch (error) {
         console.warn('Performance monitoring setup failed:', error);
@@ -225,7 +225,7 @@ export const usePerformanceMonitoring = (config: PerformanceConfig = {}) => {
     return () => {
       observers.forEach(observer => observer.disconnect());
     };
-  }, [measureCLS, measureLCP, measureFID, measureFCP, measureTTFB, measureCustomMetrics]);
+  }, [measureCLS, measureLCP, measureINP, measureFCP, measureTTFB, measureCustomMetrics]);
 
   // Return utility functions for manual measurements
   return {
@@ -269,5 +269,5 @@ interface LayoutShift extends PerformanceEntry {
 }
 
 interface PerformanceEventTiming extends PerformanceEntry {
-  processingStart: number;
+  duration: number;
 }
