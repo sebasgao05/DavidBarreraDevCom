@@ -20,7 +20,6 @@ const SimpleImage: React.FC<SimpleImageProps> = ({
   onError
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageSrc, setImageSrc] = useState(src);
 
   const handleLoad = () => {
     setImageLoaded(true);
@@ -42,7 +41,7 @@ const SimpleImage: React.FC<SimpleImageProps> = ({
         />
       )}
       <img
-        src={imageSrc}
+        src={src}
         alt={alt}
         className={`transition-opacity duration-300 ${
           imageLoaded ? 'opacity-100' : 'opacity-0'

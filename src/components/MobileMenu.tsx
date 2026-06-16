@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Menu, X, Home, User, Briefcase, Mail } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useFocusManagement } from '../hooks/useFocusManagement';
@@ -107,11 +107,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onToggle, onNavigate })
 
           {/* Menu Items */}
           <div className="flex-1 py-6">
-            <ul className="space-y-2 px-4" role="list">
+            <ul className="space-y-2 px-4">
               {menuItems.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <li key={item.id} role="listitem">
+                  <li key={item.id}>
                     <button
                       onClick={() => handleItemClick(item.id)}
                       className="w-full flex items-center space-x-4 px-4 py-3 rounded-xl text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 group"

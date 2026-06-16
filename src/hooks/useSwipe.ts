@@ -20,54 +20,54 @@ export const useSwipe = (input: SwipeInput): SwipeOutput => {
 
   const minSwipeDistance = input.delta || 50;
 
-  const onTouchStart = (e: TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart({
-      x: e.targetTouches[0].clientX,
-      y: e.targetTouches[0].clientY
-    });
-  };
-
-  const onTouchMove = (e: TouchEvent) => {
-    if (input.preventDefaultTouchmoveEvent) {
-      e.preventDefault();
-    }
-    setTouchEnd({
-      x: e.targetTouches[0].clientX,
-      y: e.targetTouches[0].clientY
-    });
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-
-    const distanceX = touchStart.x - touchEnd.x;
-    const distanceY = touchStart.y - touchEnd.y;
-    const isLeftSwipe = distanceX > minSwipeDistance;
-    const isRightSwipe = distanceX < -minSwipeDistance;
-    const isUpSwipe = distanceY > minSwipeDistance;
-    const isDownSwipe = distanceY < -minSwipeDistance;
-
-    if (Math.abs(distanceX) > Math.abs(distanceY)) {
-      if (isLeftSwipe && input.onSwipedLeft) {
-        input.onSwipedLeft();
-      }
-      if (isRightSwipe && input.onSwipedRight) {
-        input.onSwipedRight();
-      }
-    } else {
-      if (isUpSwipe && input.onSwipedUp) {
-        input.onSwipedUp();
-      }
-      if (isDownSwipe && input.onSwipedDown) {
-        input.onSwipedDown();
-      }
-    }
-  };
-
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
+
+    const onTouchStart = (e: TouchEvent) => {
+      setTouchEnd(null);
+      setTouchStart({
+        x: e.targetTouches[0].clientX,
+        y: e.targetTouches[0].clientY
+      });
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (input.preventDefaultTouchmoveEvent) {
+        e.preventDefault();
+      }
+      setTouchEnd({
+        x: e.targetTouches[0].clientX,
+        y: e.targetTouches[0].clientY
+      });
+    };
+
+    const onTouchEnd = () => {
+      if (!touchStart || !touchEnd) return;
+
+      const distanceX = touchStart.x - touchEnd.x;
+      const distanceY = touchStart.y - touchEnd.y;
+      const isLeftSwipe = distanceX > minSwipeDistance;
+      const isRightSwipe = distanceX < -minSwipeDistance;
+      const isUpSwipe = distanceY > minSwipeDistance;
+      const isDownSwipe = distanceY < -minSwipeDistance;
+
+      if (Math.abs(distanceX) > Math.abs(distanceY)) {
+        if (isLeftSwipe && input.onSwipedLeft) {
+          input.onSwipedLeft();
+        }
+        if (isRightSwipe && input.onSwipedRight) {
+          input.onSwipedRight();
+        }
+      } else {
+        if (isUpSwipe && input.onSwipedUp) {
+          input.onSwipedUp();
+        }
+        if (isDownSwipe && input.onSwipedDown) {
+          input.onSwipedDown();
+        }
+      }
+    };
 
     element.addEventListener('touchstart', onTouchStart);
     element.addEventListener('touchmove', onTouchMove);
@@ -78,7 +78,7 @@ export const useSwipe = (input: SwipeInput): SwipeOutput => {
       element.removeEventListener('touchmove', onTouchMove);
       element.removeEventListener('touchend', onTouchEnd);
     };
-  }, [touchStart, touchEnd]);
+  }, [touchStart, touchEnd, input, minSwipeDistance]);
 
   return { ref };
 };
