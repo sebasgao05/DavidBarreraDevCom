@@ -71,6 +71,9 @@ importers:
       baseline-browser-mapping:
         specifier: ^2.9.19
         version: 2.10.37
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.1
       lighthouse:
         specifier: ^13.1.0
         version: 13.4.0
