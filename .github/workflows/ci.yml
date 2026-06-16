@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: pnpm/action-setup@v4
+      with:
+        version: 10
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+
+    - name: Run linting
+      run: pnpm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: pnpm/action-setup@v4
+      with:
+        version: 10
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+
+    - name: Run tests
+      run: pnpm run test:ci
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: pnpm/action-setup@v4
+      with:
+        version: 10
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+
+    - name: Build application
+      run: pnpm build
+      env:
+        REACT_APP_PERSON_NAME: David Barrera
+        REACT_APP_CONTACT_EMAIL: sebasgao05@icloud.com
+        REACT_APP_LINKEDIN_URL: https://www.linkedin.com/in/sebasgao05/
+        REACT_APP_GITHUB_URL: https://github.com/sebasgao05
+        REACT_APP_SITE_URL: https://david-barrera.com
+        REACT_APP_PROFILE_IMAGE: /images/profile/profile-david.webp
+        REACT_APP_OG_IMAGE: /images/profile/profile-david.jpg
+        REACT_APP_LOCATION: Bogota, CO
+        REACT_APP_CV_ES_URL: /DavidBarrera-BogotaES.pdf
+        REACT_APP_CV_EN_URL: /DavidBarrera-BogotaEN.pdf

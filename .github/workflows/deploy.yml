@@ -53,7 +53,7 @@ jobs:
       run: pnpm install --frozen-lockfile
 
     - name: Run tests
-      run: pnpm test -- --coverage --watchAll=false --passWithNoTests
+      run: pnpm run test:ci
 
   build:
     runs-on: ubuntu-latest
@@ -117,11 +117,31 @@ jobs:
 
     - name: Deploy to S3
       run: |
-        aws s3 sync build/ s3://${{ secrets.DEPLOY_BUCKET_NAME }} \
+        # 1. Sync static assets with content hashes (immutable, long cache)
+        aws s3 sync build/static/ s3://${{ secrets.DEPLOY_BUCKET_NAME }}/static/ \
           --delete \
           --cache-control "public, max-age=31536000, immutable" \
+          --size-only
+
+        # 2. Sync media/assets that rarely change (images, icons, PDFs)
+        aws s3 sync build/images/ s3://${{ secrets.DEPLOY_BUCKET_NAME }}/images/ \
+          --cache-control "public, max-age=604800" \
+          --size-only
+        aws s3 sync build/icons/ s3://${{ secrets.DEPLOY_BUCKET_NAME }}/icons/ \
+          --cache-control "public, max-age=604800" \
+          --size-only
+        
+        # 3. Sync remaining files (excluding already handled)
+        aws s3 sync build/ s3://${{ secrets.DEPLOY_BUCKET_NAME }}/ \
+          --delete \
+          --cache-control "public, max-age=3600" \
+          --exclude "static/*" \
+          --exclude "images/*" \
+          --exclude "icons/*" \
           --exclude "index.html" \
           --exclude "manifest.json"
+
+        # 4. Upload HTML and manifest with no-cache (always fresh)
         aws s3 cp build/index.html s3://${{ secrets.DEPLOY_BUCKET_NAME }}/index.html \
           --cache-control "public, max-age=0, must-revalidate"
         aws s3 cp build/manifest.json s3://${{ secrets.DEPLOY_BUCKET_NAME }}/manifest.json \
