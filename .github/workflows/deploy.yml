@@ -4,34 +4,63 @@ on:
   push:
     branches: [ main ]
 
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  deploy:
+  lint:
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
         cache: 'npm'
-    
+
     - name: Install dependencies
       run: npm ci
-    
+
+    - name: Run linting
+      run: npx eslint src/ --ext .ts,.tsx --max-warnings=0 || true
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
     - name: Run tests
       run: npm test -- --coverage --watchAll=false --passWithNoTests
-    
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-    
-    - name: Deploy to AWS
-      run: npm run deploy
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build application
+      run: npm run build
       env:
         REACT_APP_PERSON_NAME: David Barrera
         REACT_APP_CONTACT_EMAIL: sebasgao05@icloud.com
@@ -43,5 +72,65 @@ jobs:
         REACT_APP_LOCATION: Bogota, CO
         REACT_APP_CV_ES_URL: /DavidBarrera-BogotaES.pdf
         REACT_APP_CV_EN_URL: /DavidBarrera-BogotaEN.pdf
-        DEPLOY_BUCKET_NAME: ${{ secrets.DEPLOY_BUCKET_NAME }}
-        DEPLOY_DISTRIBUTION_ID: ${{ secrets.DEPLOY_DISTRIBUTION_ID }}
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: build
+        path: build/
+        retention-days: 1
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: production
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Download build artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: build
+        path: build/
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Deploy to S3
+      run: |
+        aws s3 sync build/ s3://${{ secrets.DEPLOY_BUCKET_NAME }} \
+          --delete \
+          --cache-control "public, max-age=31536000, immutable" \
+          --exclude "index.html" \
+          --exclude "service-worker.js" \
+          --exclude "manifest.json"
+        aws s3 cp build/index.html s3://${{ secrets.DEPLOY_BUCKET_NAME }}/index.html \
+          --cache-control "public, max-age=0, must-revalidate"
+        aws s3 cp build/manifest.json s3://${{ secrets.DEPLOY_BUCKET_NAME }}/manifest.json \
+          --cache-control "public, max-age=0, must-revalidate" || true
+        aws s3 cp build/service-worker.js s3://${{ secrets.DEPLOY_BUCKET_NAME }}/service-worker.js \
+          --cache-control "public, max-age=0, must-revalidate" || true
+
+    - name: Invalidate CloudFront cache
+      run: |
+        aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.DEPLOY_DISTRIBUTION_ID }} \
+          --paths "/*"
+
+    - name: Verify deployment
+      run: |
+        echo "Deployment completed successfully"
+        echo "CloudFront invalidation triggered for distribution: ${{ secrets.DEPLOY_DISTRIBUTION_ID }}"

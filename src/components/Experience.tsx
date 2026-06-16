@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Calendar, GraduationCap, ExternalLink } from 'lucide-react';
+import { Calendar, GraduationCap, ExternalLink, Award } from 'lucide-react';
 import { usePortfolioData } from '../hooks/usePortfolioData';
 
 interface ExperienceItem {
@@ -10,6 +10,14 @@ interface ExperienceItem {
   description: string;
   technologies: string[];
   profileUrl?: string;
+}
+
+interface EducationItem {
+  degree: string;
+  institution: string;
+  period: string;
+  description: string;
+  professionalCardUrl?: string;
 }
 
 const Experience: React.FC = () => {
@@ -115,7 +123,7 @@ const Experience: React.FC = () => {
             {t('experience.education')}
           </h3>
           <div className="grid md:grid-cols-2 gap-8">
-            {education.map((edu, index) => (
+            {education.map((edu: EducationItem, index: number) => (
               <div key={index} className="card p-6">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
@@ -132,9 +140,21 @@ const Experience: React.FC = () => {
                     <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
                       {edu.period}
                     </p>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">
                       {edu.description}
                     </p>
+                    {edu.professionalCardUrl && (
+                      <a
+                        href={edu.professionalCardUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-medium hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors duration-200"
+                      >
+                        <Award className="w-4 h-4" />
+                        {t('experience.professionalCard')}
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

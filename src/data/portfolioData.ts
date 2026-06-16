@@ -6,15 +6,15 @@ import { orbitsToSkills } from '../types/skills';
 export const portfolioData = {
   es: {
     personalInfo: {
-      role: 'Desarrollador de Aplicaciones & Ingeniero de Sistemas',
+      role: 'Data Engineer & Ingeniero de Sistemas',
     },
     experience: [
       {
-        title: 'Consultor y Desarrollador de Software y Nube',
-        company: 'FreeLancer',
-        period: 'Diciembre 2023 - Actualidad',
-        description: 'Diseño e implementación de soluciones en la nube con AWS, aplicando buenas prácticas de escalabilidad, seguridad y optimización de costos. Desarrollo de aplicaciones web y sitios a medida, trabajando en frontend y backend con tecnologías modernas.',
-        technologies: ['AWS', 'React', 'TypeScript', 'Node.js', 'Python', 'Cloud Architecture']
+        title: 'Data Engineer',
+        company: 'Blend360',
+        period: 'Mayo 2026 - Presente',
+        description: 'Diseño e implementación de pipelines de datos escalables en AWS. Desarrollo de procesos ETL para ingestión, transformación y carga de datos en entornos de alta disponibilidad. Optimización de consultas y modelado de datos para soluciones analíticas empresariales.',
+        technologies: ['Python', 'SQL', 'AWS Glue', 'Amazon Redshift', 'S3', 'Lambda', 'Apache Spark', 'ETL', 'Data Pipelines']
       },
       {
         title: 'Desarrollador de Aplicaciones - Internado',
@@ -34,7 +34,7 @@ export const portfolioData = {
         profileUrl: 'https://aws.amazon.com/developer/community/community-builders/'
       },
       {
-        title: 'Capitán - AWS Cloud Club',
+        title: 'Student Builder Group Leader (SBGL)',
         company: 'EAN University',
         period: 'Abril 2025 - Mayo 2026',
         description: 'Liderazgo del club de cloud computing, organización de workshops y eventos técnicos. Mentoría a estudiantes en tecnologías AWS y arquitecturas cloud.',
@@ -93,8 +93,9 @@ export const portfolioData = {
       {
         degree: 'Ingeniería de Sistemas',
         institution: 'Universidad EAN',
-        period: '2021 - 2025',
-        description: 'Formación integral en desarrollo de software, arquitectura de sistemas y tecnologías emergentes. Enfoque en cloud computing y desarrollo de aplicaciones empresariales.'
+        period: '2022 - 2025',
+        description: 'Ingeniero de Sistemas graduado con formacion integral en desarrollo de software, arquitectura de sistemas y tecnologías emergentes. Enfoque en cloud computing y desarrollo de aplicaciones empresariales.',
+        professionalCardUrl: 'https://tramites.copnia.gov.co/Copnia_Microsite/CertificateOfGoodStanding/WaterMarkmethod?CertificateNumber=091122-0833386%20CNDB'
       }
     ],
     languages: [
@@ -105,15 +106,15 @@ export const portfolioData = {
   },
   en: {
     personalInfo: {
-      role: 'Application Developer & Software Engineer',
+      role: 'Data Engineer & Systems Engineer',
     },
     experience: [
       {
-        title: 'Software and Cloud Consultant & Developer',
-        company: 'FreeLancer',
-        period: 'December 2023 - Present',
-        description: 'Design and implementation of cloud solutions with AWS, applying best practices for scalability, security and cost optimization. Development of custom web applications and websites, working on frontend and backend with modern technologies.',
-        technologies: ['AWS', 'React', 'TypeScript', 'Node.js', 'Python', 'Cloud Architecture']
+        title: 'Data Engineer',
+        company: 'Blend360',
+        period: 'May 2026 - Present',
+        description: 'Design and implementation of scalable data pipelines on AWS. Development of ETL processes for data ingestion, transformation and loading in high-availability environments. Query optimization and data modeling for enterprise analytics solutions.',
+        technologies: ['Python', 'SQL', 'AWS Glue', 'Amazon Redshift', 'S3', 'Lambda', 'Apache Spark', 'ETL', 'Data Pipelines']
       },
       {
         title: 'Application Developer - Internship',
@@ -133,7 +134,7 @@ export const portfolioData = {
         profileUrl: 'https://aws.amazon.com/developer/community/community-builders/'
       },
       {
-        title: 'Captain - AWS Cloud Club',
+        title: 'Student Builder Group Leader (SBGL)',
         company: 'EAN University',
         period: 'April 2025 - May 2026',
         description: 'Leadership of cloud computing club, organizing workshops and technical events. Mentoring students in AWS technologies and cloud architectures.',
@@ -192,8 +193,9 @@ export const portfolioData = {
       {
         degree: 'Systems Engineering',
         institution: 'EAN University',
-        period: '2021 - 2025',
-        description: 'Comprehensive training in software development, systems architecture and emerging technologies. Focus on cloud computing and enterprise application development.'
+        period: '2022 - 2025',
+        description: 'Systems Engineer graduated with comprehensive training in software development, systems architecture and emerging technologies. Focus on cloud computing and enterprise application development.',
+        professionalCardUrl: 'https://tramites.copnia.gov.co/Copnia_Microsite/CertificateOfGoodStanding/WaterMarkmethod?CertificateNumber=091122-0833386%20CNDB'
       }
     ],
     languages: [
