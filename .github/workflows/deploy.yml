@@ -31,7 +31,7 @@ jobs:
       run: pnpm install --frozen-lockfile
 
     - name: Run linting
-      run: pnpm eslint src/ --ext .ts,.tsx --max-warnings=0 || true
+      run: pnpm eslint src/ --ext .ts,.tsx --max-warnings=0
 
   test:
     runs-on: ubuntu-latest

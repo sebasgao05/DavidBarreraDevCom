@@ -1,4 +1,4 @@
-import React, { useState, useEffect, RefObject } from 'react';
+import React, { useEffect, useRef, RefObject } from 'react';
 
 interface SwipeInput {
   onSwipedLeft?: () => void;
@@ -14,37 +14,44 @@ interface SwipeOutput {
 }
 
 export const useSwipe = (input: SwipeInput): SwipeOutput => {
-  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
-  const [touchEnd, setTouchEnd] = useState<{ x: number; y: number } | null>(null);
   const ref = React.useRef<HTMLElement>(null);
 
-  const minSwipeDistance = input.delta || 50;
+  // Store touch coordinates in refs to avoid state updates and re-renders
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const touchEndRef = useRef<{ x: number; y: number } | null>(null);
+
+  // Keep input config in a ref so handlers always see the latest callbacks
+  const inputRef = useRef(input);
+  inputRef.current = input;
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
     const onTouchStart = (e: TouchEvent) => {
-      setTouchEnd(null);
-      setTouchStart({
+      touchEndRef.current = null;
+      touchStartRef.current = {
         x: e.targetTouches[0].clientX,
         y: e.targetTouches[0].clientY
-      });
+      };
     };
 
     const onTouchMove = (e: TouchEvent) => {
-      if (input.preventDefaultTouchmoveEvent) {
+      if (inputRef.current.preventDefaultTouchmoveEvent) {
         e.preventDefault();
       }
-      setTouchEnd({
+      touchEndRef.current = {
         x: e.targetTouches[0].clientX,
         y: e.targetTouches[0].clientY
-      });
+      };
     };
 
     const onTouchEnd = () => {
+      const touchStart = touchStartRef.current;
+      const touchEnd = touchEndRef.current;
       if (!touchStart || !touchEnd) return;
 
+      const minSwipeDistance = inputRef.current.delta || 50;
       const distanceX = touchStart.x - touchEnd.x;
       const distanceY = touchStart.y - touchEnd.y;
       const isLeftSwipe = distanceX > minSwipeDistance;
@@ -53,18 +60,18 @@ export const useSwipe = (input: SwipeInput): SwipeOutput => {
       const isDownSwipe = distanceY < -minSwipeDistance;
 
       if (Math.abs(distanceX) > Math.abs(distanceY)) {
-        if (isLeftSwipe && input.onSwipedLeft) {
-          input.onSwipedLeft();
+        if (isLeftSwipe && inputRef.current.onSwipedLeft) {
+          inputRef.current.onSwipedLeft();
         }
-        if (isRightSwipe && input.onSwipedRight) {
-          input.onSwipedRight();
+        if (isRightSwipe && inputRef.current.onSwipedRight) {
+          inputRef.current.onSwipedRight();
         }
       } else {
-        if (isUpSwipe && input.onSwipedUp) {
-          input.onSwipedUp();
+        if (isUpSwipe && inputRef.current.onSwipedUp) {
+          inputRef.current.onSwipedUp();
         }
-        if (isDownSwipe && input.onSwipedDown) {
-          input.onSwipedDown();
+        if (isDownSwipe && inputRef.current.onSwipedDown) {
+          inputRef.current.onSwipedDown();
         }
       }
     };
@@ -78,7 +85,7 @@ export const useSwipe = (input: SwipeInput): SwipeOutput => {
       element.removeEventListener('touchmove', onTouchMove);
       element.removeEventListener('touchend', onTouchEnd);
     };
-  }, [touchStart, touchEnd, input, minSwipeDistance]);
+  }, []);
 
   return { ref };
 };
