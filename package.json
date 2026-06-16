@@ -26,7 +26,7 @@
     "lighthouse": "^13.1.0",
     "mime-types": "^2.1.35",
     "postcss": "^8.4.0",
-    "sharp": "^0.32.6",
+    "sharp": "^0.35.1",
     "tailwindcss": "^3.3.0",
     "webpack-bundle-analyzer": "^4.9.0"
   },
