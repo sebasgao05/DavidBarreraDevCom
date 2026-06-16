@@ -149,11 +149,11 @@ export const usePerformanceMonitoring = (config: PerformanceConfig = {}) => {
 
   const measureCustomMetrics = useCallback(() => {
     // Measure React hydration time
-    const hydrationStart = performance.mark('hydration-start');
+    performance.mark('hydration-start');
     
     // This will be called after React hydration
     setTimeout(() => {
-      const hydrationEnd = performance.mark('hydration-end');
+      performance.mark('hydration-end');
       performance.measure('hydration-time', 'hydration-start', 'hydration-end');
       
       const measure = performance.getEntriesByName('hydration-time')[0];
