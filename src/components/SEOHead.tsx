@@ -15,9 +15,9 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = 'David Barrera - Desarrollador Full Stack & Ingeniero de Sistemas',
-  description = 'Desarrollador Full Stack especializado en React, Node.js, AWS y desarrollo de aplicaciones web modernas. Experiencia en cloud computing y arquitectura de sistemas.',
-  keywords = 'desarrollador, full stack, react, nodejs, aws, javascript, typescript, ingeniero sistemas, cloud computing',
+  title = 'David Barrera | Data Engineer & Systems Engineer',
+  description = 'Data Engineer en Blend360. Ingeniero de Sistemas especializado en AWS, Python, SQL y pipelines de datos escalables.',
+  keywords = 'data engineer, ingeniero de sistemas, python, sql, aws, spark, etl, pipelines de datos, blend360, cloud computing',
   image = env.personal.ogImage,
   url = env.siteUrl,
   section = 'home',
@@ -33,7 +33,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     '@context': 'https://schema.org',
     '@type': ['Person', 'WebPage'],
     name: personalInfo.name,
-    jobTitle: 'Full Stack Developer & Systems Engineer',
+    jobTitle: 'Data Engineer & Systems Engineer',
     description,
     url: env.siteUrl,
     image: {
@@ -46,15 +46,16 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     },
     sameAs: sameAsLinks,
     knowsAbout: [
-      { '@type': 'Thing', name: 'React' },
-      { '@type': 'Thing', name: 'Node.js' },
+      { '@type': 'Thing', name: 'Python' },
+      { '@type': 'Thing', name: 'SQL' },
       { '@type': 'Thing', name: 'AWS' },
-      { '@type': 'Thing', name: 'TypeScript' }
+      { '@type': 'Thing', name: 'Apache Spark' },
+      { '@type': 'Thing', name: 'Data Pipelines' }
     ],
-    alumniOf: { '@type': 'EducationalOrganization', name: 'Systems Engineering' },
+    alumniOf: { '@type': 'EducationalOrganization', name: 'Universidad EAN' },
     email: personalInfo.email,
     address: { '@type': 'PostalAddress', addressCountry: 'CO', addressLocality: env.personal.location },
-    worksFor: { '@type': 'Organization', name: 'Freelance Developer' }
+    worksFor: { '@type': 'Organization', name: 'Blend360' }
   };
 
   const getSectionMeta = () => {
@@ -62,7 +63,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       case 'about':
         return {
           title: `Sobre Mi - ${title}`,
-          description: 'Conoce mas sobre mi experiencia como desarrollador Full Stack y mi trayectoria profesional.',
+          description: 'Conoce mas sobre mi experiencia como Data Engineer y mi trayectoria profesional.',
           keywords: `${keywords}, sobre mi, experiencia, trayectoria profesional`
         };
       case 'projects':
@@ -110,7 +111,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property='og:image:type' content='image/jpeg' />
       <meta property='og:image:width' content='800' />
       <meta property='og:image:height' content='800' />
-      <meta property='og:image:alt' content={`${personalInfo.name} - Full Stack Developer`} />
+      <meta property='og:image:alt' content={`${personalInfo.name} - Data Engineer`} />
       <meta property='og:url' content={canonicalUrl} />
       <meta property='og:locale' content={i18n.language === 'es' ? 'es_ES' : 'en_US'} />
       <meta property='og:site_name' content='David Barrera Portfolio' />
@@ -120,7 +121,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name='twitter:title' content={sectionMeta.title} />
       <meta name='twitter:description' content={sectionMeta.description} />
       <meta name='twitter:image' content={resolvedImage} />
-      <meta name='twitter:image:alt' content={`${personalInfo.name} - Full Stack Developer`} />
+      <meta name='twitter:image:alt' content={`${personalInfo.name} - Data Engineer`} />
 
       {/* Additional SEO */}
       <meta name='robots' content='index, follow' />
