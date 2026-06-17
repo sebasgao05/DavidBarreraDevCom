@@ -1,5 +1,6 @@
 /*
   Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: text/html; charset=utf-8
 
 /static/css/*
   Cache-Control: public, max-age=31536000, immutable
