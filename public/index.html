@@ -105,8 +105,15 @@
       .aspect-portrait{aspect-ratio:3/4}
       /* Reduced motion support */
       @media (prefers-reduced-motion: reduce){*{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
+      /* FOUC prevention - hide static content until React mounts */
+      #root > div { opacity: 0; animation: fadeIn 0.3s ease-in forwards; animation-delay: 1s; }
+      @keyframes fadeIn { to { opacity: 1; } }
+      .app-loader { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #ffffff; z-index: 9999; transition: opacity 0.3s; }
+      .app-loader.hidden { opacity: 0; pointer-events: none; }
+      .loader-spinner { width: 40px; height: 40px; border: 3px solid #e5e7eb; border-top-color: #3b82f6; border-radius: 50%; animation: spin 0.8s linear infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
     </style>
-    <title>David Barrera | Data Engineer & Systems Engineer</title>
+    <title>David Barrera | Data Engineer & Ingeniero de Sistemas</title>
   </head>
   <body>
     <noscript>
@@ -120,6 +127,12 @@
         </nav>
       </div>
     </noscript>
+    <div class="app-loader" id="app-loader">
+      <div style="text-align:center">
+        <div class="loader-spinner" style="margin:0 auto 1rem"></div>
+        <p style="color:#6b7280;font-size:0.875rem">Cargando...</p>
+      </div>
+    </div>
     <div id="root">
       <div style="max-width:900px;margin:0 auto;padding:4rem 1.5rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#1f2937">
         <header style="text-align:center;margin-bottom:3rem">
@@ -127,23 +140,45 @@
           <h2 style="font-size:1.5rem;font-weight:400;color:#4b5563;margin-bottom:1.5rem">Data Engineer en Blend360 | Bogota, Colombia</h2>
         </header>
         <section style="margin-bottom:2rem">
-          <p style="font-size:1.125rem;color:#4b5563;line-height:1.8;margin-bottom:1rem">David Barrera es un Ingeniero de Sistemas graduado de la Universidad EAN, actualmente trabajando como Data Engineer en Blend360. Se especializa en el diseno e implementacion de pipelines de datos escalables utilizando Python, SQL, AWS Glue, Amazon Redshift, Apache Spark y arquitecturas serverless en la nube de AWS.</p>
-          <p style="font-size:1rem;color:#6b7280;line-height:1.8;margin-bottom:1rem">Con experiencia previa como Desarrollador de Aplicaciones en IBM, David Barrera combina conocimientos solidos en desarrollo de software con expertise en ingenieria de datos. Su perfil incluye manejo de tecnologias como Java, Spring Boot, React, TypeScript, Node.js, Docker y servicios de AWS como Lambda, S3, EC2, DynamoDB, API Gateway, CloudWatch y ECS.</p>
-          <p style="font-size:1rem;color:#6b7280;line-height:1.8;margin-bottom:1rem">Ademas de su experiencia profesional, David Barrera es AWS Community Builder en la categoria DevTools y fue Student Builder Group Leader (SBGL) del AWS Cloud Club en la Universidad EAN, donde lideraba workshops y eventos tecnicos sobre arquitecturas cloud y mejores practicas en desarrollo.</p>
-          <p style="font-size:1rem;color:#6b7280;line-height:1.8;margin-bottom:1.5rem">Su portafolio incluye proyectos como sistemas de calculo de tarifas con APIs serverless, soluciones IoT en la nube, generadores de hojas de vida y este mismo sitio web, desarrollado con React, TypeScript y Tailwind CSS, desplegado en AWS S3 con CloudFront y CI/CD automatizado mediante GitHub Actions.</p>
+          <p style="font-size:1.125rem;color:#4b5563;line-height:1.8;margin-bottom:1rem">David Barrera es Ingeniero de Sistemas graduado de la Universidad EAN. Actualmente trabaja como Data Engineer en Blend360. Se especializa en el dise&ntilde;o e implementaci&oacute;n de pipelines de datos escalables. Utiliza Python, SQL, AWS Glue, Amazon Redshift y Apache Spark.</p>
+          <p style="font-size:1rem;color:#6b7280;line-height:1.8;margin-bottom:1rem">Cuenta con <a href="#experience" style="color:#3b82f6;text-decoration:underline">experiencia</a> previa como Desarrollador de Aplicaciones en IBM. Combina conocimientos s&oacute;lidos en desarrollo de software con expertise en ingenier&iacute;a de datos. Maneja tecnolog&iacute;as como Java, Spring Boot, React, TypeScript y Node.js. Tambi&eacute;n domina Docker y servicios AWS como Lambda, S3, DynamoDB y ECS.</p>
+          <p style="font-size:1rem;color:#6b7280;line-height:1.8;margin-bottom:1rem">Adem&aacute;s, es AWS Community Builder en la categor&iacute;a DevTools. Fue Student Builder Group Leader del AWS Cloud Club en la Universidad EAN. All&iacute; lideraba workshops y eventos t&eacute;cnicos sobre arquitecturas cloud.</p>
+          <p style="font-size:1rem;color:#6b7280;line-height:1.8;margin-bottom:1.5rem">Su portafolio incluye <a href="#projects" style="color:#3b82f6;text-decoration:underline">proyectos</a> como sistemas de c&aacute;lculo de tarifas con APIs serverless. Tambi&eacute;n soluciones IoT en la nube y generadores de hojas de vida. Este sitio est&aacute; desarrollado con React, TypeScript y Tailwind CSS. Se despliega en AWS S3 con CloudFront y CI/CD automatizado. Puede <a href="/DavidBarrera-BogotaES.pdf" style="color:#3b82f6;text-decoration:underline">descargar CV</a> para m&aacute;s detalles.</p>
         </section>
         <nav style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
           <a href="#about" style="color:#3b82f6;text-decoration:underline">Sobre David Barrera</a>
-          <a href="#skills" style="color:#3b82f6;text-decoration:underline">Habilidades tecnicas</a>
+          <a href="#skills" style="color:#3b82f6;text-decoration:underline">Habilidades t&eacute;cnicas</a>
           <a href="#experience" style="color:#3b82f6;text-decoration:underline">Experiencia profesional</a>
           <a href="#projects" style="color:#3b82f6;text-decoration:underline">Proyectos destacados</a>
           <a href="#contact" style="color:#3b82f6;text-decoration:underline">Contacto</a>
           <a href="https://www.linkedin.com/in/sebasgao05/" style="color:#3b82f6;text-decoration:underline">LinkedIn</a>
           <a href="https://github.com/sebasgao05" style="color:#3b82f6;text-decoration:underline">GitHub</a>
         </nav>
+        <div style="margin-top:2rem;text-align:center">
+          <p style="font-size:0.875rem;color:#9ca3af;margin-bottom:0.5rem">Compartir perfil:</p>
+          <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://david-barrera.com/" style="color:#0077b5;text-decoration:underline;font-size:0.875rem">LinkedIn</a>
+            <a href="https://twitter.com/intent/tweet?url=https://david-barrera.com/&text=Portafolio%20de%20David%20Barrera%20-%20Data%20Engineer" style="color:#1da1f2;text-decoration:underline;font-size:0.875rem">Twitter</a>
+          </div>
+        </div>
       </div>
     </div>
     
+
+    <!-- Hide loader when React mounts -->
+    <script>
+      // Hide loader when React mounts
+      const observer = new MutationObserver(() => {
+        const root = document.getElementById('root');
+        if (root && root.children.length > 0 && root.querySelector('[class]')) {
+          const loader = document.getElementById('app-loader');
+          if (loader) loader.classList.add('hidden');
+          setTimeout(() => loader && loader.remove(), 300);
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.getElementById('root'), { childList: true, subtree: true });
+    </script>
 
     <!-- Enhanced Service Worker Registration -->
     <script>

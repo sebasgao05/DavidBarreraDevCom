@@ -15,7 +15,7 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = 'David Barrera | Data Engineer & Systems Engineer',
+  title = 'David Barrera | Data Engineer & Ingeniero de Sistemas',
   description = 'Data Engineer en Blend360. Ingeniero de Sistemas graduado de la Universidad EAN. Especializado en AWS, Python y pipelines de datos.',
   keywords = 'data engineer, ingeniero de sistemas, python, sql, aws, spark, etl, pipelines de datos, blend360, cloud computing',
   image = env.personal.ogImage,
