@@ -6,7 +6,7 @@
     "@types/node": "^16.18.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "framer-motion": "^10.16.0",
+    "framer-motion": "^12.42.0",
     "i18next": "^23.7.0",
     "lucide-react": "^0.294.0",
     "react": "^18.2.0",
