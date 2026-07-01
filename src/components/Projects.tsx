@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Github, ExternalLink, Eye, Star } from 'lucide-react';
+import { ExternalLink, Eye, Star } from 'lucide-react';
+import { Github } from '../icons/brand-icons';
 import { usePortfolioData } from '../hooks/usePortfolioData';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useTheme } from '../contexts/ThemeContext';

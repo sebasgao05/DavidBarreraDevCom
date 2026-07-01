@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { Linkedin, Github } from '../icons/brand-icons';
 import { usePortfolioData } from '../hooks/usePortfolioData';
 
 const Contact: React.FC = () => {
