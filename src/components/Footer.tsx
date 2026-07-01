@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Heart, Github, Linkedin, Mail } from 'lucide-react';
+import { Heart, Mail } from 'lucide-react';
+import { Github, Linkedin } from '../icons/brand-icons';
 import { usePortfolioData } from '../hooks/usePortfolioData';
 
 const Footer: React.FC = () => {
