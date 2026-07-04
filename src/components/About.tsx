@@ -79,7 +79,7 @@ const About: React.FC = () => {
                   {cert.image && (
                     <ResponsiveImage
                       src={cert.image}
-                      alt={cert.name}
+                      alt={`Certificación ${cert.name} - ${cert.issuer} - David Barrera`}
                       className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
                       width={64}
                       height={64}

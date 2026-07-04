@@ -13,8 +13,8 @@ export const translations = {
     // Hero Section
     hero: {
       greeting: 'Hola, soy',
-      role: 'Data Engineer & Ingeniero de Sistemas',
-      description: 'Especializado en ingenieria de datos y soluciones cloud con experiencia en Blend360 e IBM. Apasionado por las tecnologias cloud, pipelines de datos y la innovacion.',
+      role: 'Data Engineer & AWS Cloud Specialist',
+      description: 'Especializado en ingeniería de datos, pipelines escalables y soluciones cloud AWS con experiencia en Blend360 e IBM. AWS Certified Cloud Practitioner. Apasionado por la automatización, Big Data y la innovación tecnológica.',
       downloadCV: 'Descargar CV',
       contactMe: 'Contáctame',
       scrollDown: 'Desplázate para conocer más'
@@ -22,8 +22,8 @@ export const translations = {
     
     // About Section
     about: {
-      title: 'Sobre Mí',
-      description: 'Soy Ingeniero de Sistemas graduado de la Universidad EAN, apasionado por la ingenieria de datos y las tecnologias cloud. Mi experiencia incluye trabajo en Blend360 como Data Engineer e IBM como Desarrollador de Aplicaciones.',
+      title: 'Sobre David Barrera',
+      description: 'Soy Ingeniero de Sistemas graduado de la Universidad EAN en Bogotá, Colombia, apasionado por la ingeniería de datos y las tecnologías cloud. Actualmente trabajo como Data Engineer en Blend360, donde diseño e implemento pipelines de datos escalables en AWS utilizando Python, SQL, AWS Glue, Amazon Redshift y Apache Spark. Mi experiencia previa incluye desarrollo de aplicaciones empresariales en IBM con Java y Spring Boot. Cuento con la certificación AWS Certified Cloud Practitioner y soy miembro activo del programa AWS Community Builder en DevTools.',
       currentlyLearning: 'Actualmente Aprendiendo',
       languages: 'Idiomas',
       certifications: 'Certificaciones',
@@ -107,7 +107,7 @@ export const translations = {
       by: 'por',
       builtWith: 'Desarrollado con React, TypeScript y Tailwind CSS',
       deployedOn: 'Desplegado en AWS S3 + CloudFront',
-      role: 'Data Engineer & Ingeniero de Sistemas',
+      role: 'Data Engineer & AWS Cloud Specialist',
     },
     
     // Common
@@ -135,8 +135,8 @@ export const translations = {
     // Hero Section
     hero: {
       greeting: 'Hi, I\'m',
-      role: 'Data Engineer & Systems Engineer',
-      description: 'Specialized in data engineering and cloud solutions with experience at Blend360 and IBM. Passionate about cloud technologies, data pipelines and innovation.',
+      role: 'Data Engineer & AWS Cloud Specialist',
+      description: 'Specialized in data engineering, scalable pipelines and AWS cloud solutions with experience at Blend360 and IBM. AWS Certified Cloud Practitioner. Passionate about automation, Big Data and technological innovation.',
       downloadCV: 'Download CV',
       contactMe: 'Contact Me',
       scrollDown: 'Scroll down to learn more'
@@ -144,8 +144,8 @@ export const translations = {
     
     // About Section
     about: {
-      title: 'About Me',
-      description: 'I\'m a Systems Engineer graduated from EAN University, passionate about data engineering and cloud technologies. My experience includes working at Blend360 as a Data Engineer and IBM as an Application Developer.',
+      title: 'About David Barrera',
+      description: 'I\'m a Systems Engineer graduated from EAN University in Bogotá, Colombia, passionate about data engineering and cloud technologies. I currently work as a Data Engineer at Blend360, where I design and implement scalable data pipelines on AWS using Python, SQL, AWS Glue, Amazon Redshift, and Apache Spark. My previous experience includes enterprise application development at IBM with Java and Spring Boot. I hold the AWS Certified Cloud Practitioner certification and am an active member of the AWS Community Builder program in DevTools.',
       currentlyLearning: 'Currently Learning',
       languages: 'Languages',
       certifications: 'Certifications',
@@ -229,7 +229,7 @@ export const translations = {
       by: 'by',
       builtWith: 'Built with React, TypeScript and Tailwind CSS',
       deployedOn: 'Deployed on AWS S3 + CloudFront',
-      role: 'Data Engineer & Systems Engineer',
+      role: 'Data Engineer & AWS Cloud Specialist',
     },
     
     // Common

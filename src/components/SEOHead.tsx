@@ -15,9 +15,9 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = 'David Barrera | Data Engineer & Ingeniero de Sistemas',
-  description = 'Data Engineer en Blend360. Ingeniero de Sistemas graduado de la Universidad EAN. Especializado en AWS, Python y pipelines de datos.',
-  keywords = 'data engineer, ingeniero de sistemas, python, sql, aws, spark, etl, pipelines de datos, blend360, cloud computing',
+  title = 'David Barrera | Data Engineer & AWS Cloud Specialist - Bogotá',
+  description = 'David Sebastian Barrera Gaona — Ingeniero de Sistemas y Data Engineer en Blend360, Bogotá. Especializado en Python, SQL, AWS Glue, Redshift y pipelines de datos escalables. AWS Certified Cloud Practitioner.',
+  keywords = 'David Sebastian Barrera Gaona, David Barrera, data engineer, Data Engineer Colombia, Ingeniero de Datos Bogotá, AWS Cloud Data Engineer, ingeniero de sistemas, python, sql, aws glue, amazon redshift, apache spark, etl, pipelines de datos, blend360, cloud computing, AWS Certified Cloud Practitioner',
   image = env.personal.ogImage,
   url = env.siteUrl,
   section = 'home',
@@ -32,8 +32,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   const defaultStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: personalInfo.name,
-    jobTitle: 'Data Engineer & Systems Engineer',
+    name: 'David Sebastian Barrera Gaona',
+    alternateName: 'David Barrera',
+    jobTitle: 'Data Engineer',
     description,
     url: env.siteUrl,
     image: {
@@ -42,20 +43,35 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       contentUrl: resolvedProfileImage,
       width: 800,
       height: 800,
-      caption: personalInfo.name
+      caption: 'David Barrera - Data Engineer'
     },
-    sameAs: sameAsLinks,
+    sameAs: [...sameAsLinks, 'https://www.credly.com/users/david-sebastian-barrera-gaona'],
     knowsAbout: [
       { '@type': 'Thing', name: 'Python' },
       { '@type': 'Thing', name: 'SQL' },
-      { '@type': 'Thing', name: 'AWS' },
+      { '@type': 'Thing', name: 'AWS Glue' },
+      { '@type': 'Thing', name: 'Amazon Redshift' },
       { '@type': 'Thing', name: 'Apache Spark' },
-      { '@type': 'Thing', name: 'Data Pipelines' }
+      { '@type': 'Thing', name: 'Data Pipelines' },
+      { '@type': 'Thing', name: 'ETL' },
+      { '@type': 'Thing', name: 'AWS Lambda' },
+      { '@type': 'Thing', name: 'Amazon S3' }
+    ],
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'AWS Certified Cloud Practitioner',
+        credentialCategory: 'Professional Certification',
+        recognizedBy: { '@type': 'Organization', name: 'Amazon Web Services' },
+        validFrom: '2026-07',
+        validUntil: '2029-07',
+        url: 'https://www.credly.com/badges/bbb6141d-8b49-498b-9b79-92b1ae847608/public_url'
+      }
     ],
     alumniOf: { '@type': 'EducationalOrganization', name: 'Universidad EAN' },
     email: personalInfo.email,
-    address: { '@type': 'PostalAddress', addressCountry: 'CO', addressLocality: env.personal.location },
-    worksFor: { '@type': 'Organization', name: 'Blend360' }
+    address: { '@type': 'PostalAddress', addressCountry: 'CO', addressLocality: 'Bogotá' },
+    worksFor: { '@type': 'Organization', name: 'Blend360', url: 'https://www.blend360.com/' }
   };
 
   const getSectionMeta = () => {
@@ -111,21 +127,21 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property='og:image:type' content='image/jpeg' />
       <meta property='og:image:width' content='800' />
       <meta property='og:image:height' content='800' />
-      <meta property='og:image:alt' content={`${personalInfo.name} - Data Engineer`} />
+      <meta property='og:image:alt' content={`${personalInfo.name} - Data Engineer & AWS Cloud Specialist`} />
       <meta property='og:url' content={canonicalUrl} />
       <meta property='og:locale' content={i18n.language === 'es' ? 'es_ES' : 'en_US'} />
-      <meta property='og:site_name' content='David Barrera Portfolio' />
+      <meta property='og:site_name' content='David Barrera - Data Engineer Portfolio' />
 
       {/* Twitter */}
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:title' content={sectionMeta.title} />
       <meta name='twitter:description' content={sectionMeta.description} />
       <meta name='twitter:image' content={resolvedImage} />
-      <meta name='twitter:image:alt' content={`${personalInfo.name} - Data Engineer`} />
+      <meta name='twitter:image:alt' content={`${personalInfo.name} - Data Engineer & AWS Cloud Specialist`} />
 
       {/* Additional SEO */}
-      <meta name='robots' content='index, follow' />
-      <meta name='author' content={personalInfo.name} />
+      <meta name='robots' content='index, follow, max-image-preview:large' />
+      <meta name='author' content='David Sebastian Barrera Gaona' />
       <meta name='theme-color' content='#3b82f6' />
       </Helmet>
     </HelmetProvider>
