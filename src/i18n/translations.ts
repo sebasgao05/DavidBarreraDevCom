@@ -14,7 +14,7 @@ export const translations = {
     hero: {
       greeting: 'Hola, soy',
       role: 'Data Engineer & AWS Cloud Specialist',
-      description: 'Especializado en ingeniería de datos, pipelines escalables y soluciones cloud AWS con experiencia en Blend360 e IBM. AWS Certified Cloud Practitioner. Apasionado por la automatización, Big Data y la innovación tecnológica.',
+      description: 'Data Engineer y AWS Cloud Specialist en Bogotá con experiencia en Blend360 e IBM. Diseño pipelines de datos escalables con Python, SQL, AWS Glue y Redshift. AWS Certified Cloud Practitioner comprometido con la automatización, Big Data y la innovación tecnológica.',
       downloadCV: 'Descargar CV',
       contactMe: 'Contáctame',
       scrollDown: 'Desplázate para conocer más'
@@ -23,7 +23,7 @@ export const translations = {
     // About Section
     about: {
       title: 'Sobre David Barrera',
-      description: 'Soy Ingeniero de Sistemas graduado de la Universidad EAN en Bogotá, Colombia, apasionado por la ingeniería de datos y las tecnologías cloud. Actualmente trabajo como Data Engineer en Blend360, donde diseño e implemento pipelines de datos escalables en AWS utilizando Python, SQL, AWS Glue, Amazon Redshift y Apache Spark. Mi experiencia previa incluye desarrollo de aplicaciones empresariales en IBM con Java y Spring Boot. Cuento con la certificación AWS Certified Cloud Practitioner y soy miembro activo del programa AWS Community Builder en DevTools.',
+      description: 'Soy Ingeniero de Sistemas graduado de la Universidad EAN en Bogotá, Colombia, especializado como Data Engineer y AWS Cloud Specialist. Actualmente trabajo como Data Engineer en Blend360, donde diseño e implemento pipelines de datos escalables en AWS utilizando Python, SQL, AWS Glue, Amazon Redshift y Apache Spark. Mi experiencia previa incluye desarrollo de aplicaciones empresariales en IBM con Java y Spring Boot. Cuento con la certificación AWS Certified Cloud Practitioner y soy miembro activo del programa AWS Community Builder en DevTools. Mi enfoque combina ingeniería de datos robusta con arquitecturas cloud modernas para entregar soluciones de alto rendimiento.',
       currentlyLearning: 'Actualmente Aprendiendo',
       languages: 'Idiomas',
       certifications: 'Certificaciones',
@@ -136,7 +136,7 @@ export const translations = {
     hero: {
       greeting: 'Hi, I\'m',
       role: 'Data Engineer & AWS Cloud Specialist',
-      description: 'Specialized in data engineering, scalable pipelines and AWS cloud solutions with experience at Blend360 and IBM. AWS Certified Cloud Practitioner. Passionate about automation, Big Data and technological innovation.',
+      description: 'Data Engineer and AWS Cloud Specialist based in Bogotá with experience at Blend360 and IBM. I design scalable data pipelines using Python, SQL, AWS Glue and Redshift. AWS Certified Cloud Practitioner passionate about automation, Big Data and technological innovation.',
       downloadCV: 'Download CV',
       contactMe: 'Contact Me',
       scrollDown: 'Scroll down to learn more'
@@ -145,7 +145,7 @@ export const translations = {
     // About Section
     about: {
       title: 'About David Barrera',
-      description: 'I\'m a Systems Engineer graduated from EAN University in Bogotá, Colombia, passionate about data engineering and cloud technologies. I currently work as a Data Engineer at Blend360, where I design and implement scalable data pipelines on AWS using Python, SQL, AWS Glue, Amazon Redshift, and Apache Spark. My previous experience includes enterprise application development at IBM with Java and Spring Boot. I hold the AWS Certified Cloud Practitioner certification and am an active member of the AWS Community Builder program in DevTools.',
+      description: 'I\'m a Systems Engineer graduated from EAN University in Bogotá, Colombia, specialized as a Data Engineer and AWS Cloud Specialist. I currently work as a Data Engineer at Blend360, where I design and implement scalable data pipelines on AWS using Python, SQL, AWS Glue, Amazon Redshift, and Apache Spark. My previous experience includes enterprise application development at IBM with Java and Spring Boot. I hold the AWS Certified Cloud Practitioner certification and am an active member of the AWS Community Builder program in DevTools. My approach combines robust data engineering with modern cloud architectures to deliver high-performance solutions.',
       currentlyLearning: 'Currently Learning',
       languages: 'Languages',
       certifications: 'Certifications',

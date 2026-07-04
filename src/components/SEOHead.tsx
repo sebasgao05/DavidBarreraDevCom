@@ -16,7 +16,7 @@ interface SEOHeadProps {
 
 const SEOHead: React.FC<SEOHeadProps> = ({
   title = 'David Barrera | Data Engineer & AWS Cloud Specialist - Bogotá',
-  description = 'David Sebastian Barrera Gaona — Ingeniero de Sistemas y Data Engineer en Blend360, Bogotá. Especializado en Python, SQL, AWS Glue, Redshift y pipelines de datos escalables. AWS Certified Cloud Practitioner.',
+  description = 'David Barrera — Data Engineer en Bogotá. Pipelines escalables con Python, AWS Glue y Redshift. AWS Certified Cloud Practitioner.',
   keywords = 'David Sebastian Barrera Gaona, David Barrera, data engineer, Data Engineer Colombia, Ingeniero de Datos Bogotá, AWS Cloud Data Engineer, ingeniero de sistemas, python, sql, aws glue, amazon redshift, apache spark, etl, pipelines de datos, blend360, cloud computing, AWS Certified Cloud Practitioner',
   image = env.personal.ogImage,
   url = env.siteUrl,
