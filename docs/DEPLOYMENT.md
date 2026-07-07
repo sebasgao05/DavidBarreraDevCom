@@ -114,8 +114,8 @@ The pipeline uses the following actions:
 
 | Action | Version |
 |--------|---------|
-| `actions/checkout` | v4 |
-| `actions/setup-node` | v4 |
+| `actions/checkout` | v6 |
+| `actions/setup-node` | v6 |
 | `pnpm/action-setup` | v4 |
 | `actions/upload-artifact` | v4 |
 | `actions/download-artifact` | v4 |
