@@ -106,6 +106,10 @@ El despliegue es completamente automatizado. Al hacer push a la rama `main`, Git
 3. **Build** - genera el build de produccion
 4. **Deploy** - sincroniza con S3 e invalida cache de CloudFront
 
+El pipeline usa Node 22, pnpm y las siguientes GitHub Actions: `actions/checkout@v4`, `actions/setup-node@v4`, `pnpm/action-setup@v4`, `actions/upload-artifact@v4`, `actions/download-artifact@v4` y `aws-actions/configure-aws-credentials@v4`.
+
+Las dependencias se revisan automaticamente cada mes. Dependabot crea un solo PR agrupado con todas las actualizaciones.
+
 Ver [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) para mas detalles sobre el pipeline y la estrategia de cache.
 
 ## Personalizacion
