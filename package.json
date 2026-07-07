@@ -22,7 +22,7 @@
     "autoprefixer": "^10.5.2",
     "aws-sdk": "^2.1693.0",
     "baseline-browser-mapping": "^2.10.42",
-    "eslint": "^8.57.0",
+    "eslint": "~8.57.0",
     "lighthouse": "^13.1.0",
     "mime-types": "^3.0.2",
     "postcss": "^8.5.16",

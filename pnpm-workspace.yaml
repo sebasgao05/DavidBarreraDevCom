@@ -1,4 +1,5 @@
 overrides:
+  eslint: "~8.57.0"
   nth-check: ">=2.0.1"
   serialize-javascript: ">=7.0.5"
   underscore: ">=1.13.8"
