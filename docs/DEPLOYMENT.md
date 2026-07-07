@@ -36,7 +36,7 @@ push to main -> lint -> test -> build -> deploy
 ### 4. Deploy
 
 - Downloads the build artifact
-- Configures AWS credentials from repository secrets
+- Configures AWS credentials using `aws-actions/configure-aws-credentials@v4`
 - Syncs build output to S3 with cache headers
 - Invalidates CloudFront cache
 - Depends on build passing first
@@ -107,6 +107,27 @@ pnpm run deploy:optimized
 ```
 
 This requires AWS CLI configured locally and the environment variables `DEPLOY_BUCKET_NAME` and `DEPLOY_DISTRIBUTION_ID` exported in your shell.
+
+## GitHub Actions Versions
+
+The pipeline uses the following actions:
+
+| Action | Version |
+|--------|---------|
+| `actions/checkout` | v6 |
+| `actions/setup-node` | v6 |
+| `pnpm/action-setup` | v4 |
+| `actions/upload-artifact` | v4 |
+| `actions/download-artifact` | v4 |
+| `aws-actions/configure-aws-credentials` | v4 |
+
+All actions target Node.js 20+ runtimes. Keep versions up to date to avoid deprecation warnings.
+
+## Dependency Management
+
+Dependabot is configured for monthly review of dependencies. It creates a single grouped PR with all updates, reducing noise and making it easier to review changes in batch.
+
+Configuration lives in `.github/dependabot.yml`.
 
 ## Rollback
 

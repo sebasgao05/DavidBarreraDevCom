@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  eslint: ~8.57.0
   nth-check: '>=2.0.1'
   serialize-javascript: '>=7.0.5'
   underscore: '>=1.13.8'
@@ -71,7 +72,7 @@ importers:
         specifier: ^2.10.42
         version: 2.10.42
       eslint:
-        specifier: ^8.57.0
+        specifier: ~8.57.0
         version: 8.57.1
       lighthouse:
         specifier: ^13.1.0

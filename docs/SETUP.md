@@ -118,3 +118,7 @@ Ensure `.env` exists with the required `REACT_APP_*` values. Tests may reference
 ### Build warnings about bundle size
 
 Use `pnpm run analyze` to inspect the bundle and identify large dependencies. The project uses code splitting and lazy loading to keep the initial bundle small.
+
+## Dependency Updates
+
+Las dependencias se revisan automaticamente cada mes. Dependabot crea un solo PR agrupado con todas las actualizaciones. No necesitas actualizar manualmente a menos que quieras adelantar un upgrade especifico.
