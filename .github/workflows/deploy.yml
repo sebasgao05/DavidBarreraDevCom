@@ -140,7 +140,7 @@ jobs:
 
         # 4. Upload HTML and manifest with no-cache (always fresh)
         aws s3 cp build/index.html s3://${{ secrets.DEPLOY_BUCKET_NAME }}/index.html \
-          --cache-control "public, max-age=0, must-revalidate" \
+          --cache-control "public, max-age=300, must-revalidate" \
           --content-type "text/html; charset=utf-8"
         aws s3 cp build/manifest.json s3://${{ secrets.DEPLOY_BUCKET_NAME }}/manifest.json \
           --cache-control "public, max-age=0, must-revalidate" || true
