@@ -97,14 +97,16 @@ const About: React.FC = () => {
                     <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
                       {cert.date}
                     </p>
-                    <a
-                      href={cert.credlyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors duration-200"
-                    >
-                      Ver en Credly →
-                    </a>
+                    {cert.credlyUrl && (
+                      <a
+                        href={cert.credlyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors duration-200"
+                      >
+                        Ver en Credly →
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}

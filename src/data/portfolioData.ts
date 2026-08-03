@@ -6,22 +6,22 @@ import { orbitsToSkills } from '../types/skills';
 export const portfolioData = {
   es: {
     personalInfo: {
-      role: 'Data Engineer & AWS Cloud Specialist',
+      role: 'Ingeniero de Software | Ingeniería de datos | Desarrollador AWS Cloud',
     },
     experience: [
       {
-        title: 'Data Engineer',
+        title: 'All Star Semillero – Desarrollo de Software, Análisis y Nube',
         company: 'Blend360',
         period: 'Mayo 2026 - Presente',
-        description: 'Diseño e implementación de pipelines de datos escalables en AWS. Desarrollo de procesos ETL para ingestión, transformación y carga de datos en entornos de alta disponibilidad. Optimización de consultas y modelado de datos para soluciones analíticas empresariales.',
-        technologies: ['Python', 'SQL', 'AWS Glue', 'Amazon Redshift', 'S3', 'Lambda', 'Apache Spark', 'ETL', 'Data Pipelines']
+        description: 'Seleccionado para el programa de alto potencial All Star. Desarrollo en Java, Python y JavaScript para backend y cloud. Construcción de APIs REST, gestión de bases de datos SQL y aplicación de metodologías Agile/Scrum en entornos colaborativos.',
+        technologies: ['Java', 'Python', 'JavaScript', 'AWS', 'APIs REST', 'SQL', 'Agile/Scrum']
       },
       {
-        title: 'Desarrollador de Aplicaciones - Internado',
+        title: 'Practicante Desarrollador de Aplicaciones',
         company: 'IBM',
         period: 'Febrero 2025 - Diciembre 2025',
-        description: 'Desarrollo de aplicaciones empresariales utilizando tecnologías modernas. Participación en proyectos de transformación digital y implementación de soluciones cloud.',
-        technologies: ['Java', 'Spring Boot', 'React', 'IBM Cloud', 'Docker']
+        description: 'Migración a la nube y modernización de aplicaciones legacy hacia AWS. Mejoras en backend y automatización cloud en sprints Agile/Scrum. Implementación de flujos DevOps y automatización de procesos, reduciendo en un 30% las actividades manuales.',
+        technologies: ['Java', 'Spring Boot', 'AWS', 'Docker', 'DevOps', 'Agile/Scrum']
       }
     ],
     volunteer: [
@@ -36,20 +36,20 @@ export const portfolioData = {
       {
         title: 'Student Builder Group Leader (SBGL)',
         company: 'EAN University',
-        period: 'Abril 2025 - Mayo 2026',
-        description: 'Liderazgo del club de cloud computing, organización de workshops y eventos técnicos. Mentoría a estudiantes en tecnologías AWS y arquitecturas cloud.',
+        period: 'Abril 2025 - Junio 2026',
+        description: 'Organizó 24+ eventos técnicos con 400+ asistentes presenciales y 60 virtuales. Colaboró con 7+ grupos de estudiantes en Colombia para promover tecnologías AWS y arquitecturas cloud.',
         technologies: ['AWS', 'Cloud Architecture', 'Leadership', 'Teaching'],
         profileUrl: 'https://builder.aws.com/community/cloud-clubs/'
       }
     ],
     projects: [
       {
-        title: 'Finanzas Personales',
-        description: 'Aplicación web de gestión de finanzas personales con autenticación de usuarios, seguimiento de ingresos y gastos, y visualización de datos financieros. Desplegada en AWS Amplify con arquitectura serverless.',
+        title: 'Finanzas Personales – Aplicación Full Stack Serverless',
+        description: 'Aplicación full stack serverless de gestión de finanzas personales con autenticación segura, APIs GraphQL, base de datos NoSQL y pruebas automatizadas. Arquitectura cloud-native con AWS Amplify Gen 2.',
         image: '/images/projects/FinanzasPersonales.png',
-        technologies: ['React', 'AWS Amplify', 'Cognito', 'DynamoDB', 'TypeScript', 'Serverless'],
+        technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'AWS Amplify Gen 2', 'AWS AppSync', 'GraphQL', 'DynamoDB', 'Cognito', 'Vitest'],
         githubUrl: 'https://github.com/sebasgao05/FinanzasPersonales',
-        demoUrl: 'https://main.d1i9b3ymodzvtk.amplifyapp.com/',
+        demoUrl: 'https://qbtwm8k851.execute-api.us-east-1.amazonaws.com/',
         featured: true
       },
       {
@@ -62,15 +62,6 @@ export const portfolioData = {
         featured: true
       },
       {
-        title: 'AWS Cloud + IOT',
-        description: 'proyecto desarrollado un sensor de gas implementado en la nube, incluyendo arquitecturas serverless',
-        image: '/images/projects/project-aws-iot.jpg',
-        technologies: ['DynamoDB', 'EC2', 'SNS'],
-        githubUrl: 'https://github.com/sebasgao05',
-        demoUrl: 'https://54.242.72.108/',
-        featured: false
-      },
-      {
         title: 'Portafolio Personal',
         description: 'Portafolio web desarrollado con React y TypeScript, desplegado en AWS con CI/CD automatizado.',
         image: '/images/projects/project-portfolio.jpg',
@@ -78,6 +69,15 @@ export const portfolioData = {
         githubUrl: 'https://github.com/sebasgao05/DavidBarreraDevCom',
         demoUrl: 'https://david-barrera.com/',
         featured: true
+      },
+      {
+        title: 'AWS Cloud + IOT',
+        description: 'proyecto desarrollado un sensor de gas implementado en la nube, incluyendo arquitecturas serverless',
+        image: '/images/projects/project-aws-iot.jpg',
+        technologies: ['DynamoDB', 'EC2', 'SNS'],
+        githubUrl: 'https://github.com/sebasgao05',
+        demoUrl: 'https://54.242.72.108/',
+        featured: false
       },
       {
         title: 'Generador de Cv',
@@ -115,22 +115,22 @@ export const portfolioData = {
   },
   en: {
     personalInfo: {
-      role: 'Data Engineer & AWS Cloud Specialist',
+      role: 'Software Engineer | Data Engineering | AWS Cloud Developer',
     },
     experience: [
       {
-        title: 'Data Engineer',
+        title: 'All Star Program – Software Development, Analytics, and Cloud',
         company: 'Blend360',
         period: 'May 2026 - Present',
-        description: 'Design and implementation of scalable data pipelines on AWS. Development of ETL processes for data ingestion, transformation and loading in high-availability environments. Query optimization and data modeling for enterprise analytics solutions.',
-        technologies: ['Python', 'SQL', 'AWS Glue', 'Amazon Redshift', 'S3', 'Lambda', 'Apache Spark', 'ETL', 'Data Pipelines']
+        description: 'Selected for the high-potential All Star program. Development in Java, Python, and JavaScript for backend and cloud. Building REST APIs, SQL database management, and applying Agile/Scrum methodologies in collaborative environments.',
+        technologies: ['Java', 'Python', 'JavaScript', 'AWS', 'APIs REST', 'SQL', 'Agile/Scrum']
       },
       {
-        title: 'Application Developer - Internship',
+        title: 'Application Developer Intern',
         company: 'IBM',
         period: 'February 2025 - December 2025',
-        description: 'Development of enterprise applications using modern technologies. Participation in digital transformation projects and cloud solutions implementation.',
-        technologies: ['Java', 'Spring Boot', 'React', 'IBM Cloud', 'Docker']
+        description: 'Cloud migration and modernization of legacy applications to AWS. Backend improvements and cloud automation in Agile/Scrum sprints. Implementation of DevOps workflows and process automation, reducing manual activities by 30%.',
+        technologies: ['Java', 'Spring Boot', 'AWS', 'Docker', 'DevOps', 'Agile/Scrum']
       }
     ],
     volunteer: [
@@ -145,20 +145,20 @@ export const portfolioData = {
       {
         title: 'Student Builder Group Leader (SBGL)',
         company: 'EAN University',
-        period: 'April 2025 - May 2026',
-        description: 'Leadership of cloud computing club, organizing workshops and technical events. Mentoring students in AWS technologies and cloud architectures.',
+        period: 'April 2025 - June 2026',
+        description: 'Organized 24+ technical events with 400+ in-person attendees and 60 virtual participants. Collaborated with 7+ student groups across Colombia to promote AWS technologies and cloud architectures.',
         technologies: ['AWS', 'Cloud Architecture', 'Leadership', 'Teaching'],
         profileUrl: 'https://builder.aws.com/community/cloud-clubs/'
       }
     ],
     projects: [
       {
-        title: 'Personal Finance',
-        description: 'Personal finance management web application with user authentication, income and expense tracking, and financial data visualization. Deployed on AWS Amplify with serverless architecture.',
+        title: 'Personal Finance – Full Stack Serverless Application',
+        description: 'Full stack serverless personal finance management application with secure authentication, GraphQL APIs, NoSQL database, and automated testing. Cloud-native architecture with AWS Amplify Gen 2.',
         image: '/images/projects/FinanzasPersonales.png',
-        technologies: ['React', 'AWS Amplify', 'Cognito', 'DynamoDB', 'TypeScript', 'Serverless'],
+        technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'AWS Amplify Gen 2', 'AWS AppSync', 'GraphQL', 'DynamoDB', 'Cognito', 'Vitest'],
         githubUrl: 'https://github.com/sebasgao05/FinanzasPersonales',
-        demoUrl: 'https://main.d1i9b3ymodzvtk.amplifyapp.com/',
+        demoUrl: 'https://qbtwm8k851.execute-api.us-east-1.amazonaws.com/',
         featured: true
       },
       {
@@ -171,15 +171,6 @@ export const portfolioData = {
         featured: true
       },
       {
-        title: 'AWS Cloud + IOT',
-        description: 'Project developed a gas sensor implemented in the cloud, including serverless architectures',
-        image: '/images/projects/project-aws-iot.jpg',
-        technologies: ['AWS Lambda', 'API Gateway', 'DynamoDB', 'S3', 'CloudFormation'],
-        githubUrl: 'https://github.com/sebasgao05',
-        demoUrl: 'https://54.242.72.108/',
-        featured: false
-      },
-      {
         title: 'Personal Portfolio',
         description: 'Web portfolio developed with React and TypeScript, deployed on AWS with automated CI/CD.',
         image: '/images/projects/project-portfolio.jpg',
@@ -187,6 +178,15 @@ export const portfolioData = {
         githubUrl: 'https://github.com/sebasgao05/DavidBarreraDevCom',
         demoUrl: 'https://david-barrera.com/',
         featured: true
+      },
+      {
+        title: 'AWS Cloud + IOT',
+        description: 'Project developed a gas sensor implemented in the cloud, including serverless architectures',
+        image: '/images/projects/project-aws-iot.jpg',
+        technologies: ['AWS Lambda', 'API Gateway', 'DynamoDB', 'S3', 'CloudFormation'],
+        githubUrl: 'https://github.com/sebasgao05',
+        demoUrl: 'https://54.242.72.108/',
+        featured: false
       },
       {
         title: 'Generador de Cv',
@@ -245,7 +245,10 @@ export const skillsOrbits: SkillsOrbits = {
       { name: 'React', level: 'intermedio' },
       { name: 'TypeScript', level: 'intermedio' },
       { name: 'Next.js', level: 'basico' },
-      { name: 'Tailwind CSS', level: 'intermedio' }
+      { name: 'Tailwind CSS', level: 'intermedio' },
+      { name: 'Angular', level: 'basico' },
+      { name: 'Vite', level: 'basico' },
+      { name: 'shadcn/ui', level: 'basico' }
     ]
   },
   backend: {
@@ -257,6 +260,8 @@ export const skillsOrbits: SkillsOrbits = {
       { name: 'Python', level: 'intermedio' },
       { name: 'Spring Boot', level: 'basico' },
       { name: 'JavaScript', level: 'intermedio' },
+      { name: 'Spring WebFlux', level: 'basico' },
+      { name: 'GraphQL', level: 'basico' }
     ]
   },
   database: {
@@ -283,7 +288,10 @@ export const skillsOrbits: SkillsOrbits = {
       { name: 'Route 53', level: 'intermedio' },
       { name: 'CloudWatch', level: 'intermedio' },
       { name: 'SQS', level: 'intermedio' },
-      { name: 'IAM', level: 'intermedio' }
+      { name: 'IAM', level: 'intermedio' },
+      { name: 'AWS AppSync', level: 'intermedio' },
+      { name: 'Amazon Cognito', level: 'intermedio' },
+      { name: 'AWS Amplify', level: 'intermedio' }
     ]
   },
   devops: {
@@ -297,7 +305,10 @@ export const skillsOrbits: SkillsOrbits = {
       { name: 'Maven', level: 'basico' },
       { name: 'Docker', level: 'basico' },
       { name: 'Kubernetes', level: 'fundamentos' },
-      { name: 'Terraform', level: 'fundamentos' }
+      { name: 'Terraform', level: 'fundamentos' },
+      { name: 'GitHub Actions', level: 'intermedio' },
+      { name: 'SonarQube', level: 'basico' },
+      { name: 'Artifactory', level: 'basico' }
     ]
   },
   tools: {
@@ -310,7 +321,11 @@ export const skillsOrbits: SkillsOrbits = {
       { name: 'Figma', level: 'intermedio' },
       { name: 'Postman', level: 'intermedio' },
       { name: 'IntelliJ IDEA', level: 'intermedio' },
-      { name: 'Jira', level: 'basico' }
+      { name: 'Jira', level: 'basico' },
+      { name: 'Vitest', level: 'intermedio' },
+      { name: 'fast-check', level: 'basico' },
+      { name: 'JMeter', level: 'basico' },
+      { name: 'Karate', level: 'basico' }
     ]
   },
   integracion: {
@@ -344,6 +359,14 @@ export const certifications = [
     date: '2025 - 2026',
     credlyUrl: 'https://www.credly.com/badges/b1a76f4c-192a-4006-80cf-6f6f2df6a142/public_url',
     image: '/images/badge/aws-cloud-club-captain-112.webp'
+  },
+
+  {
+    name: 'IBM Generative & Agentic AI Foundation',
+    issuer: 'IBM',
+    date: '2025',
+    credlyUrl: '',
+    image: ''
   }
 ];
 

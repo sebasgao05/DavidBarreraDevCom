@@ -88,7 +88,7 @@ const Hero: React.FC = () => {
                 <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-400/30 to-purple-600/30 dark:from-blue-400/20 dark:to-purple-600/20 flex items-center justify-center overflow-hidden relative">
                   <ResponsiveImage
                     src={personalInfo.profileImage}
-                    alt={`Foto profesional de ${personalInfo.name}, Data Engineer especializado en AWS, Python y pipelines de datos`}
+                    alt={`Foto profesional de ${personalInfo.name}, Ingeniero de Software especializado en AWS Cloud`}
                     className="w-full h-full rounded-2xl group-hover:shadow-xl transition-all duration-500 bg-slate-950/5"
                     imgClassName="w-full h-auto object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500"
                     loading="eager"
