@@ -360,13 +360,7 @@ export const certifications = [
     credlyUrl: 'https://www.credly.com/badges/b1a76f4c-192a-4006-80cf-6f6f2df6a142/public_url',
     image: '/images/badge/aws-cloud-club-captain-112.webp'
   },
-  {
-    name: 'AWS Certified Cloud Practitioner',
-    issuer: 'AWS',
-    date: '2026',
-    credlyUrl: 'https://www.credly.com/badges/bbb6141d-8b49-498b-9b79-92b1ae847608/public_url',
-    image: '/images/badge/aws-certified-cloud-practitioner.webp'
-  },
+
   {
     name: 'IBM Generative & Agentic AI Foundation',
     issuer: 'IBM',
