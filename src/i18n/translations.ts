@@ -13,8 +13,8 @@ export const translations = {
     // Hero Section
     hero: {
       greeting: 'Hola, soy',
-      role: 'Data Engineer & AWS Cloud Specialist',
-      description: 'Data Engineer y AWS Cloud Specialist en Bogotá con experiencia en Blend360 e IBM. Diseño pipelines de datos escalables con Python, SQL, AWS Glue y Redshift. AWS Certified Cloud Practitioner comprometido con la automatización, Big Data y la innovación tecnológica.',
+      role: 'Ingeniero de Software | Ingeniería de datos | Desarrollador AWS Cloud',
+      description: 'Ingeniero de Sistemas con experiencia en desarrollo backend, full stack y arquitectura cloud en AWS. AWS Certified Cloud Practitioner y AWS Community Builder. Actualmente en Blend360 desarrollando soluciones con Java, Python y JavaScript.',
       downloadCV: 'Descargar CV',
       contactMe: 'Contáctame',
       scrollDown: 'Desplázate para conocer más'
@@ -23,7 +23,7 @@ export const translations = {
     // About Section
     about: {
       title: 'Sobre David Barrera',
-      description: 'Soy Ingeniero de Sistemas graduado de la Universidad EAN en Bogotá, Colombia, especializado como Data Engineer y AWS Cloud Specialist. Actualmente trabajo como Data Engineer en Blend360, donde diseño e implemento pipelines de datos escalables en AWS utilizando Python, SQL, AWS Glue, Amazon Redshift y Apache Spark. Mi experiencia previa incluye desarrollo de aplicaciones empresariales en IBM con Java y Spring Boot. Cuento con la certificación AWS Certified Cloud Practitioner y soy miembro activo del programa AWS Community Builder en DevTools. Mi enfoque combina ingeniería de datos robusta con arquitecturas cloud modernas para entregar soluciones de alto rendimiento.',
+      description: 'Soy Ingeniero de Sistemas graduado de la Universidad EAN en Bogotá, Colombia. Actualmente formo parte del programa All Star en Blend360, donde desarrollo soluciones backend y cloud con Java, Python y JavaScript. Mi experiencia previa como Practicante Desarrollador de Aplicaciones en IBM incluyó migración a la nube, modernización de apps legacy hacia AWS y automatización de procesos DevOps, logrando reducir un 30% las actividades manuales. Cuento con la certificación AWS Certified Cloud Practitioner y soy miembro activo del programa AWS Community Builder en DevTools. Como líder del AWS Student Builder Group en la Universidad EAN, organicé 24+ eventos técnicos con 400+ asistentes. Mi enfoque combina desarrollo de software robusto con arquitecturas cloud modernas.',
       currentlyLearning: 'Actualmente Aprendiendo',
       languages: 'Idiomas',
       certifications: 'Certificaciones',
@@ -81,7 +81,7 @@ export const translations = {
       linkedin: 'LinkedIn',
       github: 'GitHub',
       availability: 'Disponibilidad',
-      availabilityDesc: 'Actualmente trabajando en Blend360 como Data Engineer. Abierto a colaboraciones y proyectos interesantes.',
+      availabilityDesc: 'Actualmente en Blend360 como parte del programa All Star. Abierto a proyectos y colaboraciones.',
       availableStatus: 'Disponible para nuevos proyectos',
       contactInfo: 'Información de Contacto',
       linkedinProfile: 'Perfil de LinkedIn',
@@ -107,7 +107,7 @@ export const translations = {
       by: 'por',
       builtWith: 'Desarrollado con React, TypeScript y Tailwind CSS',
       deployedOn: 'Desplegado en AWS S3 + CloudFront',
-      role: 'Data Engineer & AWS Cloud Specialist',
+      role: 'Ingeniero de Software | Ingeniería de datos | Desarrollador AWS Cloud',
     },
     
     // Common
@@ -135,8 +135,8 @@ export const translations = {
     // Hero Section
     hero: {
       greeting: 'Hi, I\'m',
-      role: 'Data Engineer & AWS Cloud Specialist',
-      description: 'Data Engineer and AWS Cloud Specialist based in Bogotá with experience at Blend360 and IBM. I design scalable data pipelines using Python, SQL, AWS Glue and Redshift. AWS Certified Cloud Practitioner passionate about automation, Big Data and technological innovation.',
+      role: 'Software Engineer | Data Engineering | AWS Cloud Developer',
+      description: 'Systems Engineer with experience in backend development, full stack, and AWS cloud architecture. AWS Certified Cloud Practitioner and AWS Community Builder. Currently at Blend360 building solutions with Java, Python, and JavaScript.',
       downloadCV: 'Download CV',
       contactMe: 'Contact Me',
       scrollDown: 'Scroll down to learn more'
@@ -145,7 +145,7 @@ export const translations = {
     // About Section
     about: {
       title: 'About David Barrera',
-      description: 'I\'m a Systems Engineer graduated from EAN University in Bogotá, Colombia, specialized as a Data Engineer and AWS Cloud Specialist. I currently work as a Data Engineer at Blend360, where I design and implement scalable data pipelines on AWS using Python, SQL, AWS Glue, Amazon Redshift, and Apache Spark. My previous experience includes enterprise application development at IBM with Java and Spring Boot. I hold the AWS Certified Cloud Practitioner certification and am an active member of the AWS Community Builder program in DevTools. My approach combines robust data engineering with modern cloud architectures to deliver high-performance solutions.',
+      description: 'I\'m a Systems Engineer graduated from EAN University in Bogota, Colombia. I\'m currently part of the All Star program at Blend360, where I develop backend and cloud solutions with Java, Python, and JavaScript. My previous experience as an Application Developer Intern at IBM included cloud migration, modernization of legacy apps to AWS, and DevOps process automation, achieving a 30% reduction in manual activities. I hold the AWS Certified Cloud Practitioner certification and am an active member of the AWS Community Builder program in DevTools. As leader of the AWS Student Builder Group at EAN University, I organized 24+ technical events with 400+ attendees. My approach combines robust software development with modern cloud architectures.',
       currentlyLearning: 'Currently Learning',
       languages: 'Languages',
       certifications: 'Certifications',
@@ -203,7 +203,7 @@ export const translations = {
       linkedin: 'LinkedIn',
       github: 'GitHub',
       availability: 'Availability',
-      availabilityDesc: 'Currently working at Blend360 as a Data Engineer. Open to collaborations and interesting projects.',
+      availabilityDesc: 'Currently at Blend360 as part of the All Star program. Open to projects and collaborations.',
       availableStatus: 'Available for new projects',
       contactInfo: 'Contact Information',
       linkedinProfile: 'LinkedIn Profile',
@@ -229,7 +229,7 @@ export const translations = {
       by: 'by',
       builtWith: 'Built with React, TypeScript and Tailwind CSS',
       deployedOn: 'Deployed on AWS S3 + CloudFront',
-      role: 'Data Engineer & AWS Cloud Specialist',
+      role: 'Software Engineer | Data Engineering | AWS Cloud Developer',
     },
     
     // Common

@@ -121,15 +121,12 @@ const SkillsOrbit: React.FC = () => {
       return orbitsData;
     }, [orbit.satellites]);
 
-    // Lazy load system after a delay
+    // Load system immediately when visible
     useEffect(() => {
       if (isVisible && !isLoaded) {
-        const timer = setTimeout(() => {
-          loadSystem(String(category));
-        }, index * 200);
-        return () => clearTimeout(timer);
+        loadSystem(String(category));
       }
-    }, [isVisible, isLoaded, category, index, loadSystem]);
+    }, [isVisible, isLoaded, category, loadSystem]);
 
     if (!isVisible || !isLoaded) {
       return (
