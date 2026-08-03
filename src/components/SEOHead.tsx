@@ -16,7 +16,7 @@ interface SEOHeadProps {
 
 const SEOHead: React.FC<SEOHeadProps> = ({
   title = 'David Barrera | Ingeniero de Software & AWS Cloud Developer',
-  description = 'David Barrera — Ingeniero de Software en Bogota. Desarrollo backend, full stack y cloud en AWS. AWS Certified Cloud Practitioner.',
+  description = 'David Barrera — Ingeniero de Software en Bogotá. Desarrollo backend, full stack y cloud en AWS. AWS Certified Cloud Practitioner.',
   keywords = 'David Sebastian Barrera Gaona, David Barrera, Software Engineer, Ingeniero de Software Colombia, AWS Cloud Developer, Java, Python, TypeScript, React, Spring Boot, GraphQL, AWS, Blend360, cloud computing, AWS Certified Cloud Practitioner, full stack developer',
   image = env.personal.ogImage,
   url = env.siteUrl,
@@ -77,7 +77,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       case 'about':
         return {
           title: `Sobre Mi - ${title}`,
-          description: 'Conoce mas sobre mi experiencia como Data Engineer y mi trayectoria profesional.',
+          description: 'Conoce mas sobre mi experiencia como Ingeniero de Software y mi trayectoria profesional.',
           keywords: `${keywords}, sobre mi, experiencia, trayectoria profesional`
         };
       case 'projects':
