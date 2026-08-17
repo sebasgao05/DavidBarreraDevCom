@@ -145,6 +145,34 @@ jobs:
         aws s3 cp build/manifest.json s3://${{ secrets.DEPLOY_BUCKET_NAME }}/manifest.json \
           --cache-control "public, max-age=0, must-revalidate" || true
 
+    - name: Ensure cost allocation tags on S3
+      run: |
+        aws s3api put-bucket-tagging \
+          --bucket ${{ secrets.DEPLOY_BUCKET_NAME }} \
+          --tagging 'TagSet=[
+            {Key=Project,Value=david-barrera-portafolio},
+            {Key=Environment,Value=production},
+            {Key=Owner,Value=david-barrera},
+            {Key=CostCenter,Value=personal-portfolio},
+            {Key=ManagedBy,Value=github-actions},
+            {Key=Repository,Value=sebasgao05/DavidBarreraDevCom}
+          ]'
+
+    - name: Ensure cost allocation tags on CloudFront
+      run: |
+        AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+        DISTRIBUTION_ARN="arn:aws:cloudfront::${AWS_ACCOUNT_ID}:distribution/${{ secrets.DEPLOY_DISTRIBUTION_ID }}"
+        aws cloudfront tag-resource \
+          --resource "${DISTRIBUTION_ARN}" \
+          --tags 'Items=[
+            {Key=Project,Value=david-barrera-portafolio},
+            {Key=Environment,Value=production},
+            {Key=Owner,Value=david-barrera},
+            {Key=CostCenter,Value=personal-portfolio},
+            {Key=ManagedBy,Value=github-actions},
+            {Key=Repository,Value=sebasgao05/DavidBarreraDevCom}
+          ]'
+
     - name: Invalidate CloudFront cache
       run: |
         aws cloudfront create-invalidation \
@@ -155,3 +183,4 @@ jobs:
       run: |
         echo "Deployment completed successfully"
         echo "CloudFront invalidation triggered for distribution: ${{ secrets.DEPLOY_DISTRIBUTION_ID }}"
+        echo "Cost allocation tags verified for Project=david-barrera-portafolio"
