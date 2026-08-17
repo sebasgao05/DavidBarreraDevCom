@@ -1,0 +1,73 @@
+name: Apply AWS Cost Allocation Tags
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Confirmar aplicación de tags (escribir "yes")'
+        required: true
+        default: 'no'
+
+jobs:
+  apply-tags:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm == 'yes'
+    environment: production
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Apply tags to S3 bucket
+      run: |
+        echo "Applying tags to S3 bucket: ${{ secrets.DEPLOY_BUCKET_NAME }}"
+        aws s3api put-bucket-tagging \
+          --bucket ${{ secrets.DEPLOY_BUCKET_NAME }} \
+          --tagging 'TagSet=[
+            {Key=Project,Value=david-barrera-portafolio},
+            {Key=Environment,Value=production},
+            {Key=Owner,Value=david-barrera},
+            {Key=CostCenter,Value=personal-portfolio},
+            {Key=ManagedBy,Value=github-actions},
+            {Key=Repository,Value=sebasgao05/DavidBarreraDevCom}
+          ]'
+
+    - name: Apply tags to CloudFront distribution
+      run: |
+        AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+        DISTRIBUTION_ARN="arn:aws:cloudfront::${AWS_ACCOUNT_ID}:distribution/${{ secrets.DEPLOY_DISTRIBUTION_ID }}"
+        echo "Applying tags to CloudFront: ${DISTRIBUTION_ARN}"
+        aws cloudfront tag-resource \
+          --resource "${DISTRIBUTION_ARN}" \
+          --tags 'Items=[
+            {Key=Project,Value=david-barrera-portafolio},
+            {Key=Environment,Value=production},
+            {Key=Owner,Value=david-barrera},
+            {Key=CostCenter,Value=personal-portfolio},
+            {Key=ManagedBy,Value=github-actions},
+            {Key=Repository,Value=sebasgao05/DavidBarreraDevCom}
+          ]'
+
+    - name: Verify tags
+      run: |
+        echo "=== S3 Bucket Tags ==="
+        aws s3api get-bucket-tagging --bucket ${{ secrets.DEPLOY_BUCKET_NAME }} --output table
+
+        echo ""
+        echo "=== CloudFront Tags ==="
+        AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+        DISTRIBUTION_ARN="arn:aws:cloudfront::${AWS_ACCOUNT_ID}:distribution/${{ secrets.DEPLOY_DISTRIBUTION_ID }}"
+        aws cloudfront list-tags-for-resource --resource "${DISTRIBUTION_ARN}" --output table
+
+        echo ""
+        echo "✓ Tags applied successfully!"
+        echo ""
+        echo "Next steps:"
+        echo "  1. Go to AWS Billing > Cost Allocation Tags"
+        echo "  2. Activate: Project, Environment, Owner, CostCenter"
+        echo "  3. Wait ~24h for tags to appear in cost reports"
