@@ -384,14 +384,6 @@ export const certifications = [
     date: '2025 - 2026',
     credlyUrl: 'https://www.credly.com/badges/b1a76f4c-192a-4006-80cf-6f6f2df6a142/public_url',
     image: '/images/badge/aws-cloud-club-captain-112.webp'
-  },
-
-  {
-    name: 'IBM Generative & Agentic AI Foundation',
-    issuer: 'IBM',
-    date: '2025',
-    credlyUrl: '',
-    image: ''
   }
 ];
 
