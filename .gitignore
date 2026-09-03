@@ -8,6 +8,9 @@ node_modules/
 # Production build
 /build
 
+# Test coverage
+/coverage
+
 # Environment variables
 .env
 .env.local
