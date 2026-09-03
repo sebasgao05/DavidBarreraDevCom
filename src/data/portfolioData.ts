@@ -62,6 +62,15 @@ export const portfolioData = {
         featured: true
       },
       {
+        title: 'Cloud Control Panel',
+        description: 'Panel de control serverless para gestionar instancias EC2 en una o múltiples cuentas AWS. Incluye scheduler con EventBridge, notificaciones, estimación de costos, roles y permisos (RBAC), y CI/CD con GitHub Actions.',
+        image: '/images/projects/ControlPanelServerless.png',
+        technologies: ['Python', 'AWS Lambda', 'API Gateway', 'DynamoDB', 'CloudFront', 'S3', 'EventBridge', 'CloudFormation', 'Serverless'],
+        githubUrl: 'https://github.com/sebasgao05/cloud-control-panel',
+        demoUrl: 'https://github.com/sebasgao05/cloud-control-panel',
+        featured: true
+      },
+      {
         title: 'Portafolio Personal',
         description: 'Portafolio web desarrollado con React y TypeScript, desplegado en AWS con CI/CD automatizado.',
         image: '/images/projects/project-portfolio.jpg',
@@ -168,6 +177,15 @@ export const portfolioData = {
         technologies: ['Node.js', 'Express', 'Typescript', 'AWS SAM', 'Jest', 'AWS', 'API REST', 'Serverless'],
         githubUrl: 'https://github.com/sebasgao05/duitama-taxi-pricing',
         demoUrl: 'https://qbtwm8k851.execute-api.us-east-1.amazonaws.com/production/docs',
+        featured: true
+      },
+      {
+        title: 'Cloud Control Panel',
+        description: 'Serverless control panel to manage EC2 instances across one or multiple AWS accounts. Includes an EventBridge scheduler, notifications, cost estimation, role-based access control (RBAC), and CI/CD with GitHub Actions.',
+        image: '/images/projects/ControlPanelServerless.png',
+        technologies: ['Python', 'AWS Lambda', 'API Gateway', 'DynamoDB', 'CloudFront', 'S3', 'EventBridge', 'CloudFormation', 'Serverless'],
+        githubUrl: 'https://github.com/sebasgao05/cloud-control-panel',
+        demoUrl: 'https://github.com/sebasgao05/cloud-control-panel',
         featured: true
       },
       {
@@ -346,6 +364,13 @@ export const skillsOrbits: SkillsOrbits = {
 export const skills = orbitsToSkills(skillsOrbits);
 
 export const certifications = [
+  {
+    name: 'AWS Certified AI Practitioner',
+    issuer: 'Amazon Web Services (AWS)',
+    date: 'Agosto 2026 - Agosto 2029',
+    credlyUrl: 'https://www.credly.com/badges/842d7d89-b234-42fd-9c65-01a567c6f3a8/public_url',
+    image: '/images/badge/aws-certified-ai-practitioner.png'
+  },
   {
     name: 'AWS Certified Cloud Practitioner',
     issuer: 'Amazon Web Services (AWS)',
