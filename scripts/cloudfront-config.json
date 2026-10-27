@@ -7,7 +7,8 @@
     "Items": [
       {
         "Id": "S3-davidbarrera-portfolio",
-        "DomainName": "david-barrera.com.s3.amazonaws.com",
+        "DomainName": "david-barrera.com.s3.us-east-1.amazonaws.com",
+        "OriginAccessControlId": "REPLACE_WITH_OAC_ID",
         "S3OriginConfig": {
           "OriginAccessIdentity": ""
         }
@@ -15,9 +16,17 @@
     ]
   },
   "DefaultCacheBehavior": {
-    "TargetOriginId": "S3-david-barrera.com",
+    "TargetOriginId": "S3-davidbarrera-portfolio",
     "ViewerProtocolPolicy": "redirect-to-https",
     "MinTTL": 0,
+    "AllowedMethods": {
+      "Quantity": 2,
+      "Items": ["GET", "HEAD"],
+      "CachedMethods": {
+        "Quantity": 2,
+        "Items": ["GET", "HEAD"]
+      }
+    },
     "ForwardedValues": {
       "QueryString": false,
       "Cookies": {
@@ -28,11 +37,18 @@
       "Enabled": false,
       "Quantity": 0
     },
+    "ResponseHeadersPolicyId": "REPLACE_WITH_RESPONSE_HEADERS_POLICY_ID",
     "Compress": true
   },
   "CustomErrorResponses": {
-    "Quantity": 1,
+    "Quantity": 2,
     "Items": [
+      {
+        "ErrorCode": 403,
+        "ResponsePagePath": "/index.html",
+        "ResponseCode": "200",
+        "ErrorCachingMinTTL": 300
+      },
       {
         "ErrorCode": 404,
         "ResponsePagePath": "/index.html",

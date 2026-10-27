@@ -30,29 +30,26 @@ aws s3 mb s3://tu-portafolio-bucket --region us-east-1
 aws s3 website s3://tu-portafolio-bucket --index-document index.html --error-document index.html
 ```
 
-### 3. Configurar Política de Bucket
+### 3. Configurar Política de Bucket (acceso solo vía CloudFront)
 
-Crea un archivo `bucket-policy.json`:
+> No hagas el bucket público. El acceso debe restringirse a CloudFront usando
+> Origin Access Control (OAC). Consulta `docs/SECURITY_HARDENING.md` para el
+> procedimiento completo y usa `scripts/bucket-policy.json` como base.
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "PublicReadGetObject",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::tu-portafolio-bucket/*"
-    }
-  ]
-}
-```
-
-Aplicar la política:
+Activa primero el bloqueo de acceso público:
 
 ```bash
-aws s3api put-bucket-policy --bucket tu-portafolio-bucket --policy file://bucket-policy.json
+aws s3api put-public-access-block \
+  --bucket tu-portafolio-bucket \
+  --public-access-block-configuration \
+  BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
+```
+
+La política restringe `s3:GetObject` al servicio CloudFront (OAC) y deniega
+tráfico no-HTTPS. Reemplaza `ACCOUNT_ID` y `DISTRIBUTION_ID` antes de aplicarla:
+
+```bash
+aws s3api put-bucket-policy --bucket tu-portafolio-bucket --policy file://scripts/bucket-policy.json
 ```
 
 ## ☁️ Configuración de CloudFront
@@ -70,7 +67,8 @@ aws s3api put-bucket-policy --bucket tu-portafolio-bucket --policy file://bucket
     "Items": [
       {
         "Id": "S3-tu-portafolio-bucket",
-        "DomainName": "tu-portafolio-bucket.s3.amazonaws.com",
+        "DomainName": "tu-portafolio-bucket.s3.us-east-1.amazonaws.com",
+        "OriginAccessControlId": "TU_OAC_ID",
         "S3OriginConfig": {
           "OriginAccessIdentity": ""
         }
