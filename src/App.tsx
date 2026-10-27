@@ -17,7 +17,7 @@ if (typeof window !== 'undefined') {
   window.addEventListener('load', () => {
     (window as any).secret = () => {
       const message = document.createElement('div');
-      message.innerHTML = 'Escribe "konami" en cualquier parte de la pagina';
+      message.textContent = 'Escribe "konami" en cualquier parte de la pagina';
       message.style.cssText = `
         position: fixed;
         top: 50%;
