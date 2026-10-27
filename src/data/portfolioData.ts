@@ -365,6 +365,20 @@ export const skills = orbitsToSkills(skillsOrbits);
 
 export const certifications = [
   {
+    name: 'AWS Certified Solutions Architect – Professional',
+    issuer: 'Amazon Web Services (AWS)',
+    date: '2026 - 2029',
+    credlyUrl: 'https://www.credly.com/users/david-barrera',
+    image: '/images/badge/aws-certified-solutions-architect-professional.png'
+  },
+  {
+    name: 'AWS Certified Solutions Architect – Associate',
+    issuer: 'Amazon Web Services (AWS)',
+    date: '2026 - 2029',
+    credlyUrl: 'https://www.credly.com/users/david-barrera',
+    image: '/images/badge/aws-certified-solutions-architect-associate.png'
+  },
+  {
     name: 'AWS Certified AI Practitioner',
     issuer: 'Amazon Web Services (AWS)',
     date: 'Agosto 2026 - Agosto 2029',
